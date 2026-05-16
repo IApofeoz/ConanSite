@@ -1904,6 +1904,15 @@
             <p class="card-desc">Три пути к силе: волшебник черпает знание из книг, чародей рождён с даром в крови, колдун заключил сделку с покровителем.</p>
             <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
           </div>
+
+          <div class="card" onclick="openClass('priest')">
+            <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+            <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-warrior"/></svg>
+            <svg class="card-sigil" aria-hidden="true"><use href="#s-warrior"/></svg>
+            <div class="card-title">Жрец</div>
+            <p class="card-desc">Сила богов течёт сквозь него. Жрец выбирает домен на старте — Войны или Жизни — и этот выбор определяет всё: от заклинаний до роли в отряде.</p>
+            <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+          </div>
         </div>
       </div>
 
@@ -2381,6 +2390,88 @@
             }
           </script>
         </div>
+        <div id="detail-priest" class="class-detail-block" style="display:none;">
+
+          <div id="priest-list">
+            <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-warrior"/></svg>Жрец</div>
+            <div class="section-subtitle">два домена · один выбор навсегда</div>
+            <p style="margin-bottom:2rem;">Жрец черпает силу не из книг и не из крови — она приходит свыше, через веру и служение. Домен выбирается на первом уровне и определяет весь путь: Домен Войны превращает жреца в грозного бойца, Домен Жизни — в опору отряда.</p>
+            <div class="card-grid">
+              <div class="card" onclick="openPriestDomain('war')">
+                <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+                <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-warrior"/></svg>
+                <svg class="card-sigil" aria-hidden="true"><use href="#s-warrior"/></svg>
+                <div class="card-title">Домен Войны</div>
+                <p class="card-desc">Боевой жрец на передовой. Священная ярость усиливает удары, божественная броня держит натиск врагов. Сталь и молитва в одних руках.</p>
+                <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+              </div>
+              <div class="card" onclick="openPriestDomain('life')">
+                <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+                <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-warrior"/></svg>
+                <svg class="card-sigil" aria-hidden="true"><use href="#s-warrior"/></svg>
+                <div class="card-title">Домен Жизни</div>
+                <p class="card-desc">Хранитель отряда. Мощное лечение, снятие проклятий, защитные ауры — жрец Жизни удерживает союзников на ногах там, где всё остальное уже рухнуло.</p>
+                <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="priest-detail" style="display:none;">
+            <button class="back-btn" onclick="closePriestDomain()">
+              <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow-left"/></svg>
+              Назад к жрецу
+            </button>
+
+            <div id="detail-war" class="priest-domain-block" style="display:none;">
+              <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-warrior"/></svg>Домен Войны</div>
+              <div class="section-subtitle">священная ярость</div>
+              <div class="stat-sheet">
+                <div class="stat-sheet-header"><span>Лист персонажа · Жрец Войны</span><span>ур. 1</span></div>
+                <div class="stat-grid">
+                  <div class="stat-cell"><span class="stat-cell-label">Здоровье</span><span class="stat-cell-value">10 + Тел.</span><span class="stat-cell-sub">стартовое</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">HP за уровень</span><span class="stat-cell-value">6</span><span class="stat-cell-sub">фиксировано</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Скорость</span><span class="stat-cell-value">6 тайлов</span><span class="stat-cell-sub">30 футов</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Основная хар-ка</span><span class="stat-cell-value">Мудрость</span><span class="stat-cell-sub">атака и заклинания</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Мана</span><span class="stat-cell-value">6 → 14</span><span class="stat-cell-sub">+1–2 за уровень</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Броня</span><span class="stat-cell-value">Вся броня</span><span class="stat-cell-sub">включая тяжёлую</span></div>
+                </div>
+              </div>
+              <p class="lead" style="color:var(--text-muted);margin-top:2rem;text-align:center;">Способности · в разработке</p>
+            </div>
+
+            <div id="detail-life" class="priest-domain-block" style="display:none;">
+              <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-warrior"/></svg>Домен Жизни</div>
+              <div class="section-subtitle">хранитель отряда</div>
+              <div class="stat-sheet">
+                <div class="stat-sheet-header"><span>Лист персонажа · Жрец Жизни</span><span>ур. 1</span></div>
+                <div class="stat-grid">
+                  <div class="stat-cell"><span class="stat-cell-label">Здоровье</span><span class="stat-cell-value">8 + Тел.</span><span class="stat-cell-sub">стартовое</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">HP за уровень</span><span class="stat-cell-value">5</span><span class="stat-cell-sub">фиксировано</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Скорость</span><span class="stat-cell-value">6 тайлов</span><span class="stat-cell-sub">30 футов</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Основная хар-ка</span><span class="stat-cell-value">Мудрость</span><span class="stat-cell-sub">лечение и заклинания</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Мана</span><span class="stat-cell-value">6 → 14</span><span class="stat-cell-sub">+1–2 за уровень</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Броня</span><span class="stat-cell-value">Средняя</span><span class="stat-cell-sub">лёгкая и средняя</span></div>
+                </div>
+              </div>
+              <p class="lead" style="color:var(--text-muted);margin-top:2rem;text-align:center;">Способности · в разработке</p>
+            </div>
+          </div>
+
+          <script>
+            function openPriestDomain(id) {
+              document.getElementById('priest-list').style.display = 'none';
+              document.getElementById('priest-detail').style.display = 'block';
+              document.querySelectorAll('.priest-domain-block').forEach(b => b.style.display = 'none');
+              document.getElementById('detail-' + id).style.display = 'block';
+            }
+            function closePriestDomain() {
+              document.getElementById('priest-list').style.display = 'block';
+              document.getElementById('priest-detail').style.display = 'none';
+              document.querySelectorAll('.priest-domain-block').forEach(b => b.style.display = 'none');
+            }
+          </script>
+        </div>
+
         <div id="detail-rogue" class="class-detail-block" style="display:none;">
           <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-rogue"/></svg>Плут</div>
           <div class="section-subtitle">тень и обман</div>
@@ -2904,6 +2995,10 @@
     const list = document.getElementById('classes-list');
     if (detail) detail.style.display = 'none';
     if (list) list.style.display = 'block';
+    document.querySelectorAll('.class-detail-block').forEach(el => el.style.display = 'none');
+    document.getElementById('priest-list') && (document.getElementById('priest-list').style.display = 'block');
+    document.getElementById('priest-detail') && (document.getElementById('priest-detail').style.display = 'none');
+    document.querySelectorAll('.priest-domain-block').forEach(b => b.style.display = 'none');
   }
   function closeRace() {
     closeSubrace();
