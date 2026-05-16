@@ -1887,21 +1887,21 @@
             <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
           </div>
 
-          <div class="card" onclick="openClass('mage')">
-            <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
-            <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-mage"/></svg>
-            <svg class="card-sigil" aria-hidden="true"><use href="#s-mage"/></svg>
-            <div class="card-title">Маг</div>
-            <p class="card-desc">Повелитель стихий и тайных сил. Хрупкий, но смертоносный. Маг переписывает реальность — если успевает сосредоточиться прежде, чем его убьют.</p>
-            <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
-          </div>
-
           <div class="card" onclick="openClass('rogue')">
             <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
             <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-rogue"/></svg>
             <svg class="card-sigil" aria-hidden="true"><use href="#s-rogue"/></svg>
             <div class="card-title">Плут</div>
             <p class="card-desc">Информация — лучшее оружие. Плут знает, кто кому должен, где хранится секрет и как пройти туда, куда вход закрыт. Мастер теней и социальных интриг.</p>
+            <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+          </div>
+
+          <div class="card" onclick="openClass('mage')">
+            <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+            <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-mage"/></svg>
+            <svg class="card-sigil" aria-hidden="true"><use href="#s-mage"/></svg>
+            <div class="card-title">Маг</div>
+            <p class="card-desc">Три пути к силе: волшебник черпает знание из книг, чародей рождён с даром в крови, колдун заключил сделку с покровителем.</p>
             <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
           </div>
         </div>
@@ -1942,10 +1942,22 @@
             .ab-badge.act{color:#378ADD;border-color:#185FA5;background:rgba(24,95,165,.1)}
             .ab-badge.rea{color:#EF9F27;border-color:#854F0B;background:rgba(133,79,11,.1)}
             .ab-badge.mil{color:var(--gold);border-color:var(--gold-deep);background:rgba(220,184,88,.06)}
-            .ab-desc{font-size:19px;color:var(--text-soft);line-height:1.65;margin-bottom:.6rem}
+            .ab-desc{font-size:22px;color:var(--text-soft);line-height:1.65;margin-bottom:.6rem}
             .ab-tags{display:flex;gap:6px;flex-wrap:wrap}
             .ab-tag{font-size:16px;padding:2px 8px;border:1px solid var(--border);color:var(--text-faint);font-family:'Cinzel',serif;letter-spacing:.08em}
             .arch-head{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.291rem;color:var(--text-muted);margin-bottom:1.5rem;padding-left:4px}
+            .ab-lvl{cursor:pointer;user-select:none;position:relative;padding-right:24px}
+            .ab-lvl::before{content:'▾';position:absolute;right:0;font-size:12px;color:var(--gold-deep);transition:transform .2s;transform:rotate(0deg)}
+            .ab-lvl.collapsed::before{transform:rotate(-90deg)}
+            .lvl-body{overflow:hidden;transition:max-height .25s ease,opacity .2s ease;max-height:2000px;opacity:1}
+            .lvl-body.collapsed{max-height:0!important;opacity:0;pointer-events:none}
+            .wiz-ab-lvl{cursor:pointer;user-select:none;position:relative;padding-right:24px}
+            .wiz-ab-lvl::before{content:'▾';position:absolute;right:0;font-size:12px;color:var(--gold-deep);transition:transform .2s;transform:rotate(0deg)}
+            .wiz-ab-lvl.collapsed::before{transform:rotate(-90deg)}
+            .spell-lvl-label{cursor:pointer;user-select:none;position:relative;padding-right:24px}
+            .spell-lvl-label::before{content:'▾';position:absolute;right:0;font-size:12px;color:var(--gold-deep);transition:transform .2s;transform:rotate(0deg)}
+            .spell-lvl-label.collapsed::before{transform:rotate(-90deg)}
+
           </style>
           <div class="cls-tabs">
             <button class="cls-tab on" onclick="wt('wb','warrior')">Уровни 1–3</button>
@@ -1955,60 +1967,92 @@
           </div>
           <div id="warrior-wb" class="cls-panel on">
             <p class="arch-head">Базовые способности — общие для всех воинов до выбора пути</p>
-            <div class="ab-lvl">Уровень 1 · Новобранец</div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 1 · Новобранец</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Воинская стойка</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Воин начинает бой в готовности. +2 к броску инициативы.</p><div class="ab-tags"><span class="ab-tag">Всегда активно</span><span class="ab-tag">+2 инициатива</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Точный удар</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Воин тратит действие, чтобы прицелиться и нанести удар с +2 к броску атаки.</p><div class="ab-tags"><span class="ab-tag">1 действие</span><span class="ab-tag">Ближний / дальний</span><span class="ab-tag">+2 к атаке</span><span class="ab-tag">2/бой</span></div></div>
-            <div class="ab-lvl">Уровень 2 · Ветеран</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 2 · Ветеран</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Вторая атака</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Воин может совершить дополнительную атаку, потратив бонусное действие. Вторая атака всегда наносится с −2 к броску. Используется 2 раза за бой.</p><div class="ab-tags"><span class="ab-tag">Бонусное действие</span><span class="ab-tag">−2 к атаке</span><span class="ab-tag">2/бой</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Боевое чутьё</span><span class="ab-badge rea">Реакция</span></div><p class="ab-desc">Когда воина атакуют, он может реакцией потребовать перебросить вражеский кубик атаки. Берётся меньший результат.</p><div class="ab-tags"><span class="ab-tag">Реакция</span><span class="ab-tag">1/бой</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Черта</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">На 2 уровне воин получает одну черту на выбор — дополнительную способность, отражающую боевой опыт или особый стиль.</p><div class="ab-tags"><span class="ab-tag">Выбор игрока</span><span class="ab-tag">1 черта</span></div></div>
-            <div class="ab-lvl">Уровень 3 · Выбор пути</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 3 · Выбор пути</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Закалка тела</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Максимум ХП увеличивается на 6.</p><div class="ab-tags"><span class="ab-tag">+6 ХП</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Выбор пути</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">Воин выбирает путь: Берсерк, Страж или Полководец. С этого момента открываются уникальные способности выбранной ветки.</p><div class="ab-tags"><span class="ab-tag">Сюжетный момент</span></div></div>
+            </div>
           </div>
           <div id="warrior-wbers" class="cls-panel">
             <p class="arch-head">Берсерк — ударный боец, живёт за счёт агрессии и высокого урона</p>
-            <div class="ab-lvl">Уровень 4 · Ярость</div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 4 · Ярость</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Ярость</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Воин входит в боевой транс: +2 к броску атаки, −2 к КЗ. Длится 3 раунда. Активируется бонусным действием.</p><div class="ab-tags"><span class="ab-tag">Бонусное действие</span><span class="ab-tag">3 раунда</span><span class="ab-tag">2/отдых</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Свирепый вид</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Когда берсерк активирует Ярость, все враги в 3 м проходят спасбросок Воли (СЛ 12). Провалившие получают помеху на первую атаку в этот раунд.</p><div class="ab-tags"><span class="ab-tag">Спасбросок Воли</span><span class="ab-tag">Страх</span><span class="ab-tag">Триггер: Ярость</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Черта</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">Воин получает одну черту на выбор — дополнительную способность, отражающую боевой опыт или особый стиль.</p><div class="ab-tags"><span class="ab-tag">Выбор игрока</span><span class="ab-tag">1 черта</span></div></div>
-            <div class="ab-lvl">Уровень 5 · Безудержный натиск</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 5 · Безудержный натиск</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Сокрушительный удар</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Во время Ярости: один удар с двойной силой. При попадании цель делает спасбросок Телосложения (СЛ 14) или падает и тратит действие на подъём.</p><div class="ab-tags"><span class="ab-tag">Во время Ярости</span><span class="ab-tag">1/раунд</span><span class="ab-tag">Нокдаун</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Болевой порог</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Во время Ярости берсерк игнорирует первые 3 единицы урона каждой атаки. Если ХП опускаются ниже 25% — Ярость не прерывается автоматически.</p><div class="ab-tags"><span class="ab-tag">Поглощение урона</span><span class="ab-tag">Во время Ярости</span></div></div>
-            <div class="ab-lvl">Уровень 6 · Кровожадность</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 6 · Кровожадность</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Жажда крови</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Каждый раз, когда берсерк убивает врага, он немедленно восстанавливает 1d6 ХП и продлевает Ярость на 1 раунд. Цепочка убийств продлевается бесконечно.</p><div class="ab-tags"><span class="ab-tag">Пассивно</span><span class="ab-tag">+1d6 ХП за убийство</span><span class="ab-tag">Продление Ярости</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Воплощение хаоса</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">1 раз за длинный отдых: войти в Великую Ярость на 5 раундов. Все ограничения Ярости сняты, урон ×1.5, берсерк неуязвим к эффектам страха и контроля.</p><div class="ab-tags"><span class="ab-tag">1/длинный отдых</span><span class="ab-tag">5 раундов</span><span class="ab-tag">Иммунитет к контролю</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Черта</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">Воин получает одну черту на выбор — дополнительную способность, отражающую боевой опыт или особый стиль.</p><div class="ab-tags"><span class="ab-tag">Выбор игрока</span><span class="ab-tag">1 черта</span></div></div>
+            </div>
           </div>
           <div id="warrior-wgard" class="cls-panel">
             <p class="arch-head">Страж — танк, закрывает союзников щитом и контролирует поле боя</p>
-            <div class="ab-lvl">Уровень 4 · Щитовой блок</div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 4 · Щитовой блок</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Щитовой блок</span><span class="ab-badge rea">Реакция</span></div><p class="ab-desc">Реакция на атаку по себе или союзнику в 1.5 м: +3 к КЗ цели до конца атаки. Если атака всё равно попадает, урон снижается на 1d6. Требует щит.</p><div class="ab-tags"><span class="ab-tag">Реакция</span><span class="ab-tag">Требует щит</span><span class="ab-tag">−1d6 урона</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Вызов на себя</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Бонусным действием: выбрать цель в 9 м. Цель обязана атаковать только стража до следующего хода, если провалит спасбросок Воли (СЛ 13).</p><div class="ab-tags"><span class="ab-tag">Бонусное действие</span><span class="ab-tag">Провокация</span><span class="ab-tag">9 м</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Черта</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">Воин получает одну черту на выбор — дополнительную способность, отражающую боевой опыт или особый стиль.</p><div class="ab-tags"><span class="ab-tag">Выбор игрока</span><span class="ab-tag">1 черта</span></div></div>
-            <div class="ab-lvl">Уровень 5 · Непреодолимый</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 5 · Непреодолимый</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Стена из стали</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Бонусным действием страж входит в оборонительную стойку: нельзя двигаться, нельзя совершать действие и реакцию. Взамен все союзники в 3 м получают +2 КЗ. Выход из стойки — бонусным действием в следующий ход.</p><div class="ab-tags"><span class="ab-tag">Бонусное действие</span><span class="ab-tag">Нет движения</span><span class="ab-tag">Нет действия и реакции</span><span class="ab-tag">+2 КЗ союзникам 3 м</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Несокрушимость</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Если страж получает урон, снижающий ХП до 0, он может пройти спасбросок Телосложения (СЛ 15). При успехе остаётся с 1 ХП. 1 раз за бой.</p><div class="ab-tags"><span class="ab-tag">1/бой</span><span class="ab-tag">Выживание с 1 ХП</span></div></div>
-            <div class="ab-lvl">Уровень 6 · Бастион</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 6 · Бастион</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Живой щит</span><span class="ab-badge rea">Реакция</span></div><p class="ab-desc">Реакция: перехватить любую атаку, направленную на союзника в 3 м, приняв весь урон на себя. Против этой атаки используется собственный КЗ стража.</p><div class="ab-tags"><span class="ab-tag">Реакция</span><span class="ab-tag">3 м</span><span class="ab-tag">Свой КЗ стража</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Незыблемый бастион</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Страж получает постоянный +1 КЗ. Стража невозможно сдвинуть с места против его воли — любые эффекты принудительного перемещения (магия, толчки, способности врагов) на него не действуют.</p><div class="ab-tags"><span class="ab-tag">+1 КЗ постоянно</span><span class="ab-tag">Невозможно сдвинуть</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Черта</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">Воин получает одну черту на выбор — дополнительную способность, отражающую боевой опыт или особый стиль.</p><div class="ab-tags"><span class="ab-tag">Выбор игрока</span><span class="ab-tag">1 черта</span></div></div>
+            </div>
           </div>
           <div id="warrior-wwar" class="cls-panel">
             <p class="arch-head">Полководец — тактический лидер, усиливает весь отряд приказами и баффами</p>
-            <div class="ab-lvl">Уровень 4 · Боевой приказ</div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 4 · Боевой приказ</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Боевой приказ</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Бонусным действием: выбрать союзника в 18 м. Тот может немедленно совершить одно движение или атаку вне очереди, не тратя свой ход.</p><div class="ab-tags"><span class="ab-tag">Бонусное действие</span><span class="ab-tag">18 м</span><span class="ab-tag">Внеочерёдное действие</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Тактическая оценка</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">В начале каждого боя полководец может задать один тактический вопрос мастеру: слабые стороны цели, укрытия или количество врагов за углом.</p><div class="ab-tags"><span class="ab-tag">Начало боя</span><span class="ab-tag">Разведка</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Черта</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">Воин получает одну черту на выбор — дополнительную способность, отражающую боевой опыт или особый стиль.</p><div class="ab-tags"><span class="ab-tag">Выбор игрока</span><span class="ab-tag">1 черта</span></div></div>
-            <div class="ab-lvl">Уровень 5 · Инспирация</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 5 · Инспирация</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Боевой клич</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Действие: все союзники в 15 м получают 1d6 временных ХП и преимущество на броски атаки до начала следующего хода полководца. 2 раза за короткий отдых.</p><div class="ab-tags"><span class="ab-tag">Действие</span><span class="ab-tag">Аура 15 м</span><span class="ab-tag">2/короткий отдых</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Читать поле боя</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Полководец никогда не бывает застигнут врасплох. Союзники в 9 м от него также не застигнуты — полководец предупредил их заранее.</p><div class="ab-tags"><span class="ab-tag">Пассивно</span><span class="ab-tag">Аура 9 м</span><span class="ab-tag">Инициатива</span></div></div>
-            <div class="ab-lvl">Уровень 6 · Военный гений</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 6 · Военный гений</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Приказ к атаке</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">1 раз за бой: все союзники в 18 м немедленно совершают одну атаку вне очереди с преимуществом. Полководец при этом тоже атакует.</p><div class="ab-tags"><span class="ab-tag">1/бой</span><span class="ab-tag">Массовая атака</span><span class="ab-tag">Внеочерёдная</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Стратегический ум</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Боевой приказ (ур. 4) более не требует бонусного действия — используется свободно раз за раунд. Союзник может выполнить атаку И движение вместо одного из них.</p><div class="ab-tags"><span class="ab-tag">Улучшение Боевого приказа</span><span class="ab-tag">Бесплатно/раунд</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Черта</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">Воин получает одну черту на выбор — дополнительную способность, отражающую боевой опыт или особый стиль.</p><div class="ab-tags"><span class="ab-tag">Выбор игрока</span><span class="ab-tag">1 черта</span></div></div>
+            </div>
           </div>
           <script>
+
+    function toggleLvl(el) {
+      el.classList.toggle('collapsed');
+      var body = el.nextElementSibling;
+      if (body && body.classList.contains('lvl-body')) {
+        body.classList.toggle('collapsed');
+      }
+    }
             function wt(id,cls){
               document.querySelectorAll('#detail-'+cls+' .cls-tab').forEach(b=>b.classList.remove('on'));
               document.querySelectorAll('#detail-'+cls+' .cls-panel').forEach(p=>p.classList.remove('on'));
@@ -2019,76 +2063,324 @@
         </div>
 
         <div id="detail-mage" class="class-detail-block" style="display:none;">
-          <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-mage"/></svg>Маг</div>
-          <div class="section-subtitle">власть над стихиями</div>
-          <div class="stat-sheet">
-            <div class="stat-sheet-header"><span>Лист персонажа · Маг</span><span>ур. 1</span></div>
-            <div class="stat-grid">
-              <div class="stat-cell"><span class="stat-cell-label">Здоровье</span><span class="stat-cell-value">6 + Тел.</span><span class="stat-cell-sub">стартовое</span></div>
-              <div class="stat-cell"><span class="stat-cell-label">HP за уровень</span><span class="stat-cell-value">4</span><span class="stat-cell-sub">фиксировано</span></div>
-              <div class="stat-cell"><span class="stat-cell-label">Скорость</span><span class="stat-cell-value">6 тайлов</span><span class="stat-cell-sub">30 футов</span></div>
-              <div class="stat-cell"><span class="stat-cell-label">Основная хар-ка</span><span class="stat-cell-value">Интеллект</span><span class="stat-cell-sub">определяет магию</span></div>
-              <div class="stat-cell" style="grid-column:span 2"><span class="stat-cell-label">Ресурс</span><span class="stat-cell-value">Мана · 6 ед.</span><span class="stat-cell-sub">восполняется на отдыхе</span></div>
+
+          <!-- LIST -->
+          <div id="mage-list">
+            <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-mage"/></svg>Классы магии</div>
+            <div class="section-subtitle">три пути к силе</div>
+            <p style="margin-bottom:2rem;">Магия в этом мире не едина — она принимает разные формы в зависимости от того, как и откуда черпается сила. Волшебник учится, чародей рождается с даром, колдун заключает сделку.</p>
+            <div class="card-grid">
+              <div class="card" onclick="openMageClass('wizard')">
+                <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+                <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-mage"/></svg>
+                <svg class="card-sigil" aria-hidden="true"><use href="#s-mage"/></svg>
+                <div class="card-title">Волшебник</div>
+                <p class="card-desc">Знание — его оружие. Волшебник изучает заклинания из книги, выбирает любую комбинацию и единственный в отряде владеет целительной магией.</p>
+                <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+              </div>
+              <div class="card" onclick="openMageClass('sorcerer')">
+                <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+                <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-mage"/></svg>
+                <svg class="card-sigil" aria-hidden="true"><use href="#s-mage"/></svg>
+                <div class="card-title">Чародей</div>
+                <p class="card-desc">Магия в крови — врождённая, не выученная. Меньше заклинаний, но метамагия позволяет твистить любое из них: ускорить, удвоить, расширить.</p>
+                <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+              </div>
+              <div class="card" onclick="openMageClass('warlock')">
+                <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+                <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-mage"/></svg>
+                <svg class="card-sigil" aria-hidden="true"><use href="#s-mage"/></svg>
+                <div class="card-title">Колдун</div>
+                <p class="card-desc">Сила от покровителя — сделка с существом из другого плана. Элдрич взрыв всегда под рукой, инвокации усиливают пассивно, мощные заклинания открываются с уровнем.</p>
+                <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+              </div>
             </div>
           </div>
-          <div class="cls-tabs">
-            <button class="cls-tab on" onclick="wt('mb','mage')">Уровни 1–3</button>
-            <button class="cls-tab" onclick="wt('mwar','mage')">Воин-маг</button>
-            <button class="cls-tab" onclick="wt('msorc','mage')">Чародей</button>
-            <button class="cls-tab" onclick="wt('mheal','mage')">Целитель</button>
-          </div>
-          <div id="mage-mb" class="cls-panel on">
-            <p class="arch-head">Базовые заклинания и механика маны — общие для всех школ</p>
-            <div class="ab-lvl">Уровень 1 · Ученик</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Магический заряд</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Маг управляет пулом маны — основным ресурсом всех заклинаний. Начальный запас: 6 единиц. Короткий отдых восстанавливает 1d4 маны, длинный — полностью. Заклинания стоят от 1 до 4 маны.</p><div class="ab-tags"><span class="ab-tag">6 маны на старте</span><span class="ab-tag">Отдых = восполнение</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Магическая стрела</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Дальность 18 м, урон 1d8+Интеллект. Всегда попадает — без броска на атаку. Можно выпустить до трёх стрел за раз, каждая дополнительная стоит 1 ману.</p><div class="ab-tags"><span class="ab-tag">1 мана</span><span class="ab-tag">1d8+Инт</span><span class="ab-tag">18 м</span><span class="ab-tag">Автопопадание</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Чтение магии</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Маг видит магические ауры предметов и существ в 9 м. Автоматически определяет наличие магии. Действием — узнаёт школу и приблизительную силу. Маны не требует.</p><div class="ab-tags"><span class="ab-tag">Пассивно</span><span class="ab-tag">9 м</span><span class="ab-tag">Бесплатно</span></div></div>
-            <div class="ab-lvl">Уровень 2 · Заклинатель</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Концентрация</span><span class="ab-badge mil">Механика</span></div><p class="ab-desc">Маг может поддерживать одно длительное заклинание. При получении урона — спасбросок Интеллекта (СЛ 12 или половина урона): провал прерывает заклинание.</p><div class="ab-tags"><span class="ab-tag">Спасбросок при уроне</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Магический щит</span><span class="ab-badge rea">Реакция</span></div><p class="ab-desc">Реакция на атаку: мгновенный барьер даёт +4 КЗ до конца атаки. Стоит 1 ману.</p><div class="ab-tags"><span class="ab-tag">Реакция</span><span class="ab-tag">1 мана</span><span class="ab-tag">+4 КЗ</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Метамагия: усиление</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Перед любым заклинанием потратить +1 ману: на выбор +1 к кубику урона, +3 м дальности или +2 к СЛ спасброска.</p><div class="ab-tags"><span class="ab-tag">+1 мана</span><span class="ab-tag">Усиление заклинания</span></div></div>
-            <div class="ab-lvl">Уровень 3 · Выбор школы</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Резерв маны +4</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Максимальный запас маны вырастает до 10 единиц. Маг разучивает одно заклинание будущей школы бесплатно — предвкушение пути.</p><div class="ab-tags"><span class="ab-tag">10 маны</span><span class="ab-tag">+1 заклинание школы</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Выбор школы</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">Маг выбирает путь: Воин-маг (сталь и магия), Чародей (разрушительный урон) или Целитель (поддержка и восстановление).</p><div class="ab-tags"><span class="ab-tag">Сюжетный момент</span></div></div>
-          </div>
-          <div id="mage-mwar" class="cls-panel">
-            <p class="arch-head">Воин-маг — ближний бой, усиленный магией. Сталь и заклинания в одних руках</p>
-            <div class="ab-lvl">Уровень 4 · Клинок заклинаний</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Клинок заклинаний</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Бонусным действием: насытить оружие магией на 1 минуту. Удары наносят дополнительно 1d6 магического урона и считаются магическими. Тип урона (огонь, лёд, молния) выбирается при активации.</p><div class="ab-tags"><span class="ab-tag">1 мана</span><span class="ab-tag">Бонусное действие</span><span class="ab-tag">+1d6 магия</span><span class="ab-tag">1 минута</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Боевое колдовство</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Воин-маг может применять заклинания в ближнем бою без штрафов. Атака и заклинание в одном ходу — больше не исключают друг друга.</p><div class="ab-tags"><span class="ab-tag">Пассивно</span><span class="ab-tag">Атака + заклинание за ход</span></div></div>
-            <div class="ab-lvl">Уровень 5 · Руническая броня</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Руническая броня</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Действием: нанести руны на броню — +2 КЗ и устойчивость к одному типу магического урона на выбор. Длится до конца боя или пока не получено 20+ урона магией за один удар.</p><div class="ab-tags"><span class="ab-tag">2 маны</span><span class="ab-tag">+2 КЗ</span><span class="ab-tag">Устойчивость к магии</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Магический выпад</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Вместо обычной атаки: телепортироваться к цели в 12 м и нанести удар с +2d6 магического урона. Перемещение не вызывает атак по возможности.</p><div class="ab-tags"><span class="ab-tag">2 маны</span><span class="ab-tag">12 м</span><span class="ab-tag">+2d6 маг. урон</span></div></div>
-            <div class="ab-lvl">Уровень 6 · Магический вихрь</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Магический вихрь</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">1 раз за длинный отдых: удар по всем врагам в 3 м с уроном оружия + 3d6 магии, затем телепортация к любому врагу в 9 м и повторный удар. Все движения не вызывают атак по возможности.</p><div class="ab-tags"><span class="ab-tag">3 маны</span><span class="ab-tag">1/длинный отдых</span><span class="ab-tag">Удар 360° + телепортация</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Единство стали и магии</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Когда Клинок заклинаний активен, каждый успешный удар в ближнем бою восстанавливает 1 ману. Максимум маны постоянно увеличивается на 2 (итого 12).</p><div class="ab-tags"><span class="ab-tag">+1 мана за удар</span><span class="ab-tag">Макс. мана 12</span></div></div>
-          </div>
-          <div id="mage-msorc" class="cls-panel">
-            <p class="arch-head">Чародей — максимальный магический урон, живёт на грани пустой маны</p>
-            <div class="ab-lvl">Уровень 4 · Разрушительный всплеск</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Разрушительный всплеск</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Выстрел сосредоточенной магии по одной цели в 24 м: 4d8+Инт урона. Критический бросок (20) вызывает взрыв — все в 3 м от цели получают половину урона.</p><div class="ab-tags"><span class="ab-tag">2 маны</span><span class="ab-tag">4d8+Инт</span><span class="ab-tag">24 м</span><span class="ab-tag">Крит = взрыв</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Сверхпроводимость</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Если цель уже получила магический урон в этом бою — следующее заклинание чародея по ней игнорирует устойчивость и проходит через магические барьеры.</p><div class="ab-tags"><span class="ab-tag">Пассивно</span><span class="ab-tag">Игнор устойчивости</span><span class="ab-tag">После первого удара</span></div></div>
-            <div class="ab-lvl">Уровень 5 · Перегрузка</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Перегрузка</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Влить всю доступную ману в одно заклинание: 1d10 за каждую потраченную ману (макс. 10d10). После — 0 маны и помеха на все броски следующего хода. 1 раз за бой.</p><div class="ab-tags"><span class="ab-tag">Вся мана</span><span class="ab-tag">1d10/мана</span><span class="ab-tag">1/бой</span><span class="ab-tag">Истощение после</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Магический голод</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Чем меньше маны — тем сильнее заклинания. При 5 и менее манах: +1d6 к урону. При 2 и менее: +2d6. При 0 — следующее заклинание бесплатное, но после него чародей теряет сознание на 1 раунд.</p><div class="ab-tags"><span class="ab-tag">≤5 маны: +1d6</span><span class="ab-tag">≤2 маны: +2d6</span><span class="ab-tag">0 маны: бесплатно + обморок</span></div></div>
-            <div class="ab-lvl">Уровень 6 · Апокалипсис</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Апокалипсис</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">1 раз за длинный отдых: 8d10 магического урона по области 9 м в 30 м. Спасбросок Ловкости (СЛ 18) — половина. Союзники в зоне автоматически невредимы, если чародей предупредил их.</p><div class="ab-tags"><span class="ab-tag">4 маны</span><span class="ab-tag">1/длинный отдых</span><span class="ab-tag">8d10</span><span class="ab-tag">Область 9 м</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Эхо заклинания</span><span class="ab-badge rea">Реакция</span></div><p class="ab-desc">Реакция на вражеское заклинание: скопировать и перенаправить его обратно с половинной силой. Спасбросок Интеллекта (СЛ 16) против копирования. 2 раза за длинный отдых.</p><div class="ab-tags"><span class="ab-tag">Реакция</span><span class="ab-tag">2/длинный отдых</span><span class="ab-tag">×0.5 урон</span></div></div>
-          </div>
-          <div id="mage-mheal" class="cls-panel">
-            <p class="arch-head">Целитель — восстановление, щиты и воскрешение. Опора всего отряда</p>
-            <div class="ab-lvl">Уровень 4 · Исцеляющий свет</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Исцеляющий свет</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Действием: восстановить союзнику в 18 м 2d8+Инт ХП (стоит 1 ману). Бонусным действием: более слабая версия — 1d6 ХП бесплатно (1 раз за ход). За 2 маны: лечение двух целей одновременно.</p><div class="ab-tags"><span class="ab-tag">1 мана (полное)</span><span class="ab-tag">Бесплатно 1d6 (бонусное)</span><span class="ab-tag">2 маны = 2 цели</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Снятие недуга</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Действием: снять с союзника один эффект на выбор: яд, болезнь, паралич, ослепление, оглушение или страх. За 2 маны — снять все эффекты сразу.</p><div class="ab-tags"><span class="ab-tag">1 мана (один эффект)</span><span class="ab-tag">2 маны (все эффекты)</span><span class="ab-tag">Касание</span></div></div>
-            <div class="ab-lvl">Уровень 5 · Защитный купол</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Защитный купол</span><span class="ab-badge mil">Концентрация</span></div><p class="ab-desc">Концентрация, 3 маны: сфера 6 м вокруг целителя. Союзники внутри получают +2 КЗ и устойчивость к магическому урону. Каждый раунд — все в куполе восстанавливают 1d4 ХП.</p><div class="ab-tags"><span class="ab-tag">3 маны</span><span class="ab-tag">Концентрация</span><span class="ab-tag">Купол 6 м</span><span class="ab-tag">+2 КЗ + 1d4 ХП/раунд</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Жизненный якорь</span><span class="ab-badge rea">Реакция</span></div><p class="ab-desc">Реакция: когда союзник в 18 м получает смертельный удар — поглотить часть урона. Союзник остаётся с 1 ХП, целитель получает 1d10 урона. 2 раза за бой.</p><div class="ab-tags"><span class="ab-tag">Реакция</span><span class="ab-tag">2/бой</span><span class="ab-tag">18 м</span><span class="ab-tag">Союзник выживает с 1 ХП</span></div></div>
-            <div class="ab-lvl">Уровень 6 · Воскрешение</div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Воскрешение</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">1 раз за длинный отдых: поднять союзника, павшего не более 1 минуты назад, с 50% ХП. Требует 1 полное действие и касание. Стоит 4 маны и 1d6 собственных ХП целителя.</p><div class="ab-tags"><span class="ab-tag">4 маны</span><span class="ab-tag">1/длинный отдых</span><span class="ab-tag">50% ХП</span><span class="ab-tag">−1d6 ХП целителя</span></div></div>
-            <div class="ab-card"><div class="ab-head"><span class="ab-name">Живительный поток</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Каждый раз, когда целитель лечит союзника полным лечением, он восстанавливает 1d4 маны. Бонусное лечение вырастает до 1d8 вместо 1d6.</p><div class="ab-tags"><span class="ab-tag">+1d4 маны при лечении</span><span class="ab-tag">Бонусное лечение 1d8</span></div></div>
-          </div>
-        </div>
 
+          <!-- DETAIL -->
+          <div id="mage-detail" style="display:none;">
+            <button class="back-btn" onclick="closeMageClass()">
+              <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow-left"/></svg>
+              Назад к классам магии
+            </button>
+
+            <!-- ВОЛШЕБНИК -->
+            <div id="detail-wizard" class="mage-class-block" style="display:none;">
+              <div class="stat-sheet">
+                <div class="stat-sheet-header"><span>Лист персонажа · Волшебник</span><span>ур. 1</span></div>
+                <div class="stat-grid">
+                  <div class="stat-cell"><span class="stat-cell-label">Здоровье</span><span class="stat-cell-value">6 + Тел.</span><span class="stat-cell-sub">стартовое</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">HP за уровень</span><span class="stat-cell-value">4</span><span class="stat-cell-sub">фиксировано</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Скорость</span><span class="stat-cell-value">6 тайлов</span><span class="stat-cell-sub">30 футов</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Основная хар-ка</span><span class="stat-cell-value">Интеллект</span><span class="stat-cell-sub">атака и лечение</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Мана</span><span class="stat-cell-value">8 → 18</span><span class="stat-cell-sub">+2 за уровень</span></div>
+                  <div class="stat-cell" style="background:rgba(15,110,86,.08);border-color:#0F6E56"><span class="stat-cell-label" style="color:#085041">Лечение</span><span class="stat-cell-value" style="color:#0F6E56">Только волшебник</span><span class="stat-cell-sub">уникально</span></div>
+                </div>
+              </div>
+              <style>
+            .wiz-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:2rem 0 1.5rem}
+            .wiz-tab{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border-gold);background:var(--bg-2);color:var(--text-muted);cursor:pointer;transition:all .2s}
+            .wiz-tab:hover{border-color:var(--gold-dark);color:var(--gold-light);background:var(--bg-3)}
+            .wiz-tab.on{border-color:var(--gold-dark);background:var(--bg-3);color:var(--gold-light)}
+            .wiz-panel{display:none}.wiz-panel.on{display:block}
+            .wiz-ab-lvl{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-faint);margin:1.5rem 0 .75rem;display:flex;align-items:center;gap:10px}
+            .wiz-ab-lvl::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-gold),transparent)}
+            .wiz-card{border:1px solid var(--border);background:var(--bg-2);padding:1rem 1.25rem;margin-bottom:.75rem}
+            .wiz-head{display:flex;align-items:center;gap:10px;margin-bottom:.5rem;flex-wrap:wrap}
+            .wiz-name{font-family:'Cinzel',serif;font-size:.95rem;font-weight:500;color:var(--gold-light);letter-spacing:.04em}
+            .wiz-badge{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;border:1px solid;flex-shrink:0}
+            .wiz-badge.pas{color:#639922;border-color:#3B6D11;background:rgba(59,109,17,.1)}
+            .wiz-badge.act{color:#378ADD;border-color:#185FA5;background:rgba(24,95,165,.1)}
+            .wiz-badge.rea{color:#EF9F27;border-color:#854F0B;background:rgba(133,79,11,.1)}
+            .wiz-desc{font-size:22px;color:var(--text-soft);line-height:1.65;margin-bottom:.6rem}
+            .wiz-tags{display:flex;gap:6px;flex-wrap:wrap}
+            .wiz-tag{font-size:14px;padding:2px 8px;border:1px solid var(--border);color:var(--text-faint);font-family:'Cinzel',serif;letter-spacing:.08em}
+            .spell-lvl-group{margin-bottom:2rem}
+            .spell-lvl-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-faint);margin:1.5rem 0 .75rem;display:flex;align-items:center;gap:10px}
+            .spell-lvl-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-gold),transparent)}
+            .spell-lvl-meta{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--gold-deep);margin-left:8px;white-space:nowrap}
+            .spell-card{border:1px solid var(--border);background:var(--bg-2);padding:.85rem 1.1rem;margin-bottom:.6rem;display:grid;grid-template-columns:1fr auto;gap:.5rem .75rem}
+            .spell-card.heal-spell{border-color:#0F6E56;background:rgba(15,110,86,.05)}
+            .spell-name{font-family:'Cinzel',serif;font-size:.9rem;color:var(--gold-light);font-weight:500;letter-spacing:.04em}
+            .spell-cost{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.12em;padding:2px 8px;border:1px solid var(--gold-deep);color:var(--gold-deep);white-space:nowrap;align-self:start}
+            .spell-cost.heal-cost{border-color:#0F6E56;color:#085041;background:rgba(15,110,86,.08)}
+            .spell-desc{font-size:22px;color:var(--text-soft);line-height:1.6;grid-column:span 2}
+            .spell-tags{display:flex;gap:5px;flex-wrap:wrap;grid-column:span 2}
+            .spell-tag{font-size:12px;padding:1px 7px;border:1px solid var(--border);color:var(--text-faint);font-family:'Cinzel',serif;letter-spacing:.06em}
+            .prog-table{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;text-align:center;margin-top:.75rem}
+            .prog-hd{font-family:'Cinzel',serif;font-size:14px;letter-spacing:.14em;color:var(--text-faint)}
+            .prog-val{font-size:20px;font-weight:500;color:var(--gold-light)}
+            .prog-sub{font-size:15px;color:var(--text-faint)}
+          </style>
+          <div class="wiz-tabs">
+            <button class="wiz-tab on" onclick="wzt('wz-abilities',this)">Способности</button>
+            <button class="wiz-tab" onclick="wzt('wz-spells',this)">Заклинания</button>
+          </div>
+
+          <!-- ===== СПОСОБНОСТИ ===== -->
+          <div id="wz-abilities" class="wiz-panel on">
+
+            <div class="wiz-card" style="border-color:var(--border-gold);background:var(--bg-3);margin-bottom:1.5rem">
+              <div class="wiz-head"><span class="wiz-name">Прогрессия маны и подготовки</span></div>
+              <div class="prog-table">
+                <div class="prog-hd">Ур. 1</div><div class="prog-hd">Ур. 2</div><div class="prog-hd">Ур. 3</div><div class="prog-hd">Ур. 4</div><div class="prog-hd">Ур. 5</div><div class="prog-hd">Ур. 6</div>
+                <div class="prog-val">8</div><div class="prog-val">10</div><div class="prog-val">12</div><div class="prog-val">14</div><div class="prog-val">16</div><div class="prog-val">18</div>
+                <div class="prog-sub">3 зак.</div><div class="prog-sub">5 зак.</div><div class="prog-sub">7 зак.</div><div class="prog-sub">9 зак.</div><div class="prog-sub">11 зак.</div><div class="prog-sub">13 зак.</div>
+                <div class="prog-sub" style="color:var(--gold-deep)">3 подг.</div><div class="prog-sub" style="color:var(--gold-deep)">4 подг.</div><div class="prog-sub" style="color:var(--gold-deep)">5 подг.</div><div class="prog-sub" style="color:var(--gold-deep)">6 подг.</div><div class="prog-sub" style="color:var(--gold-deep)">7 подг.</div><div class="prog-sub" style="color:var(--gold-deep)">8 подг.</div>
+              </div>
+            </div>
+
+            <div class="wiz-ab-lvl" onclick="toggleLvl(this)">Уровень 1 · Ученик</div>
+            <div class="lvl-body">
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Книга заклинаний</span><span class="wiz-badge pas">Пассивная</span></div>
+              <p class="wiz-desc">Волшебник ведёт книгу, в которую записывает выученные заклинания. Использовать можно только записанное. Книгу пополняют из свитков, книг других магов или через наблюдение.</p>
+              <div class="wiz-tags"><span class="wiz-tag">Только записанные заклинания</span><span class="wiz-tag">Свитки и книги = источник</span></div>
+            </div>
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Подготовка заклинаний</span><span class="wiz-badge pas">Пассивная</span></div>
+              <p class="wiz-desc">Перед длинным отдыхом волшебник выбирает из книги подготовленные заклинания — только они доступны в бою. Количество зафиксировано по уровням: 3 / 4 / 5 / 6 / 7 / 8.</p>
+              <div class="wiz-tags"><span class="wiz-tag">Ур.1→3 … Ур.6→8</span><span class="wiz-tag">Меняются на длинном отдыхе</span></div>
+            </div>
+            </div>
+
+            <div class="wiz-ab-lvl" onclick="toggleLvl(this)">Уровень 2 · Заклинатель</div>
+            <div class="lvl-body">
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Восстановление магии</span><span class="wiz-badge act">Активная</span></div>
+              <p class="wiz-desc">Один раз за короткий отдых волшебник восстанавливает 1d4 маны, медитируя 10 минут над книгой заклинаний.</p>
+              <div class="wiz-tags"><span class="wiz-tag">1/короткий отдых</span><span class="wiz-tag">+1d4 маны</span><span class="wiz-tag">10 минут</span></div>
+            </div>
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Копирование заклинаний</span><span class="wiz-badge pas">Пассивная</span></div>
+              <p class="wiz-desc">Три пути выучить чужое заклинание.</p>
+              <p class="wiz-desc"><strong style="color:var(--gold-light)">Из источника</strong> — изучить свиток, книгу или расспросить мага через ролёвку. Заклинание записывается сразу при успехе.</p>
+              <p class="wiz-desc"><strong style="color:var(--gold-light)">Наблюдение в бою</strong> — сконцентрироваться на чужом заклинании в момент применения и пройти проверку Интеллекта (СЛ устанавливает мастер). При успехе фиксируется структура, но заклинание ещё не готово.</p>
+              <p class="wiz-desc"><strong style="color:var(--gold-light)">Практика после наблюдения</strong> — многократное самостоятельное воспроизведение в спокойной обстановке, исправление ошибок итерация за итерацией. Занимает значительно больше времени чем копирование из источника. Количество повторений определяет мастер.</p>
+              <div class="wiz-tags"><span class="wiz-tag">Из источника: сразу</span><span class="wiz-tag">Наблюдение + практика: долго</span><span class="wiz-tag">СЛ на усмотрение мастера</span></div>
+            </div>
+            </div>
+
+            <div class="wiz-ab-lvl" onclick="toggleLvl(this)">Уровень 3 · Исследователь</div>
+            <div class="lvl-body">
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Усиленное заклинание</span><span class="wiz-badge act">Активная</span></div>
+              <p class="wiz-desc">Один раз за ход: потратить 2 маны сверх стоимости заклинания, чтобы максимизировать один кубик урона или лечения.</p>
+              <div class="wiz-tags"><span class="wiz-tag">+2 маны</span><span class="wiz-tag">1/ход</span><span class="wiz-tag">Макс. один кубик</span></div>
+            </div>
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Концентрация мастера</span><span class="wiz-badge pas">Пассивная</span></div>
+              <p class="wiz-desc">Преимущество на спасброски Концентрации при получении урона. Порог СЛ снижается с 12 до 10.</p>
+              <div class="wiz-tags"><span class="wiz-tag">Преимущество на Концентрацию</span><span class="wiz-tag">СЛ снижен до 10</span></div>
+            </div>
+            </div>
+
+            <div class="wiz-ab-lvl" onclick="toggleLvl(this)">Уровень 4 · Архивариус</div>
+            <div class="lvl-body">
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Ритуальное колдовство</span><span class="wiz-badge act">Активная</span></div>
+              <p class="wiz-desc">Заклинания с пометкой «ритуал» применяются без затрат маны за 10 минут. Не обязано быть подготовлено — достаточно наличия в книге.</p>
+              <div class="wiz-tags"><span class="wiz-tag">0 маны</span><span class="wiz-tag">10 минут</span><span class="wiz-tag">Из книги без подготовки</span></div>
+            </div>
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Контрзаклинание</span><span class="wiz-badge rea">Реакция</span></div>
+              <p class="wiz-desc">Реакция на вражеское заклинание: прервать его броском Интеллекта против СЛ заклинания врага. При успехе — аннулировано.</p>
+              <div class="wiz-tags"><span class="wiz-tag">Реакция</span><span class="wiz-tag">3 маны</span><span class="wiz-tag">Инт против СЛ врага</span></div>
+            </div>
+            </div>
+
+            <div class="wiz-ab-lvl" onclick="toggleLvl(this)">Уровень 5 · Перегрузка разума</div>
+            <div class="lvl-body">
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Двойное заклинание</span><span class="wiz-badge act">Активная</span></div>
+              <p class="wiz-desc">Один раз за длинный отдых: применить два подготовленных заклинания в один ход. Второе — бонусным действием за полную стоимость маны.</p>
+              <div class="wiz-tags"><span class="wiz-tag">1/длинный отдых</span><span class="wiz-tag">2 заклинания за ход</span><span class="wiz-tag">Полная стоимость обоих</span></div>
+            </div>
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Магическое чутьё</span><span class="wiz-badge pas">Пассивная</span></div>
+              <p class="wiz-desc">Волшебник автоматически замечает магию в 18 м — школу, силу, источник. Нельзя застать врасплох магическим эффектом.</p>
+              <div class="wiz-tags"><span class="wiz-tag">Пассивно</span><span class="wiz-tag">18 м</span><span class="wiz-tag">Нельзя застать магией врасплох</span></div>
+            </div>
+            </div>
+
+            <div class="wiz-ab-lvl" onclick="toggleLvl(this)">Уровень 6 · Мастер заклинаний</div>
+            <div class="lvl-body">
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Подпись мага</span><span class="wiz-badge pas">Пассивная</span></div>
+              <p class="wiz-desc">Волшебник выбирает два заклинания из книги — они становятся «подписью». Их стоимость снижается на 2 маны (минимум 1) навсегда. Выбрать можно только один раз.</p>
+              <div class="wiz-tags"><span class="wiz-tag">2 заклинания</span><span class="wiz-tag">−2 маны постоянно</span><span class="wiz-tag">Навсегда</span></div>
+            </div>
+            <div class="wiz-card">
+              <div class="wiz-head"><span class="wiz-name">Архимаг</span><span class="wiz-badge act">Активная</span></div>
+              <p class="wiz-desc">1 раз за длинный отдых: применить одно заклинание из книги бесплатно и без подготовки. После — нельзя применять заклинания стоимостью выше 2 маны до конца следующего хода.</p>
+              <div class="wiz-tags"><span class="wiz-tag">1/длинный отдых</span><span class="wiz-tag">Любое из книги бесплатно</span><span class="wiz-tag">Лимит 2 маны после</span></div>
+            </div>
+            </div>
+          </div>
+
+          <!-- ===== ЗАКЛИНАНИЯ ===== -->
+          <div id="wz-spells" class="wiz-panel">
+
+            <div class="spell-lvl-label" onclick="toggleLvl(this)">Уровень 1 <span class="spell-lvl-meta">· открывается на старте</span></div>
+            <div class="lvl-body">
+              <div class="spell-card"><span class="spell-name">Магическая стрела</span><span class="spell-cost">2 маны</span><p class="spell-desc">Три светящихся снаряда автоматически поражают цели — без броска на атаку. Каждый наносит 1d4+1 силового урона. Можно распределить по разным целям.</p><div class="spell-tags"><span class="spell-tag">Автопопадание</span><span class="spell-tag">3 снаряда</span><span class="spell-tag">18 м</span></div></div>
+              <div class="spell-card"><span class="spell-name">Огненный снаряд</span><span class="spell-cost">1 мана</span><p class="spell-desc">Сгусток огня летит в одну цель в 30 м. При попадании 2d6 огненного урона. Может поджечь воспламеняемые предметы.</p><div class="spell-tags"><span class="spell-tag">Бросок атаки</span><span class="spell-tag">2d6 огонь</span><span class="spell-tag">30 м</span></div></div>
+              <div class="spell-card"><span class="spell-name">Ледяной луч</span><span class="spell-cost">1 мана</span><p class="spell-desc">Луч ледяного холода тянется к цели в 18 м. При попадании 1d8 холодного урона и скорость цели снижается на 3 м до конца её следующего хода.</p><div class="spell-tags"><span class="spell-tag">Бросок атаки</span><span class="spell-tag">1d8 холод</span><span class="spell-tag">−3 м скорости</span></div></div>
+              <div class="spell-card"><span class="spell-name">Сон</span><span class="spell-cost">2 маны</span><p class="spell-desc">Магическая дрёма охватывает существ с суммарными ХП до 5d8. Начинается с самых слабых. Существа с иммунитетом к очарованию не подвержены. Длится 1 минуту.</p><div class="spell-tags"><span class="spell-tag">Концентрация</span><span class="spell-tag">5d8 ХП целей</span><span class="spell-tag">9 м</span></div></div>
+              <div class="spell-card"><span class="spell-name">Щит мага</span><span class="spell-cost">1 мана</span><p class="spell-desc">Реакция: невидимый барьер даёт +5 к КЗ до начала следующего хода волшебника. Также блокирует урон от Магической стрелы.</p><div class="spell-tags"><span class="spell-tag">Реакция</span><span class="spell-tag">+5 КЗ</span><span class="spell-tag">До след. хода</span></div></div>
+              <div class="spell-card heal-spell"><span class="spell-name">Лечение ран</span><span class="spell-cost heal-cost">1 мана · лечение</span><p class="spell-desc">Касание: союзник восстанавливает 1d8 + Интеллект ХП. Не действует на нежить и конструкты.</p><div class="spell-tags"><span class="spell-tag">Касание</span><span class="spell-tag">1d8+Инт ХП</span></div></div>
+              <div class="spell-card heal-spell"><span class="spell-name">Стабилизация</span><span class="spell-cost heal-cost">0 маны · лечение</span><p class="spell-desc">Касание: стабилизировать умирающего союзника — он прекращает смертные спасброски и остаётся без сознания с 0 ХП, но не умирает.</p><div class="spell-tags"><span class="spell-tag">Бесплатно</span><span class="spell-tag">Касание</span><span class="spell-tag">Стабилизирует при 0 ХП</span></div></div>
+            </div>
+
+            <div class="spell-lvl-label" onclick="toggleLvl(this)">Уровень 2 <span class="spell-lvl-meta">· открывается на 2 уровне персонажа</span></div>
+            <div class="lvl-body">
+              <div class="spell-card"><span class="spell-name">Туманный шаг</span><span class="spell-cost">2 маны</span><p class="spell-desc">Бонусным действием телепортироваться в видимое место в 9 м. Не вызывает атак по возможности.</p><div class="spell-tags"><span class="spell-tag">Бонусное действие</span><span class="spell-tag">Телепортация 9 м</span></div></div>
+              <div class="spell-card"><span class="spell-name">Паутина</span><span class="spell-cost">2 маны</span><p class="spell-desc">Куб 6 м заполняется липкой паутиной. Все внутри проходят спасбросок Ловкости или обездвиживаются. Огонь сжигает паутину за 2 раунда. Концентрация, 1 час.</p><div class="spell-tags"><span class="spell-tag">Концентрация</span><span class="spell-tag">Куб 6 м</span><span class="spell-tag">Обездвиживание</span></div></div>
+              <div class="spell-card"><span class="spell-name">Зеркальное отображение</span><span class="spell-cost">2 маны</span><p class="spell-desc">Три иллюзорные копии волшебника появляются рядом с ним. Каждая атака по волшебнику имеет шанс попасть в копию. Копии исчезают от одного попадания. Без концентрации.</p><div class="spell-tags"><span class="spell-tag">3 копии</span><span class="spell-tag">1 минута</span><span class="spell-tag">Без концентрации</span></div></div>
+              <div class="spell-card"><span class="spell-name">Удар грома</span><span class="spell-cost">2 маны</span><p class="spell-desc">Волна грома исходит от волшебника: все в 1.5 м получают 2d8 урона звуком, спасбросок Телосложения — половина при успехе. Провалившие сдвигаются на 3 м.</p><div class="spell-tags"><span class="spell-tag">Аура 1.5 м</span><span class="spell-tag">2d8 звук</span><span class="spell-tag">Сдвиг при провале</span></div></div>
+              <div class="spell-card heal-spell"><span class="spell-name">Малое лечение</span><span class="spell-cost heal-cost">1 мана · лечение</span><p class="spell-desc">Бонусным действием: один союзник в 18 м восстанавливает 1d4 ХП. Слабое, но быстрое — не тратит основное действие.</p><div class="spell-tags"><span class="spell-tag">Бонусное действие</span><span class="spell-tag">1d4 ХП</span><span class="spell-tag">18 м</span></div></div>
+            </div>
+
+            <div class="spell-lvl-label" onclick="toggleLvl(this)">Уровень 3 <span class="spell-lvl-meta">· открывается на 3 уровне персонажа</span></div>
+            <div class="lvl-body">
+              <div class="spell-card"><span class="spell-name">Молния</span><span class="spell-cost">3 маны</span><p class="spell-desc">Молния пронзает всё на линии 30 м шириной 1.5 м. Урон 4d6 электричеством, спасбросок Ловкости — половина. Поджигает воспламеняемые объекты.</p><div class="spell-tags"><span class="spell-tag">Линия 30 м</span><span class="spell-tag">4d6 электричество</span></div></div>
+              <div class="spell-card"><span class="spell-name">Огненный шар</span><span class="spell-cost">3 маны</span><p class="spell-desc">Огненный взрыв в точке 45 м, сфера 6 м. Урон 4d6 огнём, спасбросок Ловкости — половина.</p><div class="spell-tags"><span class="spell-tag">Сфера 6 м</span><span class="spell-tag">4d6 огонь</span><span class="spell-tag">45 м</span></div></div>
+              <div class="spell-card"><span class="spell-name">Замедление</span><span class="spell-cost">3 маны</span><p class="spell-desc">До 6 существ в кубе 12 м проходят спасбросок Мудрости. Провалившие: скорость ÷2, −2 КЗ, не могут делать реакции, только одно действие или бонусное за ход. Концентрация, 1 минута.</p><div class="spell-tags"><span class="spell-tag">Концентрация</span><span class="spell-tag">До 6 целей</span><span class="spell-tag">1 минута</span></div></div>
+              <div class="spell-card"><span class="spell-name">Невидимость</span><span class="spell-cost">3 маны</span><p class="spell-desc">Одно существо становится невидимым на 5 минут. Заклинание прерывается при атаке или применении заклинания целью. Концентрация.</p><div class="spell-tags"><span class="spell-tag">Концентрация</span><span class="spell-tag">1 цель</span><span class="spell-tag">5 минут</span></div></div>
+              <div class="spell-card heal-spell"><span class="spell-name">Массовое лечение</span><span class="spell-cost heal-cost">3 маны · лечение</span><p class="spell-desc">До 6 союзников в 9 м от волшебника восстанавливают по 1d4+Интеллект ХП каждый.</p><div class="spell-tags"><span class="spell-tag">До 6 целей</span><span class="spell-tag">1d4+Инт ХП</span><span class="spell-tag">9 м</span></div></div>
+            </div>
+
+            <div class="spell-lvl-label" onclick="toggleLvl(this)">Уровень 4 <span class="spell-lvl-meta">· открывается на 4 уровне персонажа</span></div>
+            <div class="lvl-body">
+              <div class="spell-card"><span class="spell-name">Ледяная буря</span><span class="spell-cost">3 маны</span><p class="spell-desc">Ледяные осколки обрушиваются на цилиндр диаметром 6 м, высотой 3 м. Урон 2d8 холодного, спасбросок Ловкости — половина. Все в зоне замедляются на 50% скорости до конца следующего хода.</p><div class="spell-tags"><span class="spell-tag">Цилиндр 6 м</span><span class="spell-tag">2d8 холод</span><span class="spell-tag">Замедление −50%</span></div></div>
+              <div class="spell-card"><span class="spell-name">Разрыв пространства</span><span class="spell-cost">4 маны</span><p class="spell-desc">Волшебник открывает два портала в видимых точках в пределах 30 м. Любое существо, входящее в один портал, мгновенно выходит из другого. Порталы существуют 3 хода или пока поддерживается концентрация. Прерывается при получении урона.</p><div class="spell-tags"><span class="spell-tag">Концентрация</span><span class="spell-tag">3 хода</span><span class="spell-tag">30 м</span><span class="spell-tag">Союзники и враги</span></div></div>
+              <div class="spell-card"><span class="spell-name">Стена огня</span><span class="spell-cost">4 маны</span><p class="spell-desc">Стена огня длиной 18 м, высотой 6 м. Существо, начинающее ход в стене или проходящее сквозь неё, получает 2d8 огненного урона. Действует 2 хода. Концентрация.</p><div class="spell-tags"><span class="spell-tag">Концентрация</span><span class="spell-tag">Стена 18 м</span><span class="spell-tag">2d8 огонь/ход</span><span class="spell-tag">2 хода</span></div></div>
+              <div class="spell-card"><span class="spell-name">Телепатия</span><span class="spell-cost">2 маны</span><p class="spell-desc">Волшебник устанавливает ментальный контакт с одним согласным существом вне зависимости от расстояния. Обмен мыслями без слов на 24 часа. Концентрация.</p><div class="spell-tags"><span class="spell-tag">Концентрация</span><span class="spell-tag">1 цель</span><span class="spell-tag">Без ограничения дистанции</span></div></div>
+              <div class="spell-card heal-spell"><span class="spell-name">Восстановление</span><span class="spell-cost heal-cost">3 маны · лечение</span><p class="spell-desc">Касание: союзник восстанавливает 4d8+Интеллект ХП и снимает один из эффектов: ослепление, глухота, паралич или яд.</p><div class="spell-tags"><span class="spell-tag">Касание</span><span class="spell-tag">4d8+Инт ХП</span><span class="spell-tag">+снятие эффекта</span></div></div>
+            </div>
+
+            <div class="spell-lvl-label" onclick="toggleLvl(this)">Уровень 5 <span class="spell-lvl-meta">· открывается на 5 уровне персонажа</span></div>
+            <div class="lvl-body">
+              <div class="spell-card"><span class="spell-name">Телекинез</span><span class="spell-cost">4 маны</span><p class="spell-desc">Концентрация: перемещать предметы или существа силой мысли. Предметы до 500 кг — до 9 м за ход. Существа проходят спасбросок Силы или их тоже перемещают. Длится 10 минут.</p><div class="spell-tags"><span class="spell-tag">Концентрация</span><span class="spell-tag">10 минут</span><span class="spell-tag">До 500 кг</span></div></div>
+              <div class="spell-card"><span class="spell-name">Конус холода</span><span class="spell-cost">4 маны</span><p class="spell-desc">Волна ледяного воздуха в конусе 18 м. Урон 4d8 холодного, спасбросок Телосложения — половина. Убитые существа замораживаются и разлетаются на осколки.</p><div class="spell-tags"><span class="spell-tag">Конус 18 м</span><span class="spell-tag">4d8 холод</span></div></div>
+              <div class="spell-card"><span class="spell-name">Стена силы</span><span class="spell-cost">4 маны</span><p class="spell-desc">Невидимая стена из силового поля — панели 3×3 м, до 10 штук. Непробиваема немагическими атаками. Концентрация, 10 минут. Можно строить клетки и укрытия.</p><div class="spell-tags"><span class="spell-tag">Концентрация</span><span class="spell-tag">10 минут</span><span class="spell-tag">Непробиваема</span></div></div>
+              <div class="spell-card"><span class="spell-name">Рассеивание магии</span><span class="spell-cost">3 маны</span><p class="spell-desc">Завершить одно магическое заклинание или эффект на существе, предмете или в области в 36 м. Против заклинаний выше 3 уровня — проверка Интеллекта.</p><div class="spell-tags"><span class="spell-tag">36 м</span><span class="spell-tag">Снимает магию</span><span class="spell-tag">Проверка vs высоких уровней</span></div></div>
+              <div class="spell-card heal-spell"><span class="spell-name">Массовое исцеление</span><span class="spell-cost heal-cost">4 маны · лечение</span><p class="spell-desc">Волна целительной энергии охватывает до 6 союзников в 9 м. Каждый восстанавливает 3d8+Интеллект ХП.</p><div class="spell-tags"><span class="spell-tag">До 6 целей</span><span class="spell-tag">3d8+Инт ХП</span><span class="spell-tag">9 м</span></div></div>
+            </div>
+
+            <div class="spell-lvl-label" onclick="toggleLvl(this)">Уровень 6 <span class="spell-lvl-meta">· открывается на 6 уровне персонажа</span></div>
+            <div class="lvl-body">
+              <div class="spell-card"><span class="spell-name">Дезинтеграция</span><span class="spell-cost">5 маны</span><p class="spell-desc">Луч разрушения поражает одну цель в 18 м. При попадании 10d4 силового урона. Если цель падает до 0 ХП — она распадается в пыль вместе с вещами.</p><div class="spell-tags"><span class="spell-tag">Бросок атаки</span><span class="spell-tag">10d4</span><span class="spell-tag">Уничтожение при 0 ХП</span></div></div>
+              <div class="spell-card"><span class="spell-name">Цепная молния</span><span class="spell-cost">5 маны</span><p class="spell-desc">Молния поражает основную цель в 30 м (6d4), затем прыгает на 3 вторичных цели в 9 м от предыдущей (4d4 каждой). Спасбросок Ловкости — половина для всех.</p><div class="spell-tags"><span class="spell-tag">6d4 основная цель</span><span class="spell-tag">+3×4d4 цепью</span><span class="spell-tag">30 м</span></div></div>
+              <div class="spell-card"><span class="spell-name">Печать забвения</span><span class="spell-cost">5 маны</span><p class="spell-desc">Волшебник стирает из памяти цели последние 10 минут. Цель не помнит волшебника, союзников, всё что было сказано или сделано за этот период. Применяется только вне боя. Спасбросок Мудрости (СЛ 18) — при успехе цель чувствует лёгкое головокружение, но память сохраняется. 1 раз за длинный отдых.</p><div class="spell-tags"><span class="spell-tag">Только вне боя</span><span class="spell-tag">СЛ 18 Мудрость</span><span class="spell-tag">1/длинный отдых</span><span class="spell-tag">Социальный инструмент</span></div></div>
+              <div class="spell-card"><span class="spell-name">Истинное зрение</span><span class="spell-cost">3 маны</span><p class="spell-desc">Существо видит сквозь иллюзии, невидимость, магическую тьму и маскировку на 18 м. Видит истинную форму оборотней. Длится 1 час. Без концентрации.</p><div class="spell-tags"><span class="spell-tag">1 час</span><span class="spell-tag">18 м</span><span class="spell-tag">Без концентрации</span></div></div>
+
+            </div>
+          </div>
+
+<script>
+            function wzt(id, btn) {
+              document.querySelectorAll('#detail-mage .wiz-panel').forEach(p => p.classList.remove('on'));
+              document.querySelectorAll('#detail-mage .wiz-tab').forEach(b => b.classList.remove('on'));
+              document.getElementById(id).classList.add('on');
+              btn.classList.add('on');
+            }
+          </script>
+        </div>
+          
+            </div>
+
+            <!-- ЧАРОДЕЙ -->
+            <div id="detail-sorcerer" class="mage-class-block" style="display:none;">
+              <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-mage"/></svg>Чародей</div>
+              <div class="section-subtitle">магия в крови</div>
+              <div class="stat-sheet">
+                <div class="stat-sheet-header"><span>Лист персонажа · Чародей</span><span>ур. 1</span></div>
+                <div class="stat-grid">
+                  <div class="stat-cell"><span class="stat-cell-label">Здоровье</span><span class="stat-cell-value">6 + Тел.</span><span class="stat-cell-sub">стартовое</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">HP за уровень</span><span class="stat-cell-value">4</span><span class="stat-cell-sub">фиксировано</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Скорость</span><span class="stat-cell-value">6 тайлов</span><span class="stat-cell-sub">30 футов</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Основная хар-ка</span><span class="stat-cell-value">Харизма</span><span class="stat-cell-sub">атака и метамагия</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Мана</span><span class="stat-cell-value">8 → 18</span><span class="stat-cell-sub">+2 за уровень</span></div>
+                  <div class="stat-cell" style="background:rgba(83,74,183,.08);border-color:#534AB7"><span class="stat-cell-label" style="color:#3C3489">Особенность</span><span class="stat-cell-value" style="color:#534AB7">Метамагия</span><span class="stat-cell-sub">с 2 уровня</span></div>
+                </div>
+              </div>
+              <p class="lead" style="color:var(--text-muted);margin-top:2rem;text-align:center;">Способности · в разработке</p>
+            </div>
+
+            <!-- КОЛДУН -->
+            <div id="detail-warlock" class="mage-class-block" style="display:none;">
+              <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-mage"/></svg>Колдун</div>
+              <div class="section-subtitle">сделка с покровителем</div>
+              <div class="stat-sheet">
+                <div class="stat-sheet-header"><span>Лист персонажа · Колдун</span><span>ур. 1</span></div>
+                <div class="stat-grid">
+                  <div class="stat-cell"><span class="stat-cell-label">Здоровье</span><span class="stat-cell-value">8 + Тел.</span><span class="stat-cell-sub">стартовое</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">HP за уровень</span><span class="stat-cell-value">6</span><span class="stat-cell-sub">фиксировано</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Скорость</span><span class="stat-cell-value">6 тайлов</span><span class="stat-cell-sub">30 футов</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Основная хар-ка</span><span class="stat-cell-value">Харизма</span><span class="stat-cell-sub">атака и инвокации</span></div>
+                  <div class="stat-cell"><span class="stat-cell-label">Мана</span><span class="stat-cell-value">4 → 10</span><span class="stat-cell-sub">+1–2 за уровень</span></div>
+                  <div class="stat-cell" style="background:rgba(15,110,86,.08);border-color:#0F6E56"><span class="stat-cell-label" style="color:#085041">Особенность</span><span class="stat-cell-value" style="color:#0F6E56">Элдрич взрыв</span><span class="stat-cell-sub">бесплатно · всегда</span></div>
+                </div>
+              </div>
+              <p class="lead" style="color:var(--text-muted);margin-top:2rem;text-align:center;">Способности · в разработке</p>
+            </div>
+          </div>
+
+          <script>
+            function openMageClass(id) {
+              document.getElementById('mage-list').style.display = 'none';
+              document.getElementById('mage-detail').style.display = 'block';
+              document.querySelectorAll('.mage-class-block').forEach(b => b.style.display = 'none');
+              document.getElementById('detail-' + id).style.display = 'block';
+            }
+            function closeMageClass() {
+              document.getElementById('mage-list').style.display = 'block';
+              document.getElementById('mage-detail').style.display = 'none';
+              document.querySelectorAll('.mage-class-block').forEach(b => b.style.display = 'none');
+            }
+          </script>
+        </div>
         <div id="detail-rogue" class="class-detail-block" style="display:none;">
           <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-rogue"/></svg>Плут</div>
           <div class="section-subtitle">тень и обман</div>
@@ -2110,51 +2402,75 @@
           </div>
           <div id="rogue-rb" class="cls-panel on">
             <p class="arch-head">Базовые способности — фундамент всех путей плута</p>
-            <div class="ab-lvl">Уровень 1 · Карманник</div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 1 · Карманник</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Скрытная атака</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Если плут атакует цель, которая не замечает его или отвлечена на союзника, атака наносит дополнительно +1d6 урона. Работает один раз за ход с любым лёгким оружием.</p><div class="ab-tags"><span class="ab-tag">+1d6 урона</span><span class="ab-tag">Незамеченность / отвлечение</span><span class="ab-tag">1/ход</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Ловкие руки</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Плут совершает проверки Ловкости (кражи, взлом замков, обыск) с преимуществом. Может использовать мелкие предметы бонусным действием вместо основного.</p><div class="ab-tags"><span class="ab-tag">Преимущество на Ловкость</span><span class="ab-tag">Бонусное действие</span></div></div>
-            <div class="ab-lvl">Уровень 2 · Теневой клинок</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 2 · Теневой клинок</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Раствориться в тени</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Бонусным действием плут уходит в скрытность, даже если за ним наблюдают — при условии что поблизости есть тень, укрытие или толпа. Проверка Скрытности против Восприятия врага.</p><div class="ab-tags"><span class="ab-tag">Бонусное действие</span><span class="ab-tag">Требует укрытие</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Уклонение</span><span class="ab-badge rea">Реакция</span></div><p class="ab-desc">При попадании атаки плут реакцией уходит в сторону: урон снижается вдвое. Если атака была по площади — при успешном спасброске урон равен нулю, при провале — половина.</p><div class="ab-tags"><span class="ab-tag">Реакция</span><span class="ab-tag">Урон ÷2</span><span class="ab-tag">1/раунд</span></div></div>
-            <div class="ab-lvl">Уровень 3 · Выбор пути</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 3 · Выбор пути</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Скрытная атака +2d6</span><span class="ab-badge pas">Улучшение</span></div><p class="ab-desc">Скрытная атака растёт до +2d6 урона. Плут также может применять её при атаке с фланга, даже если союзника нет рядом — достаточно, чтобы враг был занят другим.</p><div class="ab-tags"><span class="ab-tag">+2d6 урона</span><span class="ab-tag">Улучшение ур. 1</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Выбор пути</span><span class="ab-badge mil">Веха</span></div><p class="ab-desc">Плут выбирает специализацию: Убийца, Мошенник или Разведчик. Каждый путь меняет стиль игры кардинально — от чистого урона до контроля поля и социальных манипуляций.</p><div class="ab-tags"><span class="ab-tag">Сюжетный момент</span></div></div>
+            </div>
           </div>
           <div id="rogue-rass" class="cls-panel">
             <p class="arch-head">Убийца — устранение через скрытность и один мощный удар</p>
-            <div class="ab-lvl">Уровень 4 · Смертельный укол</div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 4 · Смертельный укол</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Смертельный укол</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Атака по цели, не подозревающей об опасности: Скрытная атака наносит +3d6 вместо обычного бонуса. Если цель гуманоид с ХП ниже 30% — немедленная смерть при провале спасброска Телосложения (СЛ 15).</p><div class="ab-tags"><span class="ab-tag">+3d6 скрытная атака</span><span class="ab-tag">Мгновенная смерть</span><span class="ab-tag">ХП &lt;30%</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Маскировка убийцы</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Убийца может без инструментов подготовить внешность чужого человека за 10 минут. Проверки Обмана при поддержании маскировки совершаются с преимуществом.</p><div class="ab-tags"><span class="ab-tag">Маскировка 10 мин</span><span class="ab-tag">Преимущество на Обман</span></div></div>
-            <div class="ab-lvl">Уровень 5 · Теневой шаг</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 5 · Теневой шаг</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Теневой шаг</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Бонусным действием: мгновенно переместиться из одной тени в другую в радиусе 18 м. Перемещение не вызывает атак по возможности. После телепортации следующая атака считается скрытной автоматически.</p><div class="ab-tags"><span class="ab-tag">Бонусное действие</span><span class="ab-tag">18 м</span><span class="ab-tag">2/короткий отдых</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Анатомическое знание</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Убийца знает уязвимые точки: критический удар наступает при броске 19–20 (вместо только 20). При крите Скрытная атака удваивается полностью, включая все бонусные кубики.</p><div class="ab-tags"><span class="ab-tag">Крит 19–20</span><span class="ab-tag">Двойная скрытная атака при крите</span></div></div>
-            <div class="ab-lvl">Уровень 6 · Приговор</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 6 · Приговор</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Приговор</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">1 раз за длинный отдых: убийца назначает жертву. В течение 24 часов все атаки по цели наносят максимальный урон Скрытной атаки (без броска кубиков). 1 раз за длинный отдых.</p><div class="ab-tags"><span class="ab-tag">1/длинный отдых</span><span class="ab-tag">Макс. урон</span><span class="ab-tag">24 часа</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Исчезновение</span><span class="ab-badge rea">Реакция</span></div><p class="ab-desc">Реакция на нанесение финального удара: убийца немедленно уходит в полную невидимость и перемещается на 9 м. Невидимость длится до конца хода или до следующей атаки.</p><div class="ab-tags"><span class="ab-tag">Реакция</span><span class="ab-tag">После убийства</span><span class="ab-tag">Невидимость</span></div></div>
+            </div>
           </div>
           <div id="rogue-rtri" class="cls-panel">
             <p class="arch-head">Мошенник — обман, манипуляции, иллюзии и социальная инженерия</p>
-            <div class="ab-lvl">Уровень 4 · Серебряный язык</div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 4 · Серебряный язык</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Серебряный язык</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Все проверки Убеждения, Обмана и Запугивания совершаются с преимуществом. Мошенник чувствует ложь автоматически — пассивное Проницательность всегда равно 15, если реальный показатель ниже.</p><div class="ab-tags"><span class="ab-tag">Преимущество на социальные броски</span><span class="ab-tag">Пассивная проницательность 15</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Отвлекающий манёвр</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Действием: создать отвлечение в 6 м. Все враги в зоне проходят проверку Восприятия (СЛ 14) или теряют реакцию до следующего хода.</p><div class="ab-tags"><span class="ab-tag">Действие</span><span class="ab-tag">6 м</span><span class="ab-tag">Снятие реакции</span><span class="ab-tag">2/короткий отдых</span></div></div>
-            <div class="ab-lvl">Уровень 5 · Двойник</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 5 · Двойник</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Двойник</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">Действием: создать иллюзорную копию себя. Враги не знают, кто настоящий — все атаки по мошеннику имеют 50% шанс попасть в копию (исчезает от одного попадания).</p><div class="ab-tags"><span class="ab-tag">Действие</span><span class="ab-tag">Иллюзия</span><span class="ab-tag">50% промах</span><span class="ab-tag">1/короткий отдых</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Чужая личина</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Мошенник может полностью принять чужую личность: голос, манеры, биография. При длительном внедрении проверки разоблачения совершаются с помехой у противника.</p><div class="ab-tags"><span class="ab-tag">Ролевая механика</span><span class="ab-tag">Помеха на разоблачение</span></div></div>
-            <div class="ab-lvl">Уровень 6 · Мастер иллюзий</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 6 · Мастер иллюзий</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Иллюзия хаоса</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">1 раз за бой: создать масштабную иллюзию в 12 м. Все враги в зоне проходят спасбросок Воли (СЛ 16) или тратят ход на реакцию к угрозе. Иллюзия держится 3 раунда.</p><div class="ab-tags"><span class="ab-tag">1/бой</span><span class="ab-tag">12 м</span><span class="ab-tag">3 раунда</span><span class="ab-tag">Потеря хода</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Неуловимая личность</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Магические способности чтения мыслей и обнаружения лжи не работают против мошенника — он автоматически замечает их применение и может подсунуть нужную «правду».</p><div class="ab-tags"><span class="ab-tag">Иммунитет к телепатии</span><span class="ab-tag">Контроль над образом</span></div></div>
+            </div>
           </div>
           <div id="rogue-rsco" class="cls-panel">
             <p class="arch-head">Разведчик — мобильность, ловушки и контроль территории</p>
-            <div class="ab-lvl">Уровень 4 · Призрачный бег</div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 4 · Призрачный бег</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Призрачный бег</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Скорость передвижения +3 м. Разведчик не получает штраф к Скрытности при движении в полную скорость. Передвижение по сложной местности не требует проверки.</p><div class="ab-tags"><span class="ab-tag">+3 м к скорости</span><span class="ab-tag">Скрытность на бегу</span><span class="ab-tag">Игнор сложной местности</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Разметка территории</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">За 1 минуту разведки разведчик запоминает точную карту помещения: все выходы, укрытия, позиции врагов. Союзники, получившие эту информацию, не могут быть застигнуты врасплох в этой области.</p><div class="ab-tags"><span class="ab-tag">1 минута</span><span class="ab-tag">Тактическая карта</span><span class="ab-tag">Защита отряда</span></div></div>
-            <div class="ab-lvl">Уровень 5 · Ловушки мастера</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 5 · Ловушки мастера</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Сеть ловушек</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">За 10 минут расставить до 3 ловушек в области 9×9 м. Тип на выбор: капкан (обездвиживание 1 раунд), сигнальная (будит разведчика), дымовая (помеха на видимость 3 раунда). СЛ обнаружения — 16.</p><div class="ab-tags"><span class="ab-tag">10 минут</span><span class="ab-tag">3 ловушки</span><span class="ab-tag">СЛ обнаружения 16</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Охотничий инстинкт</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Пассивное Восприятие +5. Никогда не проваливает проверки на поиск скрытых врагов и ловушек с СЛ ниже 20. Чувствует присутствие невидимых существ в 6 м.</p><div class="ab-tags"><span class="ab-tag">+5 Восприятие</span><span class="ab-tag">Обнаружение невидимых</span><span class="ab-tag">6 м</span></div></div>
-            <div class="ab-lvl">Уровень 6 · Дух тени</div>
+            </div>
+            <div class="ab-lvl" onclick="toggleLvl(this)">Уровень 6 · Дух тени</div>
+            <div class="lvl-body">
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Дух тени</span><span class="ab-badge act">Активная</span></div><p class="ab-desc">1 раз за длинный отдых: разведчик становится полупрозрачным на 1 минуту. Проходит сквозь врагов без атак по возможности, игнорирует тонкие стены, невидим при слабом освещении.</p><div class="ab-tags"><span class="ab-tag">1/длинный отдых</span><span class="ab-tag">1 минута</span><span class="ab-tag">Полупрозрачность</span></div></div>
             <div class="ab-card"><div class="ab-head"><span class="ab-name">Мастер засад</span><span class="ab-badge pas">Пассивная</span></div><p class="ab-desc">Если бой начинается в зоне ловушек разведчика или все враги застигнуты врасплох — весь отряд получает дополнительный раунд действий до начала инициативы противника. Разведчик всегда ходит первым.</p><div class="ab-tags"><span class="ab-tag">Бонусный раунд засады</span><span class="ab-tag">Первая инициатива</span></div></div>
+            </div>
           </div>
         </div>
       </div>
