@@ -1469,7 +1469,9 @@
         <button onclick="switchTab('mechanics')"><span class="tab-num">V·1</span>Механики</button>
         <button onclick="switchTab('combat')"><span class="tab-num">V·2</span>Базис боёвки</button>
         <button onclick="switchTab('dice')"><span class="tab-num">V·3</span>Кубики</button>
-        <button onclick="switchTab('feats')"><span class="tab-num">V·4</span>Черты</button>
+        <button onclick="switchTab('backgrounds')"><span class="tab-num">V·4</span>Предыстории</button>
+        <button onclick="switchTab('feats')"><span class="tab-num">V·5</span>Черты</button>
+        <button onclick="switchTab('equipment')"><span class="tab-num">V·6</span>Снаряжение</button>
       </div>
     </div>
     <a href="https://docs.google.com/document/d/11Hfrcb7KPpVQRoXvMsQvWEnmveECZWP7Zv90JpkBJCE/edit?usp=sharing" target="_blank" class="tab-btn">
@@ -2623,10 +2625,127 @@
       </div>
     </div>
 
+    <!-- ━━━ ПРЕДЫСТОРИИ ━━━ -->
+    <div class="tab-content" id="tab-backgrounds">
+      <div class="chapter-mark">
+        <span class="chapter-num">CHAPTER · V·4</span>
+        <span class="chapter-rule"></span>
+      </div>
+      <div class="section-title">Предыстории</div>
+      <div class="section-subtitle">кем ты был до приключений</div>
+      <p class="lead">Предыстория определяет прошлое персонажа — навыки, связи и отправную точку. Брось указанные кубики, чтобы определить стартовое золото.</p>
+
+      <style>
+        .bg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; border: 1px solid var(--border-gold); margin-top: 1.5rem; }
+        .bg-card { background: var(--bg-2); padding: 1.25rem 1.5rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
+        .bg-card:hover { background: var(--bg-3); }
+        .bg-name { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 500; color: var(--gold-light); letter-spacing: .06em; margin-bottom: .75rem; }
+        .bg-dice { font-family: 'JetBrains Mono', monospace; font-size: 16px; color: var(--gold-deep); border: 1px solid var(--border-gold); display: inline-block; padding: 2px 10px; margin-bottom: .75rem; }
+        .bg-skills { font-size: 17px; color: var(--text-muted); margin-bottom: .5rem; }
+        .bg-skills strong { color: var(--gold-pale); font-weight: 500; font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+        .bg-feature { font-size: 17px; color: var(--text-muted); margin-bottom: .5rem; }
+        .bg-feature strong { color: var(--gold-pale); font-weight: 500; font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+        .bg-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--text-faint); line-height: 1.55; margin-top: .75rem; padding-top: .75rem; border-top: 1px solid var(--border); }
+        .bg-divider { grid-column: 1 / -1; background: var(--bg-1); padding: 0; border-bottom: 1px solid var(--border-gold); }
+      </style>
+
+      <div class="bg-grid">
+
+        <div class="bg-card">
+          <div class="bg-name">Послушник</div>
+          <div class="bg-dice">Золото: 2d6 + d4</div>
+          <div class="bg-skills"><strong>Навыки</strong>Религия, Проницательность</div>
+          <div class="bg-feature"><strong>Особенность</strong>Приют веры — храм всегда даст ночлег и лечение</div>
+          <p class="bg-desc">Служение богам с детства. Ты знаешь молитвы, обряды и иерархию церкви лучше, чем большинство верующих знают собственное имя.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Шарлатан</div>
+          <div class="bg-dice">Золото: 2d6 + 2d4</div>
+          <div class="bg-skills"><strong>Навыки</strong>Обман, Ловкость рук</div>
+          <div class="bg-feature"><strong>Особенность</strong>Фальшивая личность — готовые документы на другое имя</div>
+          <p class="bg-desc">Ты продавал снадобья от всех болезней и исчезал прежде, чем ложь раскрывалась. Мир — сцена, люди — зрители.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Преступник</div>
+          <div class="bg-dice">Золото: 2d6</div>
+          <div class="bg-skills"><strong>Навыки</strong>Скрытность, Обман</div>
+          <div class="bg-feature"><strong>Особенность</strong>Преступные связи — контакт в криминальном мире любого города</div>
+          <p class="bg-desc">Воровские гильдии, тёмные переулки и люди, которые не задают лишних вопросов — твоя привычная среда.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Артист</div>
+          <div class="bg-dice">Золото: 2d4</div>
+          <div class="bg-skills"><strong>Навыки</strong>Выступление, Убеждение</div>
+          <div class="bg-feature"><strong>Особенность</strong>Всегда принят — бесплатный ночлег в тавернах где известен</div>
+          <p class="bg-desc">Ты жил аплодисментами. Публика любит не правду, а историю — и ты умеешь её рассказывать.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Народный герой</div>
+          <div class="bg-dice">Золото: 2d6 + d4</div>
+          <div class="bg-skills"><strong>Навыки</strong>Выживание, Уход за животными</div>
+          <div class="bg-feature"><strong>Особенность</strong>Поддержка народа — простые люди укроют, накормят, не выдадут</div>
+          <p class="bg-desc">Ты сделал что-то, что запомнили. Простые люди видят в тебе своего — и это дороже любых титулов.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Ремесленник</div>
+          <div class="bg-dice">Золото: 2d6 + 2d4</div>
+          <div class="bg-skills"><strong>Навыки</strong>История, Убеждение</div>
+          <div class="bg-feature"><strong>Особенность</strong>Цеховые связи — помощь от гильдии ремесленников в любом городе</div>
+          <p class="bg-desc">Годы ученичества и мозоли на руках — вот твоя биография. Гильдия — твоя семья и страховка одновременно.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Аристократ</div>
+          <div class="bg-dice">Золото: 4d6</div>
+          <div class="bg-skills"><strong>Навыки</strong>История, Убеждение</div>
+          <div class="bg-feature"><strong>Особенность</strong>Положение в обществе — принят в высших кругах, доступ к светским событиям</div>
+          <p class="bg-desc">Балы, интриги, политические браки — твоя привычная среда. Имя открывает двери, но и обязывает. Семья смотрит. Всегда.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Скиталец</div>
+          <div class="bg-dice">Золото: d6</div>
+          <div class="bg-skills"><strong>Навыки</strong>Атлетика, Выживание</div>
+          <div class="bg-feature"><strong>Особенность</strong>Странник — найдёт дорогу и пропитание там, где другие потеряются</div>
+          <p class="bg-desc">Города кажутся тебе клетками. Следить за зверем, читать небо, находить воду — не навыки, а инстинкты.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Мудрец</div>
+          <div class="bg-dice">Золото: 2d4</div>
+          <div class="bg-skills"><strong>Навыки</strong>Магия, История</div>
+          <div class="bg-feature"><strong>Особенность</strong>Исследователь — знает где найти редкую информацию в любом городе</div>
+          <p class="bg-desc">Библиотеки пахнут лучше людей — так ты думал долгие годы учёбы. Мир снаружи оказался сложнее любого трактата.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Солдат</div>
+          <div class="bg-dice">Золото: 2d6</div>
+          <div class="bg-skills"><strong>Навыки</strong>Атлетика, Запугивание</div>
+          <div class="bg-feature"><strong>Особенность</strong>Воинское братство — ветераны и военные помогут информацией и ночлегом</div>
+          <p class="bg-desc">Ты знаешь запах страха перед боем и тишину после него. Гражданская жизнь кажется слишком тихой — или слишком громкой не там, где надо.</p>
+        </div>
+
+        <div class="bg-card">
+          <div class="bg-name">Бродяга</div>
+          <div class="bg-dice">Золото: d6</div>
+          <div class="bg-skills"><strong>Навыки</strong>Скрытность, Ловкость рук</div>
+          <div class="bg-feature"><strong>Особенность</strong>Знание трущоб — знает короткие пути и тайные места любого города</div>
+          <p class="bg-desc">Ты научился выживать раньше, чем читать. Изнанка любого города — твоя территория.</p>
+        </div>
+
+      </div>
+    </div>
+
     <!-- ━━━ ЧЕРТЫ ━━━ -->
     <div class="tab-content" id="tab-feats">
       <div class="chapter-mark">
-        <span class="chapter-num">CHAPTER · V·4</span>
+        <span class="chapter-num">CHAPTER · V·5</span>
         <span class="chapter-rule"></span>
       </div>
       <div class="section-title">Черты</div>
@@ -2663,6 +2782,106 @@
             <p>Один раз в 24 часа персонаж может перебросить любой кубик — атаку, урон, спасбросок или проверку характеристики. После переброска игрок выбирает какой из двух результатов оставить.</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- ━━━ СНАРЯЖЕНИЕ ━━━ -->
+    <div class="tab-content" id="tab-equipment">
+      <div class="chapter-mark">
+        <span class="chapter-num">CHAPTER · V·6</span>
+        <span class="chapter-rule"></span>
+      </div>
+      <div class="section-title">Снаряжение</div>
+      <div class="section-subtitle">оружие, броня и щиты</div>
+
+      <style>
+        .eq-section { margin-bottom: 2.5rem; }
+        .eq-section-title { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--text-faint); display: flex; align-items: center; gap: 12px; margin: 2rem 0 1rem; }
+        .eq-section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-gold), transparent); }
+        .eq-table { width: 100%; border-collapse: collapse; }
+        .eq-table th { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-faint); padding: 8px 12px; border-bottom: 1px solid var(--border-gold); text-align: left; font-weight: 400; }
+        .eq-table th:not(:first-child) { text-align: center; }
+        .eq-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-soft); font-size: 17px; vertical-align: middle; }
+        .eq-table td:first-child { color: var(--gold-light); font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: .04em; }
+        .eq-table td:not(:first-child) { text-align: center; }
+        .eq-table tr:hover td { background: var(--bg-3); }
+        .eq-tag { font-size: 12px; padding: 2px 8px; border: 1px solid var(--border); color: var(--text-faint); font-family: 'Cinzel', serif; letter-spacing: .08em; display: inline-block; }
+        .eq-tag.simple { border-color: var(--border); color: var(--text-faint); }
+        .eq-tag.martial { border-color: var(--gold-deep); color: var(--gold-deep); background: rgba(220,184,88,.06); }
+        .eq-tag.shield { border-color: #185FA5; color: #378ADD; background: rgba(24,95,165,.08); }
+        .eq-type { display: inline-block; font-size: 13px; padding: 2px 8px; border-radius: 2px; }
+        .eq-type.slash { background: rgba(153,60,29,.12); color: #F0997B; }
+        .eq-type.pierce { background: rgba(24,95,165,.12); color: #85B7EB; }
+        .eq-type.crush { background: rgba(133,79,11,.12); color: #EF9F27; }
+        .eq-hands { font-weight: 500; color: var(--text-muted); }
+        .eq-mod { font-size: 14px; color: var(--text-faint); }
+        .eq-bonus { color: var(--gold-light); font-weight: 500; }
+      </style>
+
+      <div class="eq-section">
+        <div class="eq-section-title">Оружие</div>
+        <table class="eq-table">
+          <thead>
+            <tr>
+              <th>Оружие</th>
+              <th>Хват</th>
+              <th>Тип урона</th>
+              <th>Модификатор</th>
+              <th>Урон</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Кинжал</td><td><span class="eq-hands">1</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+            <tr><td>Кнут</td><td><span class="eq-hands">1</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+            <tr><td>Посох</td><td><span class="eq-hands">2</span></td><td><span class="eq-type crush">Дробящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
+            <tr><td>Копьё</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
+            <tr><td>Катана</td><td><span class="eq-hands">2</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+            <tr><td>Одноруч. меч</td><td><span class="eq-hands">1</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+            <tr><td>Двуруч. меч</td><td><span class="eq-hands">2</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
+            <tr><td>Одноруч. молот</td><td><span class="eq-hands">1</span></td><td><span class="eq-type crush">Дробящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
+            <tr><td>Двуруч. молот</td><td><span class="eq-hands">2</span></td><td><span class="eq-type crush">Дробящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
+            <tr><td>Одноруч. топор</td><td><span class="eq-hands">1</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
+            <tr><td>Двуруч. топор</td><td><span class="eq-hands">2</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
+            <tr><td>Рапира</td><td><span class="eq-hands">1</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+            <tr><td>Лук</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+            <tr><td>Длинный лук</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+            <tr><td>Арбалет</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+            <tr><td>Тяжёлый арбалет</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="eq-section">
+        <div class="eq-section-title">Броня</div>
+        <table class="eq-table">
+          <thead>
+            <tr>
+              <th>Броня</th>
+              <th>КЗ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Мантия</td><td><span class="eq-mod">10 + Лов ÷ 2</span></td></tr>
+            <tr><td>Лёгкая броня</td><td></td></tr>
+            <tr><td>Средняя броня</td><td></td></tr>
+            <tr><td>Тяжёлая броня</td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="eq-section">
+        <div class="eq-section-title">Защита</div>
+        <table class="eq-table">
+          <thead>
+            <tr>
+              <th>Предмет</th>
+              <th>КЗ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Щит</td><td><span class="eq-bonus">+2 КЗ</span></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
