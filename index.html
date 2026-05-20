@@ -3018,6 +3018,21 @@
 
       <div class="divider"><span class="divider-line"></span><span class="divider-gem"></span><span class="divider-line"></span></div>
 
+      
+      <style>
+        .skill-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--text-faint); margin-top: .75rem; display: block; margin-bottom: .4rem; }
+        .skill-cards { display: flex; flex-direction: column; gap: 4px; margin-top: .4rem; }
+        .skill-card { border: 1px solid var(--border); background: var(--bg-3); overflow: hidden; }
+        .skill-card-head { display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; cursor: pointer; user-select: none; }
+        .skill-card-head:hover { background: var(--bg-2); }
+        .skill-card-name { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: .08em; color: var(--gold-light); }
+        .skill-card-arrow { font-size: 11px; color: var(--gold-deep); transition: transform .2s; }
+        .skill-card-arrow.open { transform: rotate(180deg); }
+        .skill-card-body { padding: 0 12px; max-height: 0; overflow: hidden; transition: max-height .25s ease, padding .2s ease; }
+        .skill-card-body.open { max-height: 200px; padding: 8px 12px 10px; }
+        .skill-card-desc { font-size: 16px; color: var(--text-soft); line-height: 1.6; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+        .skill-card-empty { font-size: 14px; color: var(--text-faint); font-style: italic; }
+      </style>
       <div class="sub-section-title">Шесть Характеристик</div>
       <div class="sub-section-subtitle">основа любого персонажа</div>
 
@@ -3029,6 +3044,18 @@
           <div class="mechanic-body">
             <h3>Сила <span class="h3-en">(STR)</span></h3>
             <p>Физическая мощь персонажа. Влияет на урон в ближнем бою, броски атаки оружием ближнего боя, проверки силы — поднять тяжёлый предмет, выломать дверь, удержать противника.</p>
+            <span class="skill-label">Навыки</span>
+            <div class="skill-cards">
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Атлетика</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Лазание, плавание, прыжки, силовая борьба. Используется когда нужно преодолеть физическое препятствие грубой силой — выломать дверь, удержать противника в захвате, перепрыгнуть пропасть с разбега.</p>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
         <div class="mechanic-item">
@@ -3036,6 +3063,36 @@
           <div class="mechanic-body">
             <h3>Ловкость <span class="h3-en">(DEX)</span></h3>
             <p>Скорость, координация и рефлексы. Влияет на атаки дальнего боя, уклонение, скрытность, инициативу и AC персонажей без тяжёлой брони. Ключевая характеристика плутов и лучников.</p>
+            <span class="skill-label">Навыки</span>
+            <div class="skill-cards">
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Акробатика</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Удержание равновесия на скользкой поверхности, трюки в движении — кувырки, перекаты, сальто. Также используется чтобы вырваться из захвата или избежать падения при неудачном приземлении.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Скрытность</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Передвижение так, чтобы тебя не заметили и не услышали. Важна при слежке, проникновении и засаде. Бросается против пассивного Восприятия или активной проверки противника.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Ловкость рук</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Карманная кража, фокусы с предметами, незаметное подкладывание или прятанье вещей. Всё что требует точных и быстрых манипуляций руками без привлечения внимания.</p>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
         <div class="mechanic-item">
@@ -3050,6 +3107,54 @@
           <div class="mechanic-body">
             <h3>Интеллект <span class="h3-en">(INT)</span></h3>
             <p>Острота ума, память и способность к анализу. Влияет на знания о мире, расследование, магию волшебников. Определяет сколько языков знает персонаж и насколько хорошо понимает тайные знания.</p>
+            <span class="skill-label">Навыки</span>
+            <div class="skill-cards">
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">История</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Знания о прошлых событиях, войнах, правителях, легендах и древних цивилизациях. Позволяет вспомнить важный исторический факт или опознать артефакт по его происхождению.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Магия</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Знание о заклинаниях, магических существах, ритуалах и артефактах. Используется чтобы опознать магический эффект, понять природу странного феномена или вспомнить слабость существа из магического бестиария.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Природа</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Знания о растениях, животных, погоде, местности и природных циклах. Помогает определить съедобность растений, предсказать шторм или понять повадки зверя.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Расследование</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Поиск улик, дедуктивный анализ, выявление скрытого. Используется когда нужно найти тайник, понять что произошло на месте событий или раскрыть замаскированную ложь в документах.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Религия</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Знание о богах, культах, ритуалах и священных текстах. Позволяет опознать религиозный символ, понять смысл обряда или вспомнить слабость нежити.</p>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
         <div class="mechanic-item">
@@ -3057,6 +3162,54 @@
           <div class="mechanic-body">
             <h3>Мудрость <span class="h3-en">(WIS)</span></h3>
             <p>Интуиция, восприятие и связь с миром. Влияет на внимательность, проницательность, лечение и магию жрецов. Высокая мудрость позволяет замечать ложь, засады и скрытые детали.</p>
+            <span class="skill-label">Навыки</span>
+            <div class="skill-cards">
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Восприятие</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Замечать то что происходит вокруг: звуки, движения, запахи. Самый часто используемый навык — обнаружить засаду, услышать разговор за стеной, заметить слежку.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Выживание</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Ориентирование на местности, выслеживание, поиск пищи и воды, предсказание погоды. Незаменим в дикой природе вдали от цивилизации.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Медицина</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Стабилизация умирающих, диагностика болезней и ранений, оказание первой помощи. Позволяет определить причину смерти или понять как действует яд.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Проницательность</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Читать намерения и эмоции людей — лжёт ли собеседник, насколько он напуган, чего на самом деле хочет. Контрнавык к Обману и Убеждению.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Уход за животными</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Успокоить испуганное животное, понять его намерения, приручить или управлять маунтом в опасной ситуации. Также помогает определить поведение незнакомого зверя.</p>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
         <div class="mechanic-item">
@@ -3064,6 +3217,45 @@
           <div class="mechanic-body">
             <h3>Харизма <span class="h3-en">(CHA)</span></h3>
             <p>Личное обаяние, убедительность и сила воли. Влияет на убеждение, обман, запугивание и магию чародеев. Высокая харизма открывает двери там, где меч бесполезен.</p>
+            <span class="skill-label">Навыки</span>
+            <div class="skill-cards">
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Обман</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Введение в заблуждение словом, жестом или действием. Используется при блефе, маскировке правды, продаже фальшивого товара или убеждении стражи в надуманной истории.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Убеждение</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Честное влияние на людей через аргументы, дипломатию и личное обаяние. Переговоры, заключение сделок, просьбы об услуге — всё это Убеждение.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Запугивание</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Давление через угрозу, агрессию или демонстрацию силы. Работает быстро, но портит отношения. Иногда единственный язык который понимают.</p>
+              </div>
+            </div>
+            <div class="skill-card">
+              <div class="skill-card-head" onclick="toggleSkill(this)">
+                <span class="skill-card-name">Выступление</span>
+                <span class="skill-card-arrow">▾</span>
+              </div>
+              <div class="skill-card-body">
+                <p class="skill-card-desc">Пение, игра на инструменте, актёрство, рассказывание историй. Используется чтобы развлечь публику, войти в доверие через искусство или создать убедительную легенду.</p>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
       </div>
@@ -3076,7 +3268,16 @@
     <svg class="footer-crest" aria-hidden="true"><use href="#i-mark"/></svg>
     <p class="footer-text">Эвериум · мир живёт, пока о нём рассказывают</p>
     <p class="footer-sub">© летопись составлена Мастерами Совета · MMXXVI</p>
-  </footer>
+  
+  <script>
+    function toggleSkill(head) {
+      const arrow = head.querySelector('.skill-card-arrow');
+      const body = head.nextElementSibling;
+      arrow.classList.toggle('open');
+      body.classList.toggle('open');
+    }
+  </script>
+</footer>
 
 </div>
 
