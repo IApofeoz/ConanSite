@@ -382,6 +382,14 @@
   .search-highlight { color: var(--gold); font-style: normal; font-weight: 600; }
   .search-empty { padding: 1.5rem; text-align: center; font-family: 'Cinzel', serif; font-size: 13px; color: var(--text-muted); letter-spacing: 0.18em; }
 
+  /* ─── SEARCH FLASH ─── */
+  @keyframes searchFlash {
+    0%   { box-shadow: 0 0 0 2px var(--gold); background: rgba(220,184,88,0.13); }
+    55%  { box-shadow: 0 0 0 2px var(--gold-deep); background: rgba(220,184,88,0.06); }
+    100% { box-shadow: none; background: transparent; }
+  }
+  .search-flash { animation: searchFlash 1.6s ease forwards !important; }
+
   /* ═══════════════════════════════════════ */
   /*    TABS — chapter index                 */
   /* ═══════════════════════════════════════ */
@@ -3337,6 +3345,13 @@
   // ═══════════════════════════════════════
   const searchIndex = [
     { section: 'О сервере', tab: 'server', title: 'О сервере', text: 'хардкорный ролевой проект Conan Exiles Enhanced каждое решение имеет цену история оставляет след живой мир политика игроками войны фракции нарратив Мастера декорации драма формат броски квента смерть перманентная риск победа' },
+    // ─── О СЕРВЕРЕ ───
+    { section: 'О Сервере', tab: 'server', title: 'О Сервере', text: 'Эвериум хардкорный ролевой проект Conan Exiles живой мир политика игроки фракции нарратив мастера' },
+    { section: 'О Сервере', tab: 'server', title: 'Формат', text: 'ролевой сервер Conan Exiles Enhanced действия текст броски 18+ квента рейтинг' },
+    { section: 'О Сервере', tab: 'server', title: 'Режим смерти', text: 'перманентная смерть риск победа настоящая' },
+    { section: 'О Сервере', tab: 'server', title: 'Боевая система', text: 'пошаговая d20 основа описание влияет исход' },
+
+    // ─── ПРАВИЛА ───
     { section: 'Правила', tab: 'rules', title: 'IC — In Character', text: 'в роли персонаж слова действия мысли IC информация видел слышал пережил' },
     { section: 'Правила', tab: 'rules', title: 'OOC — Out Of Character', text: 'вне роли общение игроки люди организационные вопросы правила личные сообщения' },
     { section: 'Правила', tab: 'rules', title: 'Metagaming — Метагейминг', text: 'использование OOC информации IC ситуациях шпион квента персонаж знать не может' },
@@ -3364,8 +3379,27 @@
     { section: 'Расы', tab: 'races', title: 'Полуорки', text: 'рождённые стык культур человеческой орочьей дикие города умные орды сила' },
     { section: 'Расы', tab: 'races', title: 'Тифлинги', text: 'потомки договор тёмные силы рога хвост глаза проклятие наследство магия боятся' },
     { section: 'Классы', tab: 'classes', title: 'Воин', text: 'мастер клинка броня солдат бой искусство выживаемость тяжёлая броня' },
+    { section: 'Классы', tab: 'classes', title: 'Воин · Берсерк', text: 'ударный боец ближний бой урон живучесть ярость атака' },
+    { section: 'Классы', tab: 'classes', title: 'Воин · Страж', text: 'танк защита союзники щит поддержка броня' },
+    { section: 'Классы', tab: 'classes', title: 'Воин · Полководец', text: 'тактик усиление отряд баффы контроль командование' },
     { section: 'Классы', tab: 'classes', title: 'Маг', text: 'повелитель стихий тайные силы хрупкий смертоносный реальность сосредоточиться' },
+    { section: 'Классы', tab: 'classes', title: 'Маг · Волшебник', text: 'книга заклинаний подготовка знание универсал целитель мана интеллект' },
+    { section: 'Классы', tab: 'classes', title: 'Маг · Чародей', text: 'магический урон метамагия дар кровь врождённая сила чародейство' },
+    { section: 'Классы', tab: 'classes', title: 'Маг · Колдун', text: 'сделка покровитель инвокации стабильный урон договор тёмная сила' },
     { section: 'Классы', tab: 'classes', title: 'Плут', text: 'информация оружие секрет тени социальные интриги скрытность' },
+    { section: 'Классы', tab: 'classes', title: 'Плут · Убийца', text: 'скрытный урон одна цель засада снайпер яд кинжал' },
+    { section: 'Классы', tab: 'classes', title: 'Плут · Мошенник', text: 'обман иллюзии социальные трюки контроль ложь личина' },
+    { section: 'Классы', tab: 'classes', title: 'Плут · Разведчик', text: 'ловушки мобильность контроль карты утилита разведка' },
+    { section: 'Классы', tab: 'classes', title: 'Жрец', text: 'сила богов домен войны жизни заклинания роль отряд' },
+    { section: 'Классы', tab: 'classes', title: 'Жрец · Домен Войны', text: 'боевой жрец передовая урон броня атака оружие бог войны' },
+    { section: 'Классы', tab: 'classes', title: 'Жрец · Домен Жизни', text: 'хилер лечение защитник отряда поддержка восстановление здоровье' },
+    { section: 'Классы', tab: 'classes', title: 'Книга заклинаний', text: 'волшебник записывает заклинания свитки книги наблюдение изучить' },
+    { section: 'Классы', tab: 'classes', title: 'Подготовка заклинаний', text: 'длинный отдых выбирает книга подготовленные доступны бой уровни' },
+    { section: 'Классы', tab: 'classes', title: 'Восстановление магии', text: 'короткий отдых 1d4 маны медитация книга заклинаний волшебник' },
+    { section: 'Классы', tab: 'classes', title: 'Усиленное заклинание', text: 'максимизировать кубик урона маны усиление волшебник' },
+    { section: 'Классы', tab: 'classes', title: 'Ритуальное колдовство', text: 'ритуал без маны 10 минут книга волшебник' },
+    { section: 'Классы', tab: 'classes', title: 'Контрзаклинание', text: 'реакция прервать вражеское заклинание интеллект СЛ аннулировано' },
+    { section: 'Классы', tab: 'classes', title: 'Двойное заклинание', text: 'два заклинания ход бонусное действие длинный отдых' },
     { section: 'Механики', tab: 'mechanics', title: 'Система Бросков', text: 'd20 модификатор навыка сложность действия DC боевые броски социальные исследовательские мастер' },
     { section: 'Механики', tab: 'mechanics', title: 'Перманентная Смерть', text: 'персонаж умер мёртв навсегда наказание условие выбор летопись' },
     { section: 'Механики', tab: 'mechanics', title: 'Развитие и Уровни', text: 'опыт отыгрыш посты арки уровни способности механики' },
@@ -3380,6 +3414,7 @@
     { section: 'Кубики', tab: 'dice', title: 'Мудрость (WIS)', text: 'интуиция восприятие лечение жрецы внимательность ложь засады' },
     { section: 'Кубики', tab: 'dice', title: 'Харизма (CHA)', text: 'обаяние убедительность воля убеждение обман запугивание маг чародей' },
     { section: 'Кубики', tab: 'dice', title: 'Инициатива', text: 'd20 ловкость модификатор бой раунд ничья приоритет' },
+    { section: 'Боевая система', tab: 'combat', title: 'Действие', text: 'основное действие раунд атака умение помощь предмет засада захват значимое d20 AC' },
     { section: 'Боевая система', tab: 'combat', title: 'Бонусное Действие', text: 'быстрое вспомогательное класс второй удар воин заклинание маг зелье плут' },
     { section: 'Боевая система', tab: 'combat', title: 'Передвижение', text: 'скорость ход до после между атаковать отступить разбить частично' },
     { section: 'Боевая система', tab: 'combat', title: 'Реакция', text: 'мгновенный ответ событие ход противник союзник контратака уклонение перехват' },
@@ -3391,6 +3426,36 @@
     { section: 'Черты', tab: 'feats', title: 'Подвижный', text: 'скорость передвижения тайлы зона досягаемости атака возможности труднопроходимая' },
     { section: 'Черты', tab: 'feats', title: 'Живучий', text: 'телосложение HP уровень модификатор спасбросок смерти минимальный' },
     { section: 'Черты', tab: 'feats', title: 'Удачливый', text: 'перебросить кубик атаку урон спасбросок проверку 24 часа' },
+
+    // ─── ПРЕДЫСТОРИИ ───
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Солдат', text: 'атлетика запугивание воинское братство ветераны военные ночлег страх бой' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Моряк', text: 'атлетика восприятие корабль море навигация капитан морские пути' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Послушник', text: 'религия проницательность приют веры храм ночлег лечение боги обряды' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Шарлатан', text: 'обман ловкость рук фальшивая личность документы снадобья ложь' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Преступник', text: 'скрытность обман криминальный мир гильдия воры переулки связи' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Артист', text: 'выступление убеждение таверна ночлег аплодисменты история публика' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Народный герой', text: 'выживание уход за животными народ поддержка укроют накормят не выдадут' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Ремесленник', text: 'история убеждение цеховые связи гильдия ремесленников мастерство' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Аристократ', text: 'история убеждение положение общество высшие круги балы интриги политика' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Скиталец', text: 'атлетика выживание странник дорога пропитание небо природа охота' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Мудрец', text: 'магия история исследователь редкая информация библиотека трактат учёба' },
+    { section: 'Предыстории', tab: 'backgrounds', title: 'Бродяга', text: 'скрытность ловкость рук трущобы короткие пути тайные места выживание город' },
+
+    // ─── СНАРЯЖЕНИЕ ───
+    { section: 'Снаряжение', tab: 'equipment', title: 'Кинжал', text: 'одноручный колющий ловкость лёгкое оружие скрытный' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Кнут', text: 'одноручный рубящий ловкость досягаемость' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Посох', text: 'двуручный дробящий сила маг волшебник' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Копьё', text: 'двуручный колющий сила досягаемость древко' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Катана', text: 'двуручный рубящий ловкость изогнутый клинок' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Одноручный меч', text: 'одноручный колющий ловкость универсальный щит' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Двуручный меч', text: 'двуручный рубящий сила большой урон' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Молот', text: 'одноручный двуручный дробящий сила молот варвар' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Топор', text: 'одноручный двуручный рубящий сила топор бросок' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Рапира', text: 'одноручный колющий ловкость дуэль фехтование плут' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Лук', text: 'двуручный колющий ловкость дальний бой стрелы' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Арбалет', text: 'двуручный колющий ловкость тяжёлый дальний бой болт' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Броня', text: 'мантия лёгкая средняя тяжёлая класс защиты КЗ ловкость' },
+    { section: 'Снаряжение', tab: 'equipment', title: 'Щит', text: '+2 КЗ класс защиты одноручный воин жрец' },
   ];
 
   function doSearch(query) {
@@ -3400,28 +3465,143 @@
     const hits = searchIndex.filter(item =>
       item.title.toLowerCase().includes(q) || item.text.toLowerCase().includes(q)
     ).slice(0, 8);
+
+    // Очищаем контейнер без innerHTML
+    box.replaceChildren();
+
     if (!hits.length) {
-      box.innerHTML = '<div class="search-empty">Ничего не найдено</div>';
-      box.style.display = 'block'; return;
+      const empty = document.createElement('div');
+      empty.className = 'search-empty';
+      empty.textContent = 'Ничего не найдено';
+      box.appendChild(empty);
+      box.style.display = 'block';
+      return;
     }
-    const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
-    box.innerHTML = hits.map(h => {
-      const snippet = h.text.length > 80 ? h.text.substring(0, 80) + '…' : h.text;
-      const titleHl = h.title.replace(re, m => '<em class="search-highlight">'+m+'</em>');
-      return `<div class="search-result-item" onclick="goToResult('${h.tab}')">
-        <div class="search-result-section">${h.section}</div>
-        <div class="search-result-title">${titleHl}</div>
-        <div class="search-result-snippet">${snippet}</div>
-      </div>`;
-    }).join('');
+
+    const re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+
+    hits.forEach(h => {
+      // Корневой элемент — никакого onclick в HTML
+      const item = document.createElement('div');
+      item.className = 'search-result-item';
+      item.dataset.tab   = h.tab;
+      item.dataset.title = h.title;
+      item.addEventListener('click', () => goToResult(item.dataset.tab, item.dataset.title));
+
+      // Секция — только текст, без HTML
+      const sectionEl = document.createElement('div');
+      sectionEl.className = 'search-result-section';
+      sectionEl.textContent = h.section;
+
+      // Заголовок с подсветкой через DOM, не через innerHTML
+      const titleEl = document.createElement('div');
+      titleEl.className = 'search-result-title';
+      highlightText(titleEl, h.title, re);
+
+      // Сниппет — только текст
+      const snippetEl = document.createElement('div');
+      snippetEl.className = 'search-result-snippet';
+      snippetEl.textContent = h.text.length > 80 ? h.text.substring(0, 80) + '…' : h.text;
+
+      item.append(sectionEl, titleEl, snippetEl);
+      box.appendChild(item);
+    });
+
     box.style.display = 'block';
   }
 
-  function goToResult(tab) {
+  // Подсвечивает совпадения через текстовые узлы и <em> — без innerHTML
+  function highlightText(container, text, re) {
+    re.lastIndex = 0;
+    let last = 0, match;
+    while ((match = re.exec(text)) !== null) {
+      if (match.index > last) {
+        container.appendChild(document.createTextNode(text.slice(last, match.index)));
+      }
+      const em = document.createElement('em');
+      em.className = 'search-highlight';
+      em.textContent = match[0]; // textContent — никакого HTML
+      container.appendChild(em);
+      last = re.lastIndex;
+    }
+    if (last < text.length) {
+      container.appendChild(document.createTextNode(text.slice(last)));
+    }
+  }
+
+  function goToResult(tab, title) {
     hideSearch();
     document.getElementById('site-search').value = '';
     switchTab(tab);
+    // Ждём завершения fadeIn-анимации вкладки, затем ищем карточку
+    setTimeout(() => scrollToCard(title), 120);
+  }
+
+  // Ищет элемент по тексту заголовка в активной вкладке и скроллит к нему
+  function scrollToCard(title) {
+    if (!title) return;
+    const titleLow = title.toLowerCase().trim();
+
+    // Пары: [селектор искомого текста, селектор контейнера для скролла/подсветки]
+    const targets = [
+      ['.mechanic-body h3',       '.mechanic-item'  ],
+      ['.card-title',             '.card'            ],
+      ['.bg-name',                '.bg-card'         ],
+      ['.eq-table td:first-child','.eq-table tr'     ],
+      ['.cs-name',                '.cs-row'          ],
+      ['.wiz-name',               '.wiz-card'        ],
+      ['.ab-name',                '.ab-card'         ],
+    ];
+
+    for (const [textSel, containerSel] of targets) {
+      for (const el of document.querySelectorAll(textSel)) {
+        if (el.textContent.trim().toLowerCase() === titleLow) {
+          const box = el.closest(containerSel) || el;
+          openHiddenAncestors(box, () => flashAndScroll(box));
+          return;
+        }
+      }
+    }
+
+    // Если совпадение не найдено — скроллим к навигации
     window.scrollTo({ top: document.querySelector('.tabs-nav').offsetTop - 20, behavior: 'smooth' });
+  }
+
+  // Собирает все скрытые блоки-предки и открывает их по цепочке, затем вызывает done()
+  function openHiddenAncestors(el, done) {
+    const steps = [];
+
+    // Уровень 1: класс или раса
+    const classBlock = el.closest('.class-detail-block');
+    if (classBlock && classBlock.style.display === 'none') {
+      const id = classBlock.id.replace('detail-', '');
+      steps.push(() => openClass(id));
+    }
+    const raceBlock = el.closest('.race-detail-block');
+    if (raceBlock && raceBlock.style.display === 'none') {
+      const id = raceBlock.id.replace('detail-', '');
+      steps.push(() => openRace(id));
+    }
+
+    // Уровень 2: подкласс мага (Волшебник / Чародей / Колдун)
+    const mageBlock = el.closest('.mage-class-block');
+    if (mageBlock && mageBlock.style.display === 'none') {
+      const id = mageBlock.id.replace('detail-', '');
+      steps.push(() => openMageClass(id));
+    }
+
+    // Выполняем шаги последовательно с паузой, в конце — done()
+    const delay = 110;
+    steps.reduce(
+      (chain, step) => chain.then(() => new Promise(res => { step(); setTimeout(res, delay); })),
+      Promise.resolve()
+    ).then(done);
+  }
+
+  function flashAndScroll(box) {
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    box.classList.add('search-flash');
+    box.addEventListener('animationend', () => box.classList.remove('search-flash'), { once: true });
   }
 
   function hideSearch() {
@@ -3466,9 +3646,11 @@
     document.querySelectorAll('.priest-domain-block').forEach(b => b.style.display = 'none');
   }
   function closeRace() {
-    closeSubrace();
-    const elvesList = document.getElementById('elves-list');
-    if (elvesList) elvesList.style.display = 'block';
+    // Сбрасываем подрасы только если панель подрас реально открыта
+    const subraceDetail = document.getElementById('subrace-detail');
+    if (subraceDetail && subraceDetail.style.display === 'block') {
+      closeSubrace();
+    }
     const detail = document.getElementById('race-detail');
     const list = document.getElementById('races-list');
     if (detail) detail.style.display = 'none';
@@ -3497,7 +3679,7 @@
   // Load tab from URL hash on page open
   window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash.replace('#', '');
-    const valid = ['server','rules','faq','lore','races','classes','mechanics','combat','dice','feats'];
+    const valid = ['server','rules','faq','lore','races','classes','mechanics','combat','dice','backgrounds','feats','equipment'];
     if (hash && valid.includes(hash)) switchTab(hash);
   });
 
