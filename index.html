@@ -1879,6 +1879,52 @@
 
         <p class="lead">Класс — это не профессия. Это мировоззрение, способ решать проблемы и набор инструментов, которыми ты пользуешься, когда мир становится враждебным.</p>
 
+        <style>
+          .class-summary { border: 1px solid var(--border-gold); background: var(--bg-2); margin: 1.5rem 0 2rem; overflow: hidden; }
+          .class-summary-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; cursor: pointer; user-select: none; }
+          .class-summary-head:hover { background: var(--bg-3); }
+          .class-summary-title { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-light); }
+          .class-summary-arrow { font-size: 12px; color: var(--gold-deep); transition: transform .2s; }
+          .class-summary-arrow.open { transform: rotate(180deg); }
+          .class-summary-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+          .class-summary-body.open { max-height: 900px; }
+          .class-summary-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border-gold); }
+          .cs-row { padding: 12px 20px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; }
+          .cs-row:nth-child(odd) { border-right: 1px solid var(--border); }
+          .cs-name { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold-light); letter-spacing: .06em; }
+          .cs-role { font-size: 15px; color: var(--text-muted); }
+          .cs-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+          .cs-tag { font-family: 'Cinzel', serif; font-size: 11px; padding: 2px 8px; border: 1px solid var(--border); color: var(--text-faint); letter-spacing: .08em; }
+          .cs-tag.heal { border-color: #0F6E56; color: #0F6E56; background: rgba(15,110,86,.06); }
+          .cs-tag.dmg  { border-color: #993C1D; color: #F0997B; background: rgba(153,60,29,.06); }
+          .cs-tag.ctrl { border-color: #534AB7; color: #AFA9EC; background: rgba(83,74,183,.06); }
+          .cs-tag.tank { border-color: #185FA5; color: #85B7EB; background: rgba(24,95,165,.06); }
+          .cs-tag.supp { border-color: #854F0B; color: #EF9F27; background: rgba(133,79,11,.06); }
+          .cs-tag.util { border-color: #5F5E5A; color: #B4B2A9; background: rgba(95,94,90,.06); }
+        </style>
+
+        <div class="class-summary">
+          <div class="class-summary-head" onclick="this.querySelector('.class-summary-arrow').classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+            <span class="class-summary-title">Краткая сводка по классам</span>
+            <span class="class-summary-arrow">▾</span>
+          </div>
+          <div class="class-summary-body">
+            <div class="class-summary-grid">
+              <div class="cs-row"><span class="cs-name">Воин · Берсерк</span><span class="cs-role">Ударный боец ближнего боя</span><div class="cs-tags"><span class="cs-tag dmg">Урон</span><span class="cs-tag tank">Живучесть</span></div></div>
+              <div class="cs-row"><span class="cs-name">Воин · Страж</span><span class="cs-role">Танк, защищает союзников</span><div class="cs-tags"><span class="cs-tag tank">Защита</span><span class="cs-tag supp">Поддержка</span></div></div>
+              <div class="cs-row"><span class="cs-name">Воин · Полководец</span><span class="cs-role">Тактик, усиливает отряд</span><div class="cs-tags"><span class="cs-tag supp">Баффы</span><span class="cs-tag ctrl">Контроль</span></div></div>
+              <div class="cs-row"><span class="cs-name">Плут · Убийца</span><span class="cs-role">Скрытный урон по одной цели</span><div class="cs-tags"><span class="cs-tag dmg">Урон</span><span class="cs-tag util">Скрытность</span></div></div>
+              <div class="cs-row"><span class="cs-name">Плут · Мошенник</span><span class="cs-role">Обман, иллюзии, социальные трюки</span><div class="cs-tags"><span class="cs-tag ctrl">Контроль</span><span class="cs-tag util">Социал</span></div></div>
+              <div class="cs-row"><span class="cs-name">Плут · Разведчик</span><span class="cs-role">Ловушки, мобильность, контроль карты</span><div class="cs-tags"><span class="cs-tag util">Утилита</span><span class="cs-tag ctrl">Контроль</span></div></div>
+              <div class="cs-row"><span class="cs-name">Маг · Волшебник</span><span class="cs-role">Универсал, единственный целитель</span><div class="cs-tags"><span class="cs-tag heal">Лечение</span><span class="cs-tag dmg">Урон</span><span class="cs-tag ctrl">Контроль</span></div></div>
+              <div class="cs-row"><span class="cs-name">Маг · Чародей</span><span class="cs-role">Магический урон с метамагией</span><div class="cs-tags"><span class="cs-tag dmg">Урон</span><span class="cs-tag ctrl">Метамагия</span></div></div>
+              <div class="cs-row"><span class="cs-name">Маг · Колдун</span><span class="cs-role">Стабильный урон и инвокации</span><div class="cs-tags"><span class="cs-tag dmg">Урон</span><span class="cs-tag util">Инвокации</span></div></div>
+              <div class="cs-row"><span class="cs-name">Жрец · Домен Войны</span><span class="cs-role">Боевой жрец на передовой</span><div class="cs-tags"><span class="cs-tag dmg">Урон</span><span class="cs-tag tank">Броня</span></div></div>
+              <div class="cs-row"><span class="cs-name">Жрец · Домен Жизни</span><span class="cs-role">Хилер и защитник отряда</span><div class="cs-tags"><span class="cs-tag heal">Лечение</span><span class="cs-tag supp">Поддержка</span></div></div>
+            </div>
+          </div>
+        </div>
+
         <div class="card-grid">
           <div class="card" onclick="openClass('warrior')">
             <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
