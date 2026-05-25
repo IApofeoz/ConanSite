@@ -1175,6 +1175,44 @@
         <circle cx="36" cy="16" r="1.5" fill="currentColor"/>
       </g>
     </symbol>
+    <symbol id="s-smith" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 32 L38 32 L36 38 L12 38 Z"/>
+        <path d="M16 28 L32 28 L32 32 L16 32 Z"/>
+        <path d="M26 22 L32 28" opacity="0.6"/>
+        <line x1="30" y1="9" x2="20" y2="24"/>
+        <rect x="25" y="6" width="11" height="6" rx="1.5"/>
+      </g>
+    </symbol>
+    <symbol id="s-healer" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 26 Q11 40 24 40 Q37 40 37 26 Z"/>
+        <line x1="9" y1="26" x2="39" y2="26"/>
+        <line x1="24" y1="14" x2="32" y2="26"/>
+        <circle cx="22" cy="12" r="3"/>
+        <path d="M12 22 Q16 15 20 18" opacity="0.6"/>
+        <path d="M14 19 Q18 12 22 15" opacity="0.4"/>
+      </g>
+    </symbol>
+    <symbol id="s-armorer" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 10 L37 10 L37 27 Q37 40 24 44 Q11 40 11 27 Z"/>
+        <path d="M17 20 L31 20 M24 14 L24 36" opacity="0.55"/>
+        <path d="M11 10 L11 14 M37 10 L37 14" opacity="0.7"/>
+        <line x1="32" y1="7" x2="26" y2="13" opacity="0.65"/>
+      </g>
+    </symbol>
+    <symbol id="s-alchemist" viewBox="0 0 48 48">
+      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 6 L19 21 L9 36 Q9 43 24 43 Q39 43 39 36 L29 21 L29 6 Z"/>
+        <line x1="17" y1="6" x2="31" y2="6"/>
+        <circle cx="17" cy="35" r="2" opacity="0.5"/>
+        <circle cx="25" cy="30" r="1.5" opacity="0.4"/>
+        <circle cx="21" cy="39" r="1.2" opacity="0.35"/>
+        <path d="M34 11 L35 8 L36 11 L39 10 L36 12 Z" opacity="0.65"/>
+        <path d="M37 19 L38 16 L39 19 L42 18 L39 20 Z" opacity="0.45"/>
+      </g>
+    </symbol>
 
     <!-- ━━━ UTILITY ICONS (for mechanics, glossary, faq) ━━━ -->
     <symbol id="i-speech" viewBox="0 0 24 24">
@@ -1463,27 +1501,29 @@
         <button onclick="switchTab('server')"><span class="tab-num">I·1</span>О Сервере</button>
         <button onclick="switchTab('rules')"><span class="tab-num">I·2</span>Правила</button>
         <button onclick="switchTab('faq')"><span class="tab-num">I·3</span>FAQ</button>
+        <button onclick="switchTab('howto')"><span class="tab-num">I·4</span>Как начать играть</button>
       </div>
     </div>
     <button class="tab-btn" onclick="switchTab('lore')" role="tab"><span class="tab-num">II</span>Лор</button>
     <button class="tab-btn" onclick="switchTab('races')" role="tab"><span class="tab-num">III</span>Расы</button>
     <button class="tab-btn" onclick="switchTab('classes')" role="tab"><span class="tab-num">IV</span>Классы</button>
+    <button class="tab-btn" onclick="switchTab('craft')" role="tab"><span class="tab-num">V</span>Ремесло <span style="font-size:10px;opacity:0.55;letter-spacing:0.05em">(тест)</span></button>
     <div class="tab-dropdown">
       <button class="tab-btn" onclick="switchTab('mechanics')" role="tab">
-        <span class="tab-num">V</span>Механики
+        <span class="tab-num">VI</span>Механики
         <svg class="tab-caret" width="10" height="10" aria-hidden="true"><use href="#i-caret-down"/></svg>
       </button>
       <div class="tab-dropdown-menu">
-        <button onclick="switchTab('mechanics')"><span class="tab-num">V·1</span>Механики</button>
-        <button onclick="switchTab('combat')"><span class="tab-num">V·2</span>Базис боёвки</button>
-        <button onclick="switchTab('dice')"><span class="tab-num">V·3</span>Кубики</button>
-        <button onclick="switchTab('backgrounds')"><span class="tab-num">V·4</span>Предыстории</button>
-        <button onclick="switchTab('feats')"><span class="tab-num">V·5</span>Черты</button>
-        <button onclick="switchTab('equipment')"><span class="tab-num">V·6</span>Снаряжение</button>
+        <button onclick="switchTab('mechanics')"><span class="tab-num">VI·1</span>Механики</button>
+        <button onclick="switchTab('combat')"><span class="tab-num">VI·2</span>Базис боёвки</button>
+        <button onclick="switchTab('dice')"><span class="tab-num">VI·3</span>Кубики</button>
+        <button onclick="switchTab('backgrounds')"><span class="tab-num">VI·4</span>Предыстории</button>
+        <button onclick="switchTab('feats')"><span class="tab-num">VI·5</span>Черты</button>
+        <button onclick="switchTab('equipment')"><span class="tab-num">VI·6</span>Снаряжение</button>
       </div>
     </div>
     <a href="https://docs.google.com/document/d/11Hfrcb7KPpVQRoXvMsQvWEnmveECZWP7Zv90JpkBJCE/edit?usp=sharing" target="_blank" class="tab-btn">
-      <span class="tab-num">VI</span>Кодекс
+      <span class="tab-num">VII</span>Кодекс
       <svg width="11" height="11" aria-hidden="true"><use href="#i-ext"/></svg>
     </a>
   </nav>
@@ -1689,6 +1729,74 @@
             <p>Жёстких требований нет, но рекомендуем активность хотя бы несколько раз в неделю. Если уходите в отпуск или на паузу — предупредите администрацию, персонаж будет временно выведен из активных сцен.</p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- ━━━ КАК НАЧАТЬ ИГРАТЬ ━━━ -->
+    <div class="tab-content" id="tab-howto">
+      <div class="chapter-mark">
+        <span class="chapter-num">CHAPTER · I·4</span>
+        <span class="chapter-rule"></span>
+      </div>
+      <div class="section-title">Как начать играть</div>
+      <div class="section-subtitle">путь от читателя к участнику</div>
+
+      <p class="lead">Шесть шагов отделяют вас от первой сцены. Каждый из них важен — не как формальность, а как часть погружения в мир, который живёт своей жизнью до вашего прихода.</p>
+
+      <div class="mechanic-list" style="margin-top:1.5rem;">
+
+        <div class="mechanic-item">
+          <div class="mechanic-icon-wrap"><svg aria-hidden="true"><use href="#i-discord"/></svg></div>
+          <div class="mechanic-body">
+            <h3>Шаг 1 — Вступите в Discord</h3>
+            <p>Вся жизнь Эвериума происходит в Discord. Там объявления, игровые каналы, переговоры фракций и связь с администрацией. Без Discord — нет игры. Вступите, прочитайте закреплённые сообщения в канале <strong>#добро-пожаловать</strong> и представьтесь в <strong>#знакомства</strong>. Это не обязательно, но помогает: другие игроки уже замечают, кто пришёл.</p>
+          </div>
+        </div>
+
+        <div class="mechanic-item">
+          <div class="mechanic-icon-wrap"><svg aria-hidden="true"><use href="#i-scroll"/></svg></div>
+          <div class="mechanic-body">
+            <h3>Шаг 2 — Прочитайте Правила и Кодекс</h3>
+            <p>Вкладка <strong>Правила</strong> содержит то, что нельзя нарушать. Внешний <strong>Кодекс ролевика</strong> объясняет, как вести себя в текстовой ролевой игре, если вы с этим форматом незнакомы. Оба документа короткие. Незнание правил не освобождает от ответственности — администрация это не угроза, это просто факт жизни любого сообщества.</p>
+          </div>
+        </div>
+
+        <div class="mechanic-item">
+          <div class="mechanic-icon-wrap"><svg aria-hidden="true"><use href="#i-stars"/></svg></div>
+          <div class="mechanic-body">
+            <h3>Шаг 3 — Выберите расу и класс</h3>
+            <p>Откройте вкладки <strong>Расы</strong> и <strong>Классы</strong> — там подробные описания всего доступного. Не выбирайте «самое сильное». Выбирайте то, что интересно отыгрывать месяцами. Дроу-алхимик, который боится темноты. Полуорк-жрец Жизни, который пытается доказать, что не все орки — звери. Механики здесь важны, но история, которую хочется рассказать — важнее.</p>
+          </div>
+        </div>
+
+        <div class="mechanic-item">
+          <div class="mechanic-icon-wrap"><svg aria-hidden="true"><use href="#i-quill"/></svg></div>
+          <div class="mechanic-body">
+            <h3>Шаг 4 — Напишите квенту</h3>
+            <p>Квента — биография персонажа. Нет строгого шаблона, но хорошая квента отвечает на три вопроса: <strong>кто он</strong>, <strong>что его сформировало</strong> и <strong>зачем он здесь</strong>. Не нужно расписывать каждый год жизни — нужна внутренняя логика. Персонаж, у которого есть причина быть в этом мире, живёт дольше, чем тот, кого сделали ради билда. Квента пишется в специальный канал Discord в соответствии с шаблоном из закреплённых сообщений.</p>
+            <div class="pull-quote" style="margin-top:1rem;">
+              <p class="pull-quote-text">Хорошая квента не рассказывает, каким персонаж будет — она объясняет, почему он такой, какой есть.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mechanic-item">
+          <div class="mechanic-icon-wrap"><svg aria-hidden="true"><use href="#i-speech"/></svg></div>
+          <div class="mechanic-body">
+            <h3>Шаг 5 — Дождитесь одобрения</h3>
+            <p>Администрация проверяет квенту на соответствие лору, логику персонажа и потенциальные конфликты с текущими событиями мира. Обычно ответ приходит в течение <strong>1–2 дней</strong>. Если квента требует доработки — администрация напишет конкретные замечания, это не отказ. После одобрения вам откроют игровые каналы и скажут, с каких сцен можно начинать.</p>
+          </div>
+        </div>
+
+        <div class="mechanic-item">
+          <div class="mechanic-icon-wrap"><svg aria-hidden="true"><use href="#i-running"/></svg></div>
+          <div class="mechanic-body">
+            <h3>Шаг 6 — Первые шаги в мире</h3>
+            <p>Не ждите, пока к вам подойдут. Мир не разворачивается сам по себе — его создают те, кто делает первый шаг. Зайдите в таверну, послушайте разговоры, найдите повод заговорить. Другие игроки, как правило, рады новым лицам — любой персонаж, у которого есть история, это потенциальный союзник, враг или свидетель чего-то важного.</p>
+            <p style="margin-top:0.75rem;">Если потерялись — пишите в <strong>#помощь-новичкам</strong> или напрямую кому-то из администрации. Мы не кусаемся. Почти.</p>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -2622,10 +2730,254 @@
         </div>
       </div>
 
+    <!-- ━━━ РЕМЕСЛО (тест) ━━━ -->
+    <div class="tab-content" id="tab-craft">
+
+      <div id="craft-list">
+        <div class="chapter-mark">
+          <span class="chapter-num">CHAPTER · V</span>
+          <span class="chapter-rule"></span>
+        </div>
+        <div class="section-title">Ремесло</div>
+        <div class="section-subtitle">профессии, которые держат мир</div>
+
+        <p class="lead">Ремесло — это не просто способ зарабатывать на жизнь. Это язык, на котором мастер разговаривает с миром: молотом по железу, травой в ступке, иглой сквозь кожу доспеха.</p>
+
+        <p>Каждая ремесленная профессия опирается на конкретные атрибуты и навыки. Проверка ремесла — это <strong>d20 + модификатор атрибута + бонус мастерства</strong> (если есть владение) против <strong>DC сложности изделия</strong>. Качество зависит от того, насколько результат превышает DC.</p>
+
+        <div class="card-grid">
+
+          <div class="card" onclick="openCraft('smith')">
+            <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+            <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-smith"/></svg>
+            <svg class="card-sigil" aria-hidden="true"><use href="#s-smith"/></svg>
+            <div class="card-title">Кузнец</div>
+            <p class="card-desc">Огонь и молот — вот его инструменты. Кузнец превращает сырую руду в оружие, инструменты и механизмы. Требует выносливости и грубой силы — часами стоять у горна под силу не каждому.</p>
+            <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+          </div>
+
+          <div class="card" onclick="openCraft('healer')">
+            <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+            <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-healer"/></svg>
+            <svg class="card-sigil" aria-hidden="true"><use href="#s-healer"/></svg>
+            <div class="card-title">Лекарь</div>
+            <p class="card-desc">Знание трав, ядов и человеческого тела — его оружие. Лекарь смешивает снадобья, перевязывает раны и знает грань между зельем жизни и смерти. Мудрость важнее силы.</p>
+            <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+          </div>
+
+          <div class="card" onclick="openCraft('armorer')">
+            <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+            <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-armorer"/></svg>
+            <svg class="card-sigil" aria-hidden="true"><use href="#s-armorer"/></svg>
+            <div class="card-title">Бронник-портной</div>
+            <p class="card-desc">Его работа — держать живых живыми. Бронник-портной куёт и подгоняет доспехи под конкретное тело: кольчуги, латы, нагрудники. Сочетает силу кузнеца с точностью ювелира.</p>
+            <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+          </div>
+
+          <div class="card" onclick="openCraft('alchemist')">
+            <span class="card-corner tl"></span><span class="card-corner tr"></span><span class="card-corner bl"></span><span class="card-corner br"></span>
+            <svg class="card-sigil-bg" aria-hidden="true"><use href="#s-alchemist"/></svg>
+            <svg class="card-sigil" aria-hidden="true"><use href="#s-alchemist"/></svg>
+            <div class="card-title">Алхимик</div>
+            <p class="card-desc">Границу между наукой и магией он давно перестал замечать. Алхимик варит зелья, создаёт реагенты и иногда взрывает лабораторию. Интеллект — его главный инструмент.</p>
+            <div class="card-cta">Подробнее <svg width="14" height="14" class="card-cta-arrow" aria-hidden="true"><use href="#i-arrow-right"/></svg></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="craft-detail" style="display:none;">
+        <button class="back-btn" onclick="closeCraft()">
+          <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow-left"/></svg>
+          Назад к ремёслам
+        </button>
+
+        <!-- ─── КУЗНЕЦ ─── -->
+        <div id="detail-smith" class="craft-detail-block" style="display:none;">
+          <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-smith"/></svg>Кузнец</div>
+          <div class="section-subtitle">огонь, металл и терпение</div>
+          <div class="stat-sheet">
+            <div class="stat-sheet-header"><span>Лист ремесленника · Кузнец</span><span>базовый</span></div>
+            <div class="stat-grid">
+              <div class="stat-cell"><span class="stat-cell-label">Основной атрибут</span><span class="stat-cell-value">Тел. / Сил.</span><span class="stat-cell-sub">CON выносливость, STR удар</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Навык ремесла</span><span class="stat-cell-value">Кузнечное дело</span><span class="stat-cell-sub">CON или STR</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Время работы</span><span class="stat-cell-value">4–24 ч.</span><span class="stat-cell-sub">зависит от изделия</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Инструменты</span><span class="stat-cell-value">Горн + молот</span><span class="stat-cell-sub">кузнечный набор</span></div>
+              <div class="stat-cell" style="grid-column:span 2"><span class="stat-cell-label">Продукция</span><span class="stat-cell-value">Оружие, инструменты, металлические конструкции</span><span class="stat-cell-sub">мечи · топоры · замки · петли · цепи · наконечники стрел</span></div>
+            </div>
+          </div>
+          <div class="sub-section-title" style="margin-top:2rem">Таблица сложности</div>
+          <div class="sub-section-subtitle">DC зависит от сложности изделия и используемого металла</div>
+          <style>
+            .craft-table{width:100%;border-collapse:collapse;font-size:17px;margin-bottom:2rem}
+            .craft-table th,.craft-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left}
+            .craft-table th{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint);font-weight:400}
+            .craft-table tr:last-child td{border-bottom:none}
+            .craft-table tr:hover td{background:rgba(201,168,76,.03)}
+            .craft-dc{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--gold-light)}
+            .craft-quality{font-size:15px;color:var(--text-muted)}
+            .craft-note{font-size:14px;color:var(--text-faint);font-style:italic}
+            .cq-fail{color:#c04030}.cq-weak{color:#a07020}.cq-norm{color:var(--text-soft)}.cq-good{color:#4a8a4a}.cq-master{color:#3a7ab0}.cq-legend{color:var(--gold-light);font-weight:600}
+          </style>
+          <table class="craft-table">
+            <thead><tr><th>Изделие</th><th>DC</th><th>Материал</th></tr></thead>
+            <tbody>
+              <tr><td>Гвозди, петли, простые скобы</td><td class="craft-dc">10</td><td class="craft-quality">Железо</td></tr>
+              <tr><td>Наконечники стрел, крюки, цепи</td><td class="craft-dc">12</td><td class="craft-quality">Железо</td></tr>
+              <tr><td>Кинжал, топор, молот (боевой)</td><td class="craft-dc">15</td><td class="craft-quality">Сталь</td></tr>
+              <tr><td>Меч одноручный, копьё</td><td class="craft-dc">17</td><td class="craft-quality">Сталь</td></tr>
+              <tr><td>Двуручный меч, алебарда</td><td class="craft-dc">19</td><td class="craft-quality">Высококачественная сталь</td></tr>
+              <tr><td>Оружие именное / с насечкой</td><td class="craft-dc">22</td><td class="craft-quality">Сталь + мастер материал</td></tr>
+            </tbody>
+          </table>
+          <div class="sub-section-title">Качество изделия</div>
+          <div class="sub-section-subtitle">результат броска относительно DC определяет итог</div>
+          <table class="craft-table">
+            <thead><tr><th>Результат</th><th>Качество</th><th>Эффект</th></tr></thead>
+            <tbody>
+              <tr><td class="craft-note">≤ DC − 5</td><td class="cq-fail">Провал</td><td>Металл испорчен, материалы потеряны</td></tr>
+              <tr><td class="craft-note">DC − 4 до DC</td><td class="cq-weak">Слабое</td><td>−1 к урону или прочности</td></tr>
+              <tr><td class="craft-note">DC + 1 до DC + 4</td><td class="cq-norm">Обычное</td><td>Стандартные характеристики</td></tr>
+              <tr><td class="craft-note">DC + 5 до DC + 9</td><td class="cq-good">Хорошее</td><td>+1 к урону, прочнее обычного</td></tr>
+              <tr><td class="craft-note">≥ DC + 10</td><td class="cq-master">Мастерское</td><td>+2 к урону, особое свойство на выбор</td></tr>
+              <tr><td class="craft-note">Натуральная 20</td><td class="cq-legend">✦ Шедевр</td><td>Именное оружие, уникальное легендарное свойство</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ─── ЛЕКАРЬ ─── -->
+        <div id="detail-healer" class="craft-detail-block" style="display:none;">
+          <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-healer"/></svg>Лекарь</div>
+          <div class="section-subtitle">трава, знание и тихий голос</div>
+          <div class="stat-sheet">
+            <div class="stat-sheet-header"><span>Лист ремесленника · Лекарь</span><span>базовый</span></div>
+            <div class="stat-grid">
+              <div class="stat-cell"><span class="stat-cell-label">Основной атрибут</span><span class="stat-cell-value">Мудрость</span><span class="stat-cell-sub">WIS интуиция и опыт</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Навыки ремесла</span><span class="stat-cell-value">Медицина + Травничество</span><span class="stat-cell-sub">WIS</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Время работы</span><span class="stat-cell-value">1–8 ч.</span><span class="stat-cell-sub">зависит от рецепта</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Инструменты</span><span class="stat-cell-value">Лекарский набор</span><span class="stat-cell-sub">ступка · пинцет · бинты</span></div>
+              <div class="stat-cell" style="grid-column:span 2"><span class="stat-cell-label">Продукция</span><span class="stat-cell-value">Зелья, антидоты, перевязочные материалы, яды</span><span class="stat-cell-sub">зелье лечения · противоядие · кровоостанавливающий пластырь · настойка</span></div>
+            </div>
+          </div>
+          <div class="sub-section-title" style="margin-top:2rem">Таблица рецептов</div>
+          <div class="sub-section-subtitle">DC зависит от редкости компонентов и мощи эффекта</div>
+          <table class="craft-table">
+            <thead><tr><th>Изделие</th><th>DC</th><th>Компоненты</th></tr></thead>
+            <tbody>
+              <tr><td>Чистый бинт, простая мазь</td><td class="craft-dc">10</td><td class="craft-quality">Лён, живица</td></tr>
+              <tr><td>Кровоостанавливающий пластырь</td><td class="craft-dc">13</td><td class="craft-quality">Подорожник, смола</td></tr>
+              <tr><td>Зелье лечения (1d4+2 HP)</td><td class="craft-dc">15</td><td class="craft-quality">Солнечник, чистая вода</td></tr>
+              <tr><td>Антидот от яда (стандартный)</td><td class="craft-dc">17</td><td class="craft-quality">Горечавка, желчь</td></tr>
+              <tr><td>Зелье лечения (2d4+4 HP)</td><td class="craft-dc">19</td><td class="craft-quality">Редкие травы, роса</td></tr>
+              <tr><td>Противоядие универсальное</td><td class="craft-dc">22</td><td class="craft-quality">Алхимические травы, кровь феникса</td></tr>
+            </tbody>
+          </table>
+          <div class="sub-section-title">Качество изделия</div>
+          <div class="sub-section-subtitle">результат броска относительно DC определяет итог</div>
+          <table class="craft-table">
+            <thead><tr><th>Результат</th><th>Качество</th><th>Эффект</th></tr></thead>
+            <tbody>
+              <tr><td class="craft-note">≤ DC − 5</td><td class="cq-fail">Провал</td><td>Смесь испорчена, компоненты потеряны</td></tr>
+              <tr><td class="craft-note">DC − 4 до DC</td><td class="cq-weak">Слабое</td><td>Эффект вполовину меньше ожидаемого</td></tr>
+              <tr><td class="craft-note">DC + 1 до DC + 4</td><td class="cq-norm">Обычное</td><td>Стандартный эффект по рецепту</td></tr>
+              <tr><td class="craft-note">DC + 5 до DC + 9</td><td class="cq-good">Хорошее</td><td>+1d4 к лечению или +2 часа к длительности</td></tr>
+              <tr><td class="craft-note">≥ DC + 10</td><td class="cq-master">Мастерское</td><td>Двойной эффект, дополнительное условие снято</td></tr>
+              <tr><td class="craft-note">Натуральная 20</td><td class="cq-legend">✦ Шедевр</td><td>Легендарное зелье с уникальным долгосрочным эффектом</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ─── БРОННИК ─── -->
+        <div id="detail-armorer" class="craft-detail-block" style="display:none;">
+          <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-armorer"/></svg>Бронник-портной</div>
+          <div class="section-subtitle">каждая пластина — это жизнь</div>
+          <div class="stat-sheet">
+            <div class="stat-sheet-header"><span>Лист ремесленника · Бронник-портной</span><span>базовый</span></div>
+            <div class="stat-grid">
+              <div class="stat-cell"><span class="stat-cell-label">Основной атрибут</span><span class="stat-cell-value">Сил. / Лов.</span><span class="stat-cell-sub">STR грубая работа, DEX подгонка</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Навык ремесла</span><span class="stat-cell-value">Кузнечное дело</span><span class="stat-cell-sub">STR / DEX (тип брони)</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Время работы</span><span class="stat-cell-value">8–72 ч.</span><span class="stat-cell-sub">зависит от типа доспеха</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Инструменты</span><span class="stat-cell-value">Горн + клещи + шаблон</span><span class="stat-cell-sub">бронницкий набор</span></div>
+              <div class="stat-cell" style="grid-column:span 2"><span class="stat-cell-label">Продукция</span><span class="stat-cell-value">Лёгкая, средняя и тяжёлая броня, щиты</span><span class="stat-cell-sub">кожаный доспех · кольчуга · полный латный доспех · щит · нагрудник</span></div>
+            </div>
+          </div>
+          <div class="sub-section-title" style="margin-top:2rem">Таблица сложности</div>
+          <div class="sub-section-subtitle">DC зависит от типа брони и материала</div>
+          <table class="craft-table">
+            <thead><tr><th>Изделие</th><th>DC</th><th>Материал</th></tr></thead>
+            <tbody>
+              <tr><td>Кожаный доспех, набивная куртка</td><td class="craft-dc">11</td><td class="craft-quality">Кожа, ткань</td></tr>
+              <tr><td>Нагрудник из кожи, наплечники</td><td class="craft-dc">13</td><td class="craft-quality">Жёсткая кожа</td></tr>
+              <tr><td>Кольчуга, чешуйчатый доспех</td><td class="craft-dc">16</td><td class="craft-quality">Железо / сталь</td></tr>
+              <tr><td>Полукираса, пластинчатый доспех</td><td class="craft-dc">19</td><td class="craft-quality">Сталь</td></tr>
+              <tr><td>Полный латный доспех</td><td class="craft-dc">22</td><td class="craft-quality">Высококачественная сталь</td></tr>
+              <tr><td>Доспех подгонки под тело (именной)</td><td class="craft-dc">25</td><td class="craft-quality">Мастер-сталь + мерки</td></tr>
+            </tbody>
+          </table>
+          <div class="sub-section-title">Качество изделия</div>
+          <div class="sub-section-subtitle">результат броска относительно DC определяет итог</div>
+          <table class="craft-table">
+            <thead><tr><th>Результат</th><th>Качество</th><th>Эффект</th></tr></thead>
+            <tbody>
+              <tr><td class="craft-note">≤ DC − 5</td><td class="cq-fail">Провал</td><td>Брак, металл деформирован, нельзя носить</td></tr>
+              <tr><td class="craft-note">DC − 4 до DC</td><td class="cq-weak">Слабое</td><td>КЗ −1, доспех натирает (штраф на Ловкость)</td></tr>
+              <tr><td class="craft-note">DC + 1 до DC + 4</td><td class="cq-norm">Обычное</td><td>Стандартный КЗ по типу брони</td></tr>
+              <tr><td class="craft-note">DC + 5 до DC + 9</td><td class="cq-good">Хорошее</td><td>КЗ +1, снижена помеха на скрытность</td></tr>
+              <tr><td class="craft-note">≥ DC + 10</td><td class="cq-master">Мастерское</td><td>КЗ +2, особое свойство (лёгкость / шипы / etc.)</td></tr>
+              <tr><td class="craft-note">Натуральная 20</td><td class="cq-legend">✦ Шедевр</td><td>Именной доспех, легендарное свойство на выбор</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ─── АЛХИМИК ─── -->
+        <div id="detail-alchemist" class="craft-detail-block" style="display:none;">
+          <div class="section-title"><svg style="width:32px;height:32px;color:var(--gold);vertical-align:-6px;margin-right:8px;"><use href="#s-alchemist"/></svg>Алхимик</div>
+          <div class="section-subtitle">знание без границ — и без гарантий</div>
+          <div class="stat-sheet">
+            <div class="stat-sheet-header"><span>Лист ремесленника · Алхимик</span><span>базовый</span></div>
+            <div class="stat-grid">
+              <div class="stat-cell"><span class="stat-cell-label">Основной атрибут</span><span class="stat-cell-value">Интеллект</span><span class="stat-cell-sub">INT расчёт и знание</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Навык ремесла</span><span class="stat-cell-value">Алхимия</span><span class="stat-cell-sub">INT</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Время работы</span><span class="stat-cell-value">2–12 ч.</span><span class="stat-cell-sub">зависит от состава</span></div>
+              <div class="stat-cell"><span class="stat-cell-label">Инструменты</span><span class="stat-cell-value">Алхимический набор</span><span class="stat-cell-sub">реторта · весы · горелка</span></div>
+              <div class="stat-cell" style="grid-column:span 2"><span class="stat-cell-label">Продукция</span><span class="stat-cell-value">Зелья, яды, реагенты, взрывчатые составы</span><span class="stat-cell-sub">кислота · огненная колба · зелье невидимости · яд контактный · чернила для свитков</span></div>
+            </div>
+          </div>
+          <div class="sub-section-title" style="margin-top:2rem">Таблица составов</div>
+          <div class="sub-section-subtitle">DC зависит от редкости и опасности вещества</div>
+          <table class="craft-table">
+            <thead><tr><th>Изделие</th><th>DC</th><th>Реагенты</th></tr></thead>
+            <tbody>
+              <tr><td>Алхимическое масло, простой яд (1d4)</td><td class="craft-dc">12</td><td class="craft-quality">Сера, нефть, желчь</td></tr>
+              <tr><td>Кислота (1d6 урона, разъедает)</td><td class="craft-dc">14</td><td class="craft-quality">Минеральная кислота, стабилизатор</td></tr>
+              <tr><td>Огненная колба (2d6 в зоне)</td><td class="craft-dc">16</td><td class="craft-quality">Нафта, сера, смола</td></tr>
+              <tr><td>Контактный яд (паралич 1 раунд)</td><td class="craft-dc">18</td><td class="craft-quality">Яд паука, концентрат</td></tr>
+              <tr><td>Зелье невидимости (10 мин)</td><td class="craft-dc">20</td><td class="craft-quality">Лунный камень, прозрачник</td></tr>
+              <tr><td>Нестабильный реагент (случайный эффект)</td><td class="craft-dc">23</td><td class="craft-quality">Эфирная взвесь, прах феникса</td></tr>
+            </tbody>
+          </table>
+          <div class="sub-section-title">Качество изделия</div>
+          <div class="sub-section-subtitle">результат броска относительно DC определяет итог</div>
+          <table class="craft-table">
+            <thead><tr><th>Результат</th><th>Качество</th><th>Эффект</th></tr></thead>
+            <tbody>
+              <tr><td class="craft-note">≤ DC − 5</td><td class="cq-fail">Провал</td><td>Взрыв / отравление / потеря реагентов (на усмотрение мастера)</td></tr>
+              <tr><td class="craft-note">DC − 4 до DC</td><td class="cq-weak">Слабое</td><td>Нестабильный состав, эффект вдвое короче или слабее</td></tr>
+              <tr><td class="craft-note">DC + 1 до DC + 4</td><td class="cq-norm">Обычное</td><td>Стандартный эффект по рецепту</td></tr>
+              <tr><td class="craft-note">DC + 5 до DC + 9</td><td class="cq-good">Хорошее</td><td>+50% к эффекту или +1 доза без доп. реагентов</td></tr>
+              <tr><td class="craft-note">≥ DC + 10</td><td class="cq-master">Мастерское</td><td>Двойной эффект, увеличена длительность на 50%</td></tr>
+              <tr><td class="craft-note">Натуральная 20</td><td class="cq-legend">✦ Шедевр</td><td>Легендарное вещество с уникальным эффектом мастера</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
     <!-- ━━━ МЕХАНИКИ ━━━ -->
     <div class="tab-content" id="tab-mechanics">
       <div class="chapter-mark">
-        <span class="chapter-num">CHAPTER · V</span>
+        <span class="chapter-num">CHAPTER · VI</span>
         <span class="chapter-rule"></span>
       </div>
       <div class="section-title">Механики</div>
@@ -3369,6 +3721,14 @@
     { section: 'FAQ', tab: 'faq', title: 'Можно ли играть злодея?', text: 'злодей мировоззрение роли логика мотивация гриферство' },
     { section: 'FAQ', tab: 'faq', title: 'Нужно ли знать лор перед игрой?', text: 'лор расы основы погружение события администрация новые игроки' },
     { section: 'FAQ', tab: 'faq', title: 'Как часто нужно быть онлайн?', text: 'онлайн активность несколько раз неделю отпуск пауза администрация сцены' },
+
+    // ─── КАК НАЧАТЬ ИГРАТЬ ───
+    { section: 'Как начать играть', tab: 'howto', title: 'Вступить в Discord', text: 'discord вступить добро пожаловать знакомства закреплённые каналы первый шаг' },
+    { section: 'Как начать играть', tab: 'howto', title: 'Правила и Кодекс', text: 'правила кодекс ролевика нарушения документ текстовая ролевая игра формат' },
+    { section: 'Как начать играть', tab: 'howto', title: 'Выбрать расу и класс', text: 'раса класс выбор персонаж история отыгрыш механики дроу полуорк воин маг' },
+    { section: 'Как начать играть', tab: 'howto', title: 'Написать квенту', text: 'квента биография персонаж прошлое мотивация характер кто зачем история шаблон' },
+    { section: 'Как начать играть', tab: 'howto', title: 'Дождаться одобрения', text: 'одобрение администрация проверка квента лор замечания игровые каналы 1-2 дня' },
+    { section: 'Как начать играть', tab: 'howto', title: 'Первые шаги в мире', text: 'таверна первый шаг разговор новый игрок союзник помощь новичкам сцены начало' },
     { section: 'Расы', tab: 'races', title: 'Люди', text: 'многочисленная раса короткий век проклятие дар торопятся жить строить завоёвывать' },
     { section: 'Расы', tab: 'races', title: 'Эльфы', text: 'тысячи лет помнят мир высокомерие усталость меняется три ветви' },
     { section: 'Расы', tab: 'races', title: 'Высшие Эльфы', text: 'хранители традиций магия гордые холодные безупречные помнят мир до людей' },
@@ -3456,6 +3816,12 @@
     { section: 'Снаряжение', tab: 'equipment', title: 'Арбалет', text: 'двуручный колющий ловкость тяжёлый дальний бой болт' },
     { section: 'Снаряжение', tab: 'equipment', title: 'Броня', text: 'мантия лёгкая средняя тяжёлая класс защиты КЗ ловкость' },
     { section: 'Снаряжение', tab: 'equipment', title: 'Щит', text: '+2 КЗ класс защиты одноручный воин жрец' },
+
+    // ─── РЕМЕСЛО ───
+    { section: 'Ремесло', tab: 'craft', title: 'Кузнец', text: 'огонь молот металл руда оружие инструменты сталь железо горн кузнечное дело телосложение сила CON STR' },
+    { section: 'Ремесло', tab: 'craft', title: 'Лекарь', text: 'травы зелья снадобья медицина лечение антидот яд перевязка мудрость WIS травничество рецепты настойка' },
+    { section: 'Ремесло', tab: 'craft', title: 'Бронник-портной', text: 'броня доспех кольчуга латы щит нагрудник кожаный пластинчатый КЗ защита класс брони сталь подгонка' },
+    { section: 'Ремесло', tab: 'craft', title: 'Алхимик', text: 'алхимия зелья яды реагенты кислота огненная колба невидимость взрывчатка интеллект INT состав лаборатория' },
   ];
 
   function doSearch(query) {
@@ -3551,6 +3917,7 @@
       ['.cs-name',                '.cs-row'          ],
       ['.wiz-name',               '.wiz-card'        ],
       ['.ab-name',                '.ab-card'         ],
+      ['.section-title',          '.craft-detail-block'],
     ];
 
     for (const [textSel, containerSel] of targets) {
@@ -3582,6 +3949,11 @@
       const id = raceBlock.id.replace('detail-', '');
       steps.push(() => openRace(id));
     }
+    const craftBlock = el.closest('.craft-detail-block');
+    if (craftBlock && craftBlock.style.display === 'none') {
+      const id = craftBlock.id.replace('detail-', '');
+      steps.push(() => openCraft(id));
+    }
 
     // Уровень 2: подкласс мага (Волшебник / Чародей / Колдун)
     const mageBlock = el.closest('.mage-class-block');
@@ -3606,6 +3978,20 @@
 
   function hideSearch() {
     document.getElementById('search-results').style.display = 'none';
+  }
+
+  // ─── Craft navigation ───
+  function openCraft(id) {
+    document.getElementById('craft-list').style.display = 'none';
+    document.getElementById('craft-detail').style.display = 'block';
+    document.querySelectorAll('.craft-detail-block').forEach(el => el.style.display = 'none');
+    const target = document.getElementById('detail-' + id);
+    if (target) { target.style.display = 'block'; target.style.animation = 'fadeIn 0.35s ease'; }
+  }
+  function closeCraft() {
+    document.getElementById('craft-detail').style.display = 'none';
+    document.getElementById('craft-list').style.display = 'block';
+    document.querySelectorAll('.craft-detail-block').forEach(el => el.style.display = 'none');
   }
 
   // ─── Race / Subrace / Class navigation ───
@@ -3660,6 +4046,7 @@
   function switchTab(id) {
     closeRace();
     closeClass();
+    closeCraft();
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => { el.classList.remove('active'); el.setAttribute('aria-selected','false'); });
     const tabEl = document.getElementById('tab-' + id);
@@ -3679,7 +4066,7 @@
   // Load tab from URL hash on page open
   window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash.replace('#', '');
-    const valid = ['server','rules','faq','lore','races','classes','mechanics','combat','dice','backgrounds','feats','equipment'];
+    const valid = ['server','rules','faq','howto','lore','races','classes','craft','mechanics','combat','dice','backgrounds','feats','equipment'];
     if (hash && valid.includes(hash)) switchTab(hash);
   });
 
