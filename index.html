@@ -2801,13 +2801,10 @@
             <div class="stat-grid">
               <div class="stat-cell"><span class="stat-cell-label">Основной атрибут</span><span class="stat-cell-value">Тел. / Сил.</span><span class="stat-cell-sub">CON выносливость, STR удар</span></div>
               <div class="stat-cell"><span class="stat-cell-label">Навык ремесла</span><span class="stat-cell-value">Кузнечное дело</span><span class="stat-cell-sub">CON или STR</span></div>
-              <div class="stat-cell"><span class="stat-cell-label">Время работы</span><span class="stat-cell-value">4–24 ч.</span><span class="stat-cell-sub">зависит от изделия</span></div>
               <div class="stat-cell"><span class="stat-cell-label">Инструменты</span><span class="stat-cell-value">Горн + молот</span><span class="stat-cell-sub">кузнечный набор</span></div>
               <div class="stat-cell" style="grid-column:span 2"><span class="stat-cell-label">Продукция</span><span class="stat-cell-value">Оружие, инструменты, металлические конструкции</span><span class="stat-cell-sub">мечи · топоры · замки · петли · цепи · наконечники стрел</span></div>
             </div>
           </div>
-          <div class="sub-section-title" style="margin-top:2rem">Таблица сложности</div>
-          <div class="sub-section-subtitle">DC зависит от сложности изделия и используемого металла</div>
           <style>
             .craft-table{width:100%;border-collapse:collapse;font-size:17px;margin-bottom:2rem}
             .craft-table th,.craft-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left}
@@ -2818,31 +2815,42 @@
             .craft-quality{font-size:15px;color:var(--text-muted)}
             .craft-note{font-size:14px;color:var(--text-faint);font-style:italic}
             .cq-fail{color:#c04030}.cq-weak{color:#a07020}.cq-norm{color:var(--text-soft)}.cq-good{color:#4a8a4a}.cq-master{color:#3a7ab0}.cq-legend{color:var(--gold-light);font-weight:600}
+            .craft-catalog{margin-top:0.5rem}
+            .catalog-table{margin-bottom:1.5rem}
+            .catalog-table th{font-size:11px}
+            .catalog-table td{padding:8px 14px;font-size:15px}
+            .catalog-label{font-family:'Cinzel',serif;font-size:14px;letter-spacing:.08em;padding:7px 14px;margin-bottom:0;border-radius:3px 3px 0 0;border-left:3px solid;color:var(--text-soft)}
+            .catalog-heal{background:rgba(120,170,110,.10);border-left-color:#6fae66}
+            .catalog-cure{background:rgba(120,170,110,.06);border-left-color:#8fc285}
+            .catalog-mana{background:rgba(110,150,210,.10);border-left-color:#6e96d2}
+            .catalog-buff{background:rgba(200,170,90,.10);border-left-color:#c8aa5a}
+            .catalog-misc{background:rgba(180,180,180,.07);border-left-color:#9a9a9a}
+            .catalog-forge{background:rgba(200,120,70,.10);border-left-color:#c87846}
+            .catalog-armor{background:rgba(150,150,190,.10);border-left-color:#8f8fc0}
+            .catalog-empty td{color:var(--text-faint);font-style:italic;text-align:center}
+            .catalog-table tr:hover td{background:rgba(201,168,76,.04)}
           </style>
+          <div class="sub-section-title" style="margin-top:2rem">Качество изделия</div>
+          <div class="sub-section-subtitle">итоговый результат проверки определяет исход крафта</div>
           <table class="craft-table">
-            <thead><tr><th>Изделие</th><th>DC</th><th>Материал</th></tr></thead>
+            <thead><tr><th>Результат броска</th><th>Качество</th><th>Эффект</th></tr></thead>
             <tbody>
-              <tr><td>Гвозди, петли, простые скобы</td><td class="craft-dc">10</td><td class="craft-quality">Железо</td></tr>
-              <tr><td>Наконечники стрел, крюки, цепи</td><td class="craft-dc">12</td><td class="craft-quality">Железо</td></tr>
-              <tr><td>Кинжал, топор, молот (боевой)</td><td class="craft-dc">15</td><td class="craft-quality">Сталь</td></tr>
-              <tr><td>Меч одноручный, копьё</td><td class="craft-dc">17</td><td class="craft-quality">Сталь</td></tr>
-              <tr><td>Двуручный меч, алебарда</td><td class="craft-dc">19</td><td class="craft-quality">Высококачественная сталь</td></tr>
-              <tr><td>Оружие именное / с насечкой</td><td class="craft-dc">22</td><td class="craft-quality">Сталь + мастер материал</td></tr>
+              <tr><td class="craft-note">&lt; 8</td><td class="cq-fail">Неудача</td><td>Материалы потеряны, изделие не получилось</td></tr>
+              <tr><td class="craft-note">8 – 19</td><td class="cq-norm">Обычный крафт</td><td>Стандартные характеристики изделия</td></tr>
+              <tr><td class="craft-note">≥ 20</td><td class="cq-legend">Крафт +1 качество</td><td>Улучшенное изделие: +1 к ключевому свойству</td></tr>
             </tbody>
           </table>
-          <div class="sub-section-title">Качество изделия</div>
-          <div class="sub-section-subtitle">результат броска относительно DC определяет итог</div>
-          <table class="craft-table">
-            <thead><tr><th>Результат</th><th>Качество</th><th>Эффект</th></tr></thead>
-            <tbody>
-              <tr><td class="craft-note">≤ DC − 5</td><td class="cq-fail">Провал</td><td>Металл испорчен, материалы потеряны</td></tr>
-              <tr><td class="craft-note">DC − 4 до DC</td><td class="cq-weak">Слабое</td><td>−1 к урону или прочности</td></tr>
-              <tr><td class="craft-note">DC + 1 до DC + 4</td><td class="cq-norm">Обычное</td><td>Стандартные характеристики</td></tr>
-              <tr><td class="craft-note">DC + 5 до DC + 9</td><td class="cq-good">Хорошее</td><td>+1 к урону, прочнее обычного</td></tr>
-              <tr><td class="craft-note">≥ DC + 10</td><td class="cq-master">Мастерское</td><td>+2 к урону, особое свойство на выбор</td></tr>
-              <tr><td class="craft-note">Натуральная 20</td><td class="cq-legend">✦ Шедевр</td><td>Именное оружие, уникальное легендарное свойство</td></tr>
-            </tbody>
-          </table>
+          <div class="sub-section-title" style="margin-top:2rem">Крафты</div>
+          <div class="sub-section-subtitle">список доступных кузнечных изделий</div>
+          <div class="craft-catalog">
+            <div class="catalog-label catalog-forge">Изделия кузнеца</div>
+            <table class="craft-table catalog-table">
+              <thead><tr><th>Название</th><th>Эффект</th><th>Материалы</th></tr></thead>
+              <tbody>
+                <tr class="catalog-empty"><td colspan="3">— список будет дополнен —</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- ─── ЛЕКАРЬ ─── -->
@@ -2854,37 +2862,49 @@
             <div class="stat-grid">
               <div class="stat-cell"><span class="stat-cell-label">Основной атрибут</span><span class="stat-cell-value">Мудрость</span><span class="stat-cell-sub">WIS интуиция и опыт</span></div>
               <div class="stat-cell"><span class="stat-cell-label">Навыки ремесла</span><span class="stat-cell-value">Медицина + Травничество</span><span class="stat-cell-sub">WIS</span></div>
-              <div class="stat-cell"><span class="stat-cell-label">Время работы</span><span class="stat-cell-value">1–8 ч.</span><span class="stat-cell-sub">зависит от рецепта</span></div>
               <div class="stat-cell"><span class="stat-cell-label">Инструменты</span><span class="stat-cell-value">Лекарский набор</span><span class="stat-cell-sub">ступка · пинцет · бинты</span></div>
               <div class="stat-cell" style="grid-column:span 2"><span class="stat-cell-label">Продукция</span><span class="stat-cell-value">Зелья, антидоты, перевязочные материалы, яды</span><span class="stat-cell-sub">зелье лечения · противоядие · кровоостанавливающий пластырь · настойка</span></div>
             </div>
           </div>
-          <div class="sub-section-title" style="margin-top:2rem">Таблица рецептов</div>
-          <div class="sub-section-subtitle">DC зависит от редкости компонентов и мощи эффекта</div>
-          <table class="craft-table">
-            <thead><tr><th>Изделие</th><th>DC</th><th>Компоненты</th></tr></thead>
-            <tbody>
-              <tr><td>Чистый бинт, простая мазь</td><td class="craft-dc">10</td><td class="craft-quality">Лён, живица</td></tr>
-              <tr><td>Кровоостанавливающий пластырь</td><td class="craft-dc">13</td><td class="craft-quality">Подорожник, смола</td></tr>
-              <tr><td>Зелье лечения (1d4+2 HP)</td><td class="craft-dc">15</td><td class="craft-quality">Солнечник, чистая вода</td></tr>
-              <tr><td>Антидот от яда (стандартный)</td><td class="craft-dc">17</td><td class="craft-quality">Горечавка, желчь</td></tr>
-              <tr><td>Зелье лечения (2d4+4 HP)</td><td class="craft-dc">19</td><td class="craft-quality">Редкие травы, роса</td></tr>
-              <tr><td>Противоядие универсальное</td><td class="craft-dc">22</td><td class="craft-quality">Алхимические травы, кровь феникса</td></tr>
-            </tbody>
-          </table>
-          <div class="sub-section-title">Качество изделия</div>
-          <div class="sub-section-subtitle">результат броска относительно DC определяет итог</div>
+          <div class="sub-section-title" style="margin-top:2rem">Качество изделия</div>
+          <div class="sub-section-subtitle">итоговый результат проверки определяет исход крафта</div>
           <table class="craft-table">
             <thead><tr><th>Результат</th><th>Качество</th><th>Эффект</th></tr></thead>
             <tbody>
-              <tr><td class="craft-note">≤ DC − 5</td><td class="cq-fail">Провал</td><td>Смесь испорчена, компоненты потеряны</td></tr>
-              <tr><td class="craft-note">DC − 4 до DC</td><td class="cq-weak">Слабое</td><td>Эффект вполовину меньше ожидаемого</td></tr>
-              <tr><td class="craft-note">DC + 1 до DC + 4</td><td class="cq-norm">Обычное</td><td>Стандартный эффект по рецепту</td></tr>
-              <tr><td class="craft-note">DC + 5 до DC + 9</td><td class="cq-good">Хорошее</td><td>+1d4 к лечению или +2 часа к длительности</td></tr>
-              <tr><td class="craft-note">≥ DC + 10</td><td class="cq-master">Мастерское</td><td>Двойной эффект, дополнительное условие снято</td></tr>
-              <tr><td class="craft-note">Натуральная 20</td><td class="cq-legend">✦ Шедевр</td><td>Легендарное зелье с уникальным долгосрочным эффектом</td></tr>
+              <tr><td class="craft-note">&lt; 8</td><td class="cq-fail">Провал</td><td>Смесь испорчена, компоненты потеряны</td></tr>
+              <tr><td class="craft-note">8 – 19</td><td class="cq-norm">Успех</td><td>Стандартный эффект по рецепту</td></tr>
+              <tr><td class="craft-note">≥ 20</td><td class="cq-legend">✦ Безупречный успех</td><td>Изготавливается x2 снадобья за то же время и из тех же компонентов</td></tr>
             </tbody>
           </table>
+
+          <div class="sub-section-title" style="margin-top:2rem">Каталог снадобий</div>
+          <div class="sub-section-subtitle">что доступно лекарю — восстановление тела и противоядия</div>
+
+          <div class="craft-catalog">
+            <div class="catalog-label catalog-heal">Зелья лечения</div>
+            <table class="craft-table catalog-table">
+              <thead><tr><th>Название</th><th>Эффект</th><th>Состав</th></tr></thead>
+              <tbody>
+                <tr><td>Малое зелье лечения</td><td>2d4 + 2 HP</td><td class="craft-quality">Алоэ ×1</td></tr>
+                <tr><td>Большое зелье лечения</td><td>4d4 + 4 HP</td><td class="craft-quality">Алоэ ×2</td></tr>
+                <tr><td>Зелье превосходного лечения</td><td>6d4 + 6 HP</td><td class="craft-quality">Алоэ ×3</td></tr>
+                <tr><td>Зелье высшего исцеления</td><td>8d4 + 8 HP</td><td class="craft-quality">Алоэ ×4</td></tr>
+                <tr><td>Зелье восстановления</td><td>В конце каждого хода +1d5+1 HP, 4 круга</td><td class="craft-quality">Алоэ ×5</td></tr>
+              </tbody>
+            </table>
+
+            <div class="catalog-label catalog-cure">Лечебные средства</div>
+            <table class="craft-table catalog-table">
+              <thead><tr><th>Название</th><th>Эффект</th><th>Состав</th></tr></thead>
+              <tbody>
+                <tr><td>Антидот</td><td>Нейтрализует яд в организме</td><td class="craft-quality">—</td></tr>
+                <tr><td>Зелье против кровотечения</td><td>Останавливает кровотечение</td><td class="craft-quality">—</td></tr>
+                <tr><td>Зелье срастания костей</td><td>Мгновенно сращивает перелом, снимает штрафы от сломанной конечности</td><td class="craft-quality">—</td></tr>
+                <tr><td>Мазь от ожогов</td><td>Лечит урон огнём, снимает состояние «горение»</td><td class="craft-quality">—</td></tr>
+                <tr><td>Снотворное</td><td>Усыпляет цель</td><td class="craft-quality">—</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- ─── БРОННИК ─── -->
@@ -2896,37 +2916,31 @@
             <div class="stat-grid">
               <div class="stat-cell"><span class="stat-cell-label">Основной атрибут</span><span class="stat-cell-value">Сил. / Лов.</span><span class="stat-cell-sub">STR грубая работа, DEX подгонка</span></div>
               <div class="stat-cell"><span class="stat-cell-label">Навык ремесла</span><span class="stat-cell-value">Кузнечное дело</span><span class="stat-cell-sub">STR / DEX (тип брони)</span></div>
-              <div class="stat-cell"><span class="stat-cell-label">Время работы</span><span class="stat-cell-value">8–72 ч.</span><span class="stat-cell-sub">зависит от типа доспеха</span></div>
               <div class="stat-cell"><span class="stat-cell-label">Инструменты</span><span class="stat-cell-value">Горн + клещи + шаблон</span><span class="stat-cell-sub">бронницкий набор</span></div>
               <div class="stat-cell" style="grid-column:span 2"><span class="stat-cell-label">Продукция</span><span class="stat-cell-value">Лёгкая, средняя и тяжёлая броня, щиты</span><span class="stat-cell-sub">кожаный доспех · кольчуга · полный латный доспех · щит · нагрудник</span></div>
             </div>
           </div>
-          <div class="sub-section-title" style="margin-top:2rem">Таблица сложности</div>
-          <div class="sub-section-subtitle">DC зависит от типа брони и материала</div>
+          <div class="sub-section-title" style="margin-top:2rem">Качество изделия</div>
+          <div class="sub-section-subtitle">итоговый результат проверки определяет исход крафта</div>
           <table class="craft-table">
-            <thead><tr><th>Изделие</th><th>DC</th><th>Материал</th></tr></thead>
+            <thead><tr><th>Результат броска</th><th>Качество</th><th>Эффект</th></tr></thead>
             <tbody>
-              <tr><td>Кожаный доспех, набивная куртка</td><td class="craft-dc">11</td><td class="craft-quality">Кожа, ткань</td></tr>
-              <tr><td>Нагрудник из кожи, наплечники</td><td class="craft-dc">13</td><td class="craft-quality">Жёсткая кожа</td></tr>
-              <tr><td>Кольчуга, чешуйчатый доспех</td><td class="craft-dc">16</td><td class="craft-quality">Железо / сталь</td></tr>
-              <tr><td>Полукираса, пластинчатый доспех</td><td class="craft-dc">19</td><td class="craft-quality">Сталь</td></tr>
-              <tr><td>Полный латный доспех</td><td class="craft-dc">22</td><td class="craft-quality">Высококачественная сталь</td></tr>
-              <tr><td>Доспех подгонки под тело (именной)</td><td class="craft-dc">25</td><td class="craft-quality">Мастер-сталь + мерки</td></tr>
+              <tr><td class="craft-note">&lt; 8</td><td class="cq-fail">Неудача</td><td>Материалы потеряны, изделие не получилось</td></tr>
+              <tr><td class="craft-note">8 – 19</td><td class="cq-norm">Обычный крафт</td><td>Стандартные характеристики изделия</td></tr>
+              <tr><td class="craft-note">≥ 20</td><td class="cq-legend">Крафт +1 качество</td><td>Улучшенное изделие: +1 к ключевому свойству</td></tr>
             </tbody>
           </table>
-          <div class="sub-section-title">Качество изделия</div>
-          <div class="sub-section-subtitle">результат броска относительно DC определяет итог</div>
-          <table class="craft-table">
-            <thead><tr><th>Результат</th><th>Качество</th><th>Эффект</th></tr></thead>
-            <tbody>
-              <tr><td class="craft-note">≤ DC − 5</td><td class="cq-fail">Провал</td><td>Брак, металл деформирован, нельзя носить</td></tr>
-              <tr><td class="craft-note">DC − 4 до DC</td><td class="cq-weak">Слабое</td><td>КЗ −1, доспех натирает (штраф на Ловкость)</td></tr>
-              <tr><td class="craft-note">DC + 1 до DC + 4</td><td class="cq-norm">Обычное</td><td>Стандартный КЗ по типу брони</td></tr>
-              <tr><td class="craft-note">DC + 5 до DC + 9</td><td class="cq-good">Хорошее</td><td>КЗ +1, снижена помеха на скрытность</td></tr>
-              <tr><td class="craft-note">≥ DC + 10</td><td class="cq-master">Мастерское</td><td>КЗ +2, особое свойство (лёгкость / шипы / etc.)</td></tr>
-              <tr><td class="craft-note">Натуральная 20</td><td class="cq-legend">✦ Шедевр</td><td>Именной доспех, легендарное свойство на выбор</td></tr>
-            </tbody>
-          </table>
+          <div class="sub-section-title" style="margin-top:2rem">Крафты</div>
+          <div class="sub-section-subtitle">список доступной брони и снаряжения</div>
+          <div class="craft-catalog">
+            <div class="catalog-label catalog-armor">Изделия бронника-портного</div>
+            <table class="craft-table catalog-table">
+              <thead><tr><th>Название</th><th>Эффект</th><th>Материалы</th></tr></thead>
+              <tbody>
+                <tr class="catalog-empty"><td colspan="3">— список будет дополнен —</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- ─── АЛХИМИК ─── -->
@@ -2938,37 +2952,62 @@
             <div class="stat-grid">
               <div class="stat-cell"><span class="stat-cell-label">Основной атрибут</span><span class="stat-cell-value">Интеллект</span><span class="stat-cell-sub">INT расчёт и знание</span></div>
               <div class="stat-cell"><span class="stat-cell-label">Навык ремесла</span><span class="stat-cell-value">Алхимия</span><span class="stat-cell-sub">INT</span></div>
-              <div class="stat-cell"><span class="stat-cell-label">Время работы</span><span class="stat-cell-value">2–12 ч.</span><span class="stat-cell-sub">зависит от состава</span></div>
               <div class="stat-cell"><span class="stat-cell-label">Инструменты</span><span class="stat-cell-value">Алхимический набор</span><span class="stat-cell-sub">реторта · весы · горелка</span></div>
               <div class="stat-cell" style="grid-column:span 2"><span class="stat-cell-label">Продукция</span><span class="stat-cell-value">Зелья, яды, реагенты, взрывчатые составы</span><span class="stat-cell-sub">кислота · огненная колба · зелье невидимости · яд контактный · чернила для свитков</span></div>
             </div>
           </div>
-          <div class="sub-section-title" style="margin-top:2rem">Таблица составов</div>
-          <div class="sub-section-subtitle">DC зависит от редкости и опасности вещества</div>
-          <table class="craft-table">
-            <thead><tr><th>Изделие</th><th>DC</th><th>Реагенты</th></tr></thead>
-            <tbody>
-              <tr><td>Алхимическое масло, простой яд (1d4)</td><td class="craft-dc">12</td><td class="craft-quality">Сера, нефть, желчь</td></tr>
-              <tr><td>Кислота (1d6 урона, разъедает)</td><td class="craft-dc">14</td><td class="craft-quality">Минеральная кислота, стабилизатор</td></tr>
-              <tr><td>Огненная колба (2d6 в зоне)</td><td class="craft-dc">16</td><td class="craft-quality">Нафта, сера, смола</td></tr>
-              <tr><td>Контактный яд (паралич 1 раунд)</td><td class="craft-dc">18</td><td class="craft-quality">Яд паука, концентрат</td></tr>
-              <tr><td>Зелье невидимости (10 мин)</td><td class="craft-dc">20</td><td class="craft-quality">Лунный камень, прозрачник</td></tr>
-              <tr><td>Нестабильный реагент (случайный эффект)</td><td class="craft-dc">23</td><td class="craft-quality">Эфирная взвесь, прах феникса</td></tr>
-            </tbody>
-          </table>
-          <div class="sub-section-title">Качество изделия</div>
-          <div class="sub-section-subtitle">результат броска относительно DC определяет итог</div>
+          <div class="sub-section-title" style="margin-top:2rem">Качество изделия</div>
+          <div class="sub-section-subtitle">итоговый результат проверки определяет исход крафта</div>
           <table class="craft-table">
             <thead><tr><th>Результат</th><th>Качество</th><th>Эффект</th></tr></thead>
             <tbody>
-              <tr><td class="craft-note">≤ DC − 5</td><td class="cq-fail">Провал</td><td>Взрыв / отравление / потеря реагентов (на усмотрение мастера)</td></tr>
-              <tr><td class="craft-note">DC − 4 до DC</td><td class="cq-weak">Слабое</td><td>Нестабильный состав, эффект вдвое короче или слабее</td></tr>
-              <tr><td class="craft-note">DC + 1 до DC + 4</td><td class="cq-norm">Обычное</td><td>Стандартный эффект по рецепту</td></tr>
-              <tr><td class="craft-note">DC + 5 до DC + 9</td><td class="cq-good">Хорошее</td><td>+50% к эффекту или +1 доза без доп. реагентов</td></tr>
-              <tr><td class="craft-note">≥ DC + 10</td><td class="cq-master">Мастерское</td><td>Двойной эффект, увеличена длительность на 50%</td></tr>
-              <tr><td class="craft-note">Натуральная 20</td><td class="cq-legend">✦ Шедевр</td><td>Легендарное вещество с уникальным эффектом мастера</td></tr>
+              <tr><td class="craft-note">&lt; 8</td><td class="cq-fail">Провал</td><td>Взрыв / отравление / потеря реагентов (на усмотрение мастера)</td></tr>
+              <tr><td class="craft-note">8 – 19</td><td class="cq-norm">Успех</td><td>Стандартный эффект по рецепту</td></tr>
+              <tr><td class="craft-note">≥ 20</td><td class="cq-legend">✦ Безупречный успех</td><td>Изготавливается x2 предмета за то же время и из тех же реагентов</td></tr>
             </tbody>
           </table>
+
+          <div class="sub-section-title" style="margin-top:2rem">Каталог зелий и эликсиров</div>
+          <div class="sub-section-subtitle">арканная химия, боевые составы, буффы и утилиты</div>
+
+          <div class="craft-catalog">
+            <div class="catalog-label catalog-mana">Зелья маны</div>
+            <table class="craft-table catalog-table">
+              <thead><tr><th>Название</th><th>Эффект</th><th>Состав</th></tr></thead>
+              <tbody>
+                <tr><td>Малое зелье маны</td><td class="craft-quality">—</td><td class="craft-quality">—</td></tr>
+                <tr><td>Зелье маны</td><td class="craft-quality">—</td><td class="craft-quality">—</td></tr>
+                <tr><td>Большое зелье маны</td><td class="craft-quality">—</td><td class="craft-quality">—</td></tr>
+              </tbody>
+            </table>
+
+            <div class="catalog-label catalog-buff">Усиливающие эликсиры <span style="font-weight:400;opacity:0.7;font-size:0.85em">(с дебаффом)</span></div>
+            <table class="craft-table catalog-table">
+              <thead><tr><th>Название</th><th>Эффект</th><th>Состав</th></tr></thead>
+              <tbody>
+                <tr><td>Эликсир скорости</td><td>+1 основное действие, спустя 3 круга — оглушение</td><td class="craft-quality">—</td></tr>
+                <tr><td>Эликсир восприятия</td><td class="craft-quality">—</td><td class="craft-quality">—</td></tr>
+                <tr><td>Эликсир выносливости</td><td>Увеличивает дальность передвижения в 2 раза</td><td class="craft-quality">—</td></tr>
+              </tbody>
+            </table>
+
+            <div class="catalog-label catalog-misc">Прочие зелья и эликсиры</div>
+            <table class="craft-table catalog-table">
+              <thead><tr><th>Название</th><th>Эффект</th><th>Состав</th></tr></thead>
+              <tbody>
+                <tr><td>Эликсир бдительности</td><td>+ к инициативе</td><td class="craft-quality">—</td></tr>
+                <tr><td>Эликсир героизма</td><td>Временное здоровье</td><td class="craft-quality">—</td></tr>
+                <tr><td>Эликсир ночного зрения</td><td>Позволяет видеть в темноте как при тусклом свете</td><td class="craft-quality">—</td></tr>
+                <tr><td>Взрывное зелье</td><td>Урон по площади</td><td class="craft-quality">—</td></tr>
+                <tr><td>Зелье железной кожи</td><td>КЗ +1, −2 тайла передвижения</td><td class="craft-quality">—</td></tr>
+                <tr><td>Зелье подводного дыхания</td><td>Позволяет дышать под водой на время действия</td><td class="craft-quality">—</td></tr>
+                <tr><td>Зелье звериной речи</td><td>Понимание животных</td><td class="craft-quality">—</td></tr>
+                <tr><td>Зелье мертвеца</td><td>Вы кажетесь мёртвым</td><td class="craft-quality">—</td></tr>
+                <tr><td>Зелье света</td><td>Склянка светится — стабильный источник света без огня</td><td class="craft-quality">—</td></tr>
+                <tr><td>Дымовая бомба</td><td>Мгновенная дымовая завеса в зоне — укрытие для манёвра или побега</td><td class="craft-quality">—</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
       </div>
@@ -3821,7 +3860,8 @@
     { section: 'Ремесло', tab: 'craft', title: 'Кузнец', text: 'огонь молот металл руда оружие инструменты сталь железо горн кузнечное дело телосложение сила CON STR' },
     { section: 'Ремесло', tab: 'craft', title: 'Лекарь', text: 'травы зелья снадобья медицина лечение антидот яд перевязка мудрость WIS травничество рецепты настойка' },
     { section: 'Ремесло', tab: 'craft', title: 'Бронник-портной', text: 'броня доспех кольчуга латы щит нагрудник кожаный пластинчатый КЗ защита класс брони сталь подгонка' },
-    { section: 'Ремесло', tab: 'craft', title: 'Алхимик', text: 'алхимия зелья яды реагенты кислота огненная колба невидимость взрывчатка интеллект INT состав лаборатория' },
+    { section: 'Ремесло', tab: 'craft', title: 'Алхимик', text: 'алхимия зелья яды реагенты кислота огненная колба невидимость взрывчатка интеллект INT состав лаборатория мана эликсир скорости восприятия выносливости бдительности героизма ночного зрения железной кожи подводного дыхания звериной речи мертвеца света дымовая бомба завеса побег' },
+    { section: 'Ремесло', tab: 'craft', title: 'Каталог зелий лекаря', text: 'малое большое зелье лечения превосходного высшего исцеления восстановления алоэ антидот против кровотечения снотворное HP лекарь срастания костей перелом мазь от ожогов горение' },
   ];
 
   function doSearch(query) {
