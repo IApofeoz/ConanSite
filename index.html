@@ -67,6 +67,7 @@
     opacity: 0.55;
   }
 
+
   /* ─── EMBERS ─── */
   .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
   .particle {
@@ -1313,6 +1314,12 @@
     <symbol id="i-heart" viewBox="0 0 24 24">
       <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 20 C7 16 4 13 4 9 C4 6 6 4 9 4 C10.5 4 12 5 12 6 C12 5 13.5 4 15 4 C18 4 20 6 20 9 C20 13 17 16 12 20 Z"/>
+      </g>
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 14.5 A8 8 0 1 1 9.5 4 A6.2 6.2 0 0 0 20 14.5 Z"/>
+        <path d="M16 5 L16.6 6.6 L18.2 7.2 L16.6 7.8 L16 9.4 L15.4 7.8 L13.8 7.2 L15.4 6.6 Z" opacity="0.65"/>
       </g>
     </symbol>
     <symbol id="i-wind" viewBox="0 0 24 24">
@@ -2787,19 +2794,20 @@
             </div>
           </div>
           <style>
-            .craft-table{width:100%;border-collapse:collapse;font-size:17px;margin-bottom:2rem}
+            .craft-table{width:100%;border-collapse:collapse;font-size:16px;margin-bottom:2rem}
             .craft-table th,.craft-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left}
             .craft-table th{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint);font-weight:400}
             .craft-table tr:last-child td{border-bottom:none}
             .craft-table tr:hover td{background:rgba(201,168,76,.03)}
-            .craft-dc{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--gold-light)}
-            .craft-quality{font-size:15px;color:var(--text-muted)}
-            .craft-note{font-size:14px;color:var(--text-faint);font-style:italic}
+            .craft-dc{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--gold-light)}
+            .craft-quality{font-size:16px;color:var(--text-muted)}
+            .craft-note{font-size:16px;color:var(--text-faint);font-style:italic}
             .cq-fail{color:#c04030}.cq-weak{color:#a07020}.cq-norm{color:var(--text-soft)}.cq-good{color:#4a8a4a}.cq-master{color:#3a7ab0}.cq-legend{color:var(--gold-light);font-weight:600}
             .craft-catalog{margin-top:0.5rem}
             .catalog-table{margin-bottom:1.5rem}
             .catalog-table th{font-size:11px}
-            .catalog-table td{padding:8px 14px;font-size:15px}
+            .catalog-table td{padding:8px 14px;font-size:16px}
+            .catalog-table td:first-child{font-size:18px;color:var(--gold-light);font-family:'Cinzel',serif;letter-spacing:.03em}
             .catalog-label{font-family:'Cinzel',serif;font-size:14px;letter-spacing:.08em;padding:7px 14px;margin-bottom:0;border-radius:3px 3px 0 0;border-left:3px solid;color:var(--text-soft)}
             .catalog-heal{background:rgba(120,170,110,.10);border-left-color:#6fae66}
             .catalog-cure{background:rgba(120,170,110,.06);border-left-color:#8fc285}
@@ -2808,6 +2816,7 @@
             .catalog-misc{background:rgba(180,180,180,.07);border-left-color:#9a9a9a}
             .catalog-forge{background:rgba(200,120,70,.10);border-left-color:#c87846}
             .catalog-armor{background:rgba(150,150,190,.10);border-left-color:#8f8fc0}
+            .catalog-cloth{background:rgba(170,130,160,.10);border-left-color:#aa82a0}
             .catalog-empty td{color:var(--text-faint);font-style:italic;text-align:center}
             .catalog-table tr:hover td{background:rgba(201,168,76,.04)}
           </style>
@@ -2938,6 +2947,19 @@
                 <tr><td>Тяжёлый доспех</td><td class="craft-dc">16 КБ</td><td class="craft-dc">—</td></tr>
               </tbody>
             </table>
+
+            <div class="catalog-label catalog-cloth">Элементы одежды и снаряжения</div>
+            <table class="craft-table catalog-table">
+              <thead><tr><th>Название</th><th>Эффект</th><th>Стоимость крафта</th></tr></thead>
+              <tbody>
+                <tr><td>Пояс для зелий</td><td>Быстрый доступ к зельям — использование зелья бонусным действием</td><td class="craft-dc">—</td></tr>
+                <tr><td>Плащ</td><td>Защита от непогоды и холода</td><td class="craft-dc">—</td></tr>
+                <tr><td>Перчатки</td><td class="craft-quality">—</td><td class="craft-dc">—</td></tr>
+                <tr><td>Сапоги</td><td class="craft-quality">—</td><td class="craft-dc">—</td></tr>
+                <tr><td>Подсумок / сумка</td><td>Дополнительные ячейки инвентаря</td><td class="craft-dc">—</td></tr>
+                <tr><td>Капюшон</td><td class="craft-quality">—</td><td class="craft-dc">—</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -3063,6 +3085,33 @@
           <div class="mechanic-body">
             <h3>Связи и Репутация</h3>
             <p>НПС помнят, как вы с ними обращались. У каждого значимого персонажа есть шкала отношений. Хорошие отношения открывают уникальные квесты; плохие могут привести к тому, что вас сдадут страже или наймут убийцу.</p>
+          </div>
+        </div>
+        <div class="mechanic-item">
+          <div class="mechanic-icon-wrap"><svg aria-hidden="true"><use href="#i-moon"/></svg></div>
+          <div class="mechanic-body">
+            <h3>Отдых</h3>
+            <p>Передышка восстанавливает силы персонажа. Существует два вида отдыха — короткий и долгий, различающиеся по длительности и тому, насколько они восстанавливают ресурсы.</p>
+            <style>
+              .rest-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:16px}
+              .rest-table th{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);font-weight:400;text-align:left;padding:8px 12px;border-bottom:1px solid var(--border-gold)}
+              .rest-table th:not(:first-child){text-align:center}
+              .rest-table td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text-soft);vertical-align:middle}
+              .rest-table td:first-child{color:var(--gold-light);font-size:18px;font-family:'Cinzel',serif;letter-spacing:.03em}
+              .rest-table td:not(:first-child){text-align:center;font-family:'JetBrains Mono',monospace;font-size:16px}
+              .rest-table tr:last-child td{border-bottom:none}
+              .rest-full{color:var(--gold-light);font-weight:600}
+            </style>
+            <table class="rest-table">
+              <thead>
+                <tr><th>Восстанавливается</th><th>Короткий отдых</th><th>Долгий отдых</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Здоровье (HP)</td><td>50%</td><td class="rest-full">100%</td></tr>
+                <tr><td>Мана</td><td>50%</td><td class="rest-full">100%</td></tr>
+                <tr><td>Способности класса</td><td>да</td><td class="rest-full">да</td></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -3244,8 +3293,8 @@
         .eq-table { width: 100%; border-collapse: collapse; }
         .eq-table th { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-faint); padding: 8px 12px; border-bottom: 1px solid var(--border-gold); text-align: left; font-weight: 400; }
         .eq-table th:not(:first-child) { text-align: center; }
-        .eq-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-soft); font-size: 17px; vertical-align: middle; }
-        .eq-table td:first-child { color: var(--gold-light); font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: .04em; }
+        .eq-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-soft); font-size: 16px; vertical-align: middle; }
+        .eq-table td:first-child { color: var(--gold-light); font-family: 'Cinzel', serif; font-size: 18px; letter-spacing: .04em; }
         .eq-table td:not(:first-child) { text-align: center; }
         .eq-table tr:hover td { background: var(--bg-3); }
         .eq-tag { font-size: 12px; padding: 2px 8px; border: 1px solid var(--border); color: var(--text-faint); font-family: 'Cinzel', serif; letter-spacing: .08em; display: inline-block; }
@@ -3257,7 +3306,7 @@
         .eq-type.pierce { background: rgba(24,95,165,.12); color: #85B7EB; }
         .eq-type.crush { background: rgba(133,79,11,.12); color: #EF9F27; }
         .eq-hands { font-weight: 500; color: var(--text-muted); }
-        .eq-mod { font-size: 14px; color: var(--text-faint); }
+        .eq-mod { font-size: 16px; color: var(--text-faint); }
         .eq-bonus { color: var(--gold-light); font-weight: 500; }
       </style>
 
@@ -3274,22 +3323,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Кинжал</td><td><span class="eq-hands">1</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
-            <tr><td>Кнут</td><td><span class="eq-hands">1</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
-            <tr><td>Посох</td><td><span class="eq-hands">2</span></td><td><span class="eq-type crush">Дробящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
-            <tr><td>Копьё</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
-            <tr><td>Катана</td><td><span class="eq-hands">2</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
-            <tr><td>Одноруч. меч</td><td><span class="eq-hands">1</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
-            <tr><td>Двуруч. меч</td><td><span class="eq-hands">2</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
-            <tr><td>Одноруч. молот</td><td><span class="eq-hands">1</span></td><td><span class="eq-type crush">Дробящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
-            <tr><td>Двуруч. молот</td><td><span class="eq-hands">2</span></td><td><span class="eq-type crush">Дробящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
-            <tr><td>Одноруч. топор</td><td><span class="eq-hands">1</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
-            <tr><td>Двуруч. топор</td><td><span class="eq-hands">2</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Сила</span></td><td></td></tr>
-            <tr><td>Рапира</td><td><span class="eq-hands">1</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
-            <tr><td>Лук</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
-            <tr><td>Длинный лук</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
-            <tr><td>Арбалет</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
-            <tr><td>Тяжёлый арбалет</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td></td></tr>
+            <tr><td>Кинжал</td><td><span class="eq-hands">1</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td><span class="eq-mod">1d4 + Лов</span></td></tr>
+            <tr><td>Кнут</td><td><span class="eq-hands">1</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Ловкость</span></td><td><span class="eq-mod">1d4 + Лов</span></td></tr>
+            <tr><td>Посох</td><td><span class="eq-hands">2</span></td><td><span class="eq-type crush">Дробящий</span></td><td><span class="eq-mod">Сила</span></td><td><span class="eq-mod">1d8 + Сил</span></td></tr>
+            <tr><td>Копьё</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Сила</span></td><td><span class="eq-mod">1d8 + Сил</span></td></tr>
+            <tr><td>Катана</td><td><span class="eq-hands">2</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Ловкость</span></td><td><span class="eq-mod">1d10 + Лов</span></td></tr>
+            <tr><td>Одноруч. меч</td><td><span class="eq-hands">1</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td><span class="eq-mod">1d6 + Лов</span></td></tr>
+            <tr><td>Двуруч. меч</td><td><span class="eq-hands">2</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Сила</span></td><td><span class="eq-mod">2d6 + Сил</span></td></tr>
+            <tr><td>Одноруч. молот</td><td><span class="eq-hands">1</span></td><td><span class="eq-type crush">Дробящий</span></td><td><span class="eq-mod">Сила</span></td><td><span class="eq-mod">1d8 + Сил</span></td></tr>
+            <tr><td>Двуруч. молот</td><td><span class="eq-hands">2</span></td><td><span class="eq-type crush">Дробящий</span></td><td><span class="eq-mod">Сила</span></td><td><span class="eq-mod">2d6 + Сил</span></td></tr>
+            <tr><td>Одноруч. топор</td><td><span class="eq-hands">1</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Сила</span></td><td><span class="eq-mod">1d6 + Сил</span></td></tr>
+            <tr><td>Двуруч. топор</td><td><span class="eq-hands">2</span></td><td><span class="eq-type slash">Рубящий</span></td><td><span class="eq-mod">Сила</span></td><td><span class="eq-mod">1d12 + Сил</span></td></tr>
+            <tr><td>Рапира</td><td><span class="eq-hands">1</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td><span class="eq-mod">1d8 + Лов</span></td></tr>
+            <tr><td>Лук</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td><span class="eq-mod">1d6 + Лов</span></td></tr>
+            <tr><td>Длинный лук</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td><span class="eq-mod">1d8 + Лов</span></td></tr>
+            <tr><td>Арбалет</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td><span class="eq-mod">1d8 + Лов</span></td></tr>
+            <tr><td>Тяжёлый арбалет</td><td><span class="eq-hands">2</span></td><td><span class="eq-type pierce">Колющий</span></td><td><span class="eq-mod">Ловкость</span></td><td><span class="eq-mod">1d10 + Лов</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -3305,9 +3354,9 @@
           </thead>
           <tbody>
             <tr><td>Мантия</td><td><span class="eq-mod">10 + Лов ÷ 2</span></td></tr>
-            <tr><td>Лёгкая броня</td><td></td></tr>
-            <tr><td>Средняя броня</td><td></td></tr>
-            <tr><td>Тяжёлая броня</td><td></td></tr>
+            <tr><td>Лёгкая броня</td><td><span class="eq-mod">11 КБ</span></td></tr>
+            <tr><td>Средняя броня</td><td><span class="eq-mod">13 КБ</span></td></tr>
+            <tr><td>Тяжёлая броня</td><td><span class="eq-mod">16 КБ</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -3791,6 +3840,7 @@
     { section: 'Классы', tab: 'classes', title: 'Контрзаклинание', text: 'реакция прервать вражеское заклинание интеллект СЛ аннулировано' },
     { section: 'Классы', tab: 'classes', title: 'Двойное заклинание', text: 'два заклинания ход бонусное действие длинный отдых' },
     { section: 'Механики', tab: 'mechanics', title: 'Система Бросков', text: 'd20 модификатор навыка сложность действия DC боевые броски социальные исследовательские мастер' },
+    { section: 'Механики', tab: 'mechanics', title: 'Отдых', text: 'короткий долгий отдых восстановление здоровье HP мана 50 100 процентов способности класса передышка силы' },
     { section: 'Механики', tab: 'mechanics', title: 'Перманентная Смерть', text: 'персонаж умер мёртв навсегда наказание условие выбор летопись' },
     { section: 'Механики', tab: 'mechanics', title: 'Развитие и Уровни', text: 'опыт отыгрыш посты арки уровни способности механики' },
     { section: 'Механики', tab: 'mechanics', title: 'Живой Мир', text: 'мир меняется игроки деревня карта фракции торговые пути летопись' },
@@ -3850,7 +3900,7 @@
     // ─── РЕМЕСЛО ───
     { section: 'Ремесло', tab: 'craft', title: 'Кузнец', text: 'огонь молот металл руда оружие инструменты сталь железо горн кузнечное дело телосложение сила CON STR' },
     { section: 'Ремесло', tab: 'craft', title: 'Лекарь', text: 'травы зелья снадобья медицина лечение антидот яд перевязка мудрость WIS травничество рецепты настойка' },
-    { section: 'Ремесло', tab: 'craft', title: 'Бронник-портной', text: 'броня доспех кольчуга латы щит нагрудник кожаный пластинчатый КБ защита класс брони сталь подгонка' },
+    { section: 'Ремесло', tab: 'craft', title: 'Бронник-портной', text: 'броня доспех кольчуга латы щит нагрудник кожаный пластинчатый КБ защита класс брони сталь подгонка пояс для зелий плащ перчатки сапоги подсумок капюшон одежда' },
     { section: 'Ремесло', tab: 'craft', title: 'Алхимик', text: 'алхимия зелья яды реагенты кислота огненная колба невидимость взрывчатка интеллект INT состав лаборатория мана эликсир скорости восприятия выносливости бдительности героизма ночного зрения железной кожи подводного дыхания звериной речи мертвеца света дымовая бомба завеса побег' },
     { section: 'Ремесло', tab: 'craft', title: 'Каталог зелий лекаря', text: 'малое большое зелье лечения превосходного высшего исцеления восстановления алоэ антидот против кровотечения снотворное HP лекарь срастания костей перелом мазь от ожогов горение' },
   ];
