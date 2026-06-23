@@ -2819,17 +2819,50 @@
             .catalog-cloth{background:rgba(170,130,160,.10);border-left-color:#aa82a0}
             .catalog-empty td{color:var(--text-faint);font-style:italic;text-align:center}
             .catalog-table tr:hover td{background:rgba(201,168,76,.04)}
+            .odds-box{margin-top:1.25rem;border:1px solid var(--border);border-radius:6px;background:rgba(201,168,76,.025);overflow:hidden}
+            .odds-box summary{cursor:pointer;padding:11px 16px;font-family:'Cinzel',serif;font-size:14px;color:var(--gold-light);letter-spacing:.05em;list-style:none;user-select:none;transition:background .15s}
+            .odds-box summary:hover{background:rgba(201,168,76,.05)}
+            .odds-box summary::-webkit-details-marker{display:none}
+            .odds-box summary::after{content:'⌄';float:right;font-size:18px;line-height:1;transition:transform .2s;color:var(--gold-deep)}
+            .odds-box[open] summary::after{transform:rotate(180deg)}
+            .odds-box[open] summary{border-bottom:1px solid var(--border)}
+            .odds-table{width:100%;border-collapse:collapse;font-size:15px;margin:0}
+            .odds-table th,.odds-table td{padding:7px 16px;text-align:center;border-bottom:1px solid var(--border)}
+            .odds-table th:first-child,.odds-table td:first-child{text-align:left;color:var(--gold-light);font-family:'JetBrains Mono',monospace}
+            .odds-table thead th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);font-weight:400}
+            .odds-table tbody tr:last-child td{border-bottom:none}
+            .odds-table td:nth-child(2){color:#E24B4A}
+            .odds-table td:nth-child(3){color:var(--text-soft)}
+            .odds-table td:nth-child(4){color:#639922}
+            .odds-table td:nth-child(5){color:#EF9F27}
+            .odds-table tbody tr:hover td{background:rgba(201,168,76,.03)}
+            .odds-note{font-size:12px;color:var(--text-faint);padding:9px 16px 13px;margin:0;font-style:italic}
           </style>
           <div class="sub-section-title" style="margin-top:2rem">Качество изделия</div>
-          <div class="sub-section-subtitle">итоговый результат проверки определяет исход крафта</div>
+          <div class="sub-section-subtitle">бросок: 3d20 + мастерство к каждому кубику — итоговая сумма определяет качество</div>
           <table class="craft-table">
-            <thead><tr><th>Результат броска</th><th>Качество</th><th>Эффект</th></tr></thead>
+            <thead><tr><th>Сумма броска</th><th>Качество</th><th>Эффект</th></tr></thead>
             <tbody>
-              <tr><td class="craft-note">&lt; 8</td><td class="cq-fail">Неудача</td><td>Материалы потеряны, изделие не получилось</td></tr>
-              <tr><td class="craft-note">8 – 19</td><td class="cq-norm">Обычный крафт</td><td>Стандартные характеристики изделия</td></tr>
-              <tr><td class="craft-note">≥ 20</td><td class="cq-legend">Крафт +1 качество</td><td>Улучшенное изделие: +1 к ключевому свойству</td></tr>
+              <tr><td class="craft-note">≤ 22</td><td class="cq-fail">Провал</td><td>Материалы потеряны, изделие не получилось</td></tr>
+              <tr><td class="craft-note">23 – 48</td><td class="cq-norm">Обычный крафт</td><td>Стандартные характеристики изделия</td></tr>
+              <tr><td class="craft-note">49 – 57</td><td class="cq-good">Крафт +1 качество</td><td>Улучшенное изделие: +1 к ключевому свойству</td></tr>
+              <tr><td class="craft-note">≥ 58</td><td class="cq-legend">Крафт +2 качество</td><td>Улучшенное изделие: +2 к ключевому свойству</td></tr>
             </tbody>
           </table>
+          <details class="odds-box">
+            <summary>Шансы по уровням мастерства</summary>
+            <table class="odds-table">
+              <thead><tr><th>Мастерство</th><th>Провал</th><th>Обычный</th><th>+1</th><th>+2</th></tr></thead>
+              <tbody>
+                <tr><td>+2</td><td>7.0%</td><td>78.8%</td><td>12.2%</td><td>2.1%</td></tr>
+                <tr><td>+3</td><td>3.6%</td><td>74.3%</td><td>17.5%</td><td>4.5%</td></tr>
+                <tr><td>+4</td><td>1.5%</td><td>66.8%</td><td>23.2%</td><td>8.5%</td></tr>
+                <tr><td>+5</td><td>0.4%</td><td>57.0%</td><td>28.3%</td><td>14.2%</td></tr>
+                <tr><td>+6</td><td>0.1%</td><td>46.2%</td><td>31.6%</td><td>22.1%</td></tr>
+              </tbody>
+            </table>
+            <p class="odds-note">Бросок 3d20, мастерство добавляется к каждому кубику. Проценты — вероятность каждого исхода.</p>
+          </details>
           <div class="sub-section-title" style="margin-top:2rem">Крафты</div>
           <div class="sub-section-subtitle">оружие, доступное кузнецу для изготовления · <a onclick="switchTab('equipment')" style="color:var(--gold-light);cursor:pointer;border-bottom:1px dotted var(--gold-deep);">подробное описание характеристик оружия — хват, тип урона и модификатор атаки — смотрите во вкладке «Снаряжение»</a></div>
           <div class="craft-catalog">
@@ -2926,15 +2959,30 @@
             </div>
           </div>
           <div class="sub-section-title" style="margin-top:2rem">Качество изделия</div>
-          <div class="sub-section-subtitle">итоговый результат проверки определяет исход крафта</div>
+          <div class="sub-section-subtitle">бросок: 3d20 + мастерство к каждому кубику — итоговая сумма определяет качество</div>
           <table class="craft-table">
-            <thead><tr><th>Результат броска</th><th>Качество</th><th>Эффект</th></tr></thead>
+            <thead><tr><th>Сумма броска</th><th>Качество</th><th>Эффект</th></tr></thead>
             <tbody>
-              <tr><td class="craft-note">&lt; 8</td><td class="cq-fail">Неудача</td><td>Материалы потеряны, изделие не получилось</td></tr>
-              <tr><td class="craft-note">8 – 19</td><td class="cq-norm">Обычный крафт</td><td>Стандартные характеристики изделия</td></tr>
-              <tr><td class="craft-note">≥ 20</td><td class="cq-legend">Крафт +1 качество</td><td>Улучшенное изделие: +1 к ключевому свойству</td></tr>
+              <tr><td class="craft-note">≤ 22</td><td class="cq-fail">Провал</td><td>Материалы потеряны, изделие не получилось</td></tr>
+              <tr><td class="craft-note">23 – 48</td><td class="cq-norm">Обычный крафт</td><td>Стандартные характеристики изделия</td></tr>
+              <tr><td class="craft-note">49 – 57</td><td class="cq-good">Крафт +1 качество</td><td>Улучшенное изделие: +1 к ключевому свойству</td></tr>
+              <tr><td class="craft-note">≥ 58</td><td class="cq-legend">Крафт +2 качество</td><td>Улучшенное изделие: +2 к ключевому свойству</td></tr>
             </tbody>
           </table>
+          <details class="odds-box">
+            <summary>Шансы по уровням мастерства</summary>
+            <table class="odds-table">
+              <thead><tr><th>Мастерство</th><th>Провал</th><th>Обычный</th><th>+1</th><th>+2</th></tr></thead>
+              <tbody>
+                <tr><td>+2</td><td>7.0%</td><td>78.8%</td><td>12.2%</td><td>2.1%</td></tr>
+                <tr><td>+3</td><td>3.6%</td><td>74.3%</td><td>17.5%</td><td>4.5%</td></tr>
+                <tr><td>+4</td><td>1.5%</td><td>66.8%</td><td>23.2%</td><td>8.5%</td></tr>
+                <tr><td>+5</td><td>0.4%</td><td>57.0%</td><td>28.3%</td><td>14.2%</td></tr>
+                <tr><td>+6</td><td>0.1%</td><td>46.2%</td><td>31.6%</td><td>22.1%</td></tr>
+              </tbody>
+            </table>
+            <p class="odds-note">Бросок 3d20, мастерство добавляется к каждому кубику. Проценты — вероятность каждого исхода.</p>
+          </details>
           <div class="sub-section-title" style="margin-top:2rem">Крафты</div>
           <div class="sub-section-subtitle">броня, доступная для изготовления · <a onclick="switchTab('equipment')" style="color:var(--gold-light);cursor:pointer;border-bottom:1px dotted var(--gold-deep);">подробное описание характеристик брони — класс брони и тип доспеха — смотрите во вкладке «Снаряжение»</a></div>
           <div class="craft-catalog">
