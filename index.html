@@ -1527,6 +1527,7 @@
         <button onclick="switchTab('backgrounds')"><span class="tab-num">VI·4</span>Предыстории</button>
         <button onclick="switchTab('feats')"><span class="tab-num">VI·5</span>Черты</button>
         <button onclick="switchTab('equipment')"><span class="tab-num">VI·6</span>Снаряжение</button>
+        <button onclick="switchTab('trinkets')"><span class="tab-num">VI·7</span>Безделушки</button>
       </div>
     </div>
     <a href="https://docs.google.com/document/d/11Hfrcb7KPpVQRoXvMsQvWEnmveECZWP7Zv90JpkBJCE/edit?usp=sharing" target="_blank" class="tab-btn">
@@ -2801,7 +2802,7 @@
             .craft-table tr:hover td{background:rgba(201,168,76,.03)}
             .craft-dc{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--gold-light)}
             .craft-quality{font-size:16px;color:var(--text-muted)}
-            .craft-note{font-size:16px;color:var(--text-faint);font-style:italic}
+            .craft-note{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--gold-light);font-weight:700;letter-spacing:0.02em;white-space:nowrap}
             .cq-fail{color:#c04030}.cq-weak{color:#a07020}.cq-norm{color:var(--text-soft)}.cq-good{color:#4a8a4a}.cq-master{color:#3a7ab0}.cq-legend{color:var(--gold-light);font-weight:600}
             .craft-catalog{margin-top:0.5rem}
             .catalog-table{margin-bottom:1.5rem}
@@ -2983,6 +2984,17 @@
             </table>
             <p class="odds-note">Бросок 3d20, мастерство добавляется к каждому кубику. Проценты — вероятность каждого исхода.</p>
           </details>
+          <div class="sub-section-title" style="margin-top:2rem">Улучшение брони</div>
+          <div class="sub-section-subtitle">что даёт качество изготовления</div>
+          <table class="craft-table">
+            <thead><tr><th>Качество</th><th>Класс брони</th><th>Снижение урона</th></tr></thead>
+            <tbody>
+              <tr><td class="cq-norm">Обычное</td><td class="craft-quality">—</td><td class="craft-quality">—</td></tr>
+              <tr><td class="cq-good">+1</td><td class="craft-dc">+1 КБ</td><td class="craft-quality">—</td></tr>
+              <tr><td class="cq-legend">+2</td><td class="craft-dc">+1 КБ</td><td class="craft-dc">−2 физ. урона</td></tr>
+            </tbody>
+          </table>
+          <p class="odds-note" style="padding-left:0;">Снижение урона действует постоянно и только против физического урона (колющий / рубящий / дробящий); магия и стихии проходят полностью.</p>
           <div class="sub-section-title" style="margin-top:2rem">Крафты</div>
           <div class="sub-section-subtitle">броня, доступная для изготовления · <a onclick="switchTab('equipment')" style="color:var(--gold-light);cursor:pointer;border-bottom:1px dotted var(--gold-deep);">подробное описание характеристик брони — класс брони и тип доспеха — смотрите во вкладке «Снаряжение»</a></div>
           <div class="craft-catalog">
@@ -3353,8 +3365,8 @@
         .eq-type.slash { background: rgba(153,60,29,.12); color: #F0997B; }
         .eq-type.pierce { background: rgba(24,95,165,.12); color: #85B7EB; }
         .eq-type.crush { background: rgba(133,79,11,.12); color: #EF9F27; }
-        .eq-hands { font-weight: 500; color: var(--text-muted); }
-        .eq-mod { font-size: 16px; color: var(--text-faint); }
+        .eq-hands { font-family: 'JetBrains Mono', monospace; font-weight: 500; color: var(--text-soft); }
+        .eq-mod { font-size: 16px; font-family: 'JetBrains Mono', monospace; color: var(--text-soft); }
         .eq-bonus { color: var(--gold-light); font-weight: 500; }
       </style>
 
@@ -3423,6 +3435,342 @@
           </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- ━━━ БЕЗДЕЛУШКИ ━━━ -->
+    <div class="tab-content" id="tab-trinkets">
+      <div class="chapter-mark">
+        <span class="chapter-num">CHAPTER · VI·7</span>
+        <span class="chapter-rule"></span>
+      </div>
+      <div class="section-title">Безделушки</div>
+      <div class="section-subtitle">диковины, расходники и редкие находки</div>
+
+      <p class="lead">Мир полон странных вещиц — одни приносят удачу, другие беду, третьи просто занимают место в котомке. Каждая безделушка несёт свою историю и свой эффект.</p>
+
+      <style>
+        .trk-table{width:100%;border-collapse:collapse;margin-top:1.5rem;}
+        .trk-table thead th{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);font-weight:400;text-align:left;padding:10px 14px;border-bottom:1px solid var(--border-gold);}
+        .trk-table td{padding:14px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+        .trk-table tr:last-child td{border-bottom:none;}
+        .trk-table tr:hover td{background:rgba(201,168,76,.025);}
+        .trk-name{color:var(--gold-light);font-family:'Cinzel',serif;font-size:18px;letter-spacing:.02em;min-width:180px;}
+        .trk-num{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--gold-deep);text-align:right;width:28px;padding-right:4px;}
+        .trk-type{display:inline-block;font-size:11px;padding:2px 8px;border-radius:3px;white-space:nowrap;border:0.5px solid;}
+        .tt-acc{background:rgba(110,150,210,.10);color:#85B7EB;border-color:#6e96d2;}
+        .tt-cons{background:rgba(200,120,70,.10);color:#EF9F27;border-color:#c87846;}
+        .tt-use{background:rgba(120,170,110,.10);color:#97C459;border-color:#6fae66;}
+        .tt-head{background:rgba(170,130,160,.10);color:#ED93B1;border-color:#aa82a0;}
+        .trk-lore{font-size:14px;color:var(--text-faint);font-style:italic;display:block;margin-bottom:6px;line-height:1.5;}
+        .trk-eff{font-size:15px;color:var(--text-soft);line-height:1.55;}
+        .trk-eff b{color:var(--gold-light);font-weight:600;}
+      </style>
+
+      <table class="trk-table">
+        <thead><tr><th>№</th><th>Предмет</th><th>Тип</th><th>Описание и эффект</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="trk-num">1</td>
+            <td class="trk-name">Гребень дроу</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Костяной гребень тонкой работы, какие плетут в подземных городах. Волос в нём не застревает, а вот чужие секреты — бывает.</span><span class="trk-eff"><b>+1</b> Скрытность · <b>−1</b> Харизма при свете дня</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">2</td>
+            <td class="trk-name">Кружка бездонного эля</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Прошлый владелец, говорят, помер от старости раньше, чем показалось дно.</span><span class="trk-eff">Раз в день наполняется элем. Испивший проходит Телосложение порогом 12 — при провале помеха на Ловкость 1 ролевой круг.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">3</td>
+            <td class="trk-name">Чешуйка драконорождённого</td>
+            <td><span class="trk-type tt-cons">Расходник</span></td>
+            <td><span class="trk-lore">Отвалившаяся чешуя старого ящера. Ещё хранит тепло его нутра.</span><span class="trk-eff">Бонусным действием раздавите чешуйку: следующая атака получает <b>+1d4</b> урона огнём.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">4</td>
+            <td class="trk-name">Молитвенник без обложки</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Страницы затёрты до дыр чьими-то пальцами. Слова ещё читаются, вера ещё держится.</span><span class="trk-eff">Позволяет классу <b>Жрец</b> получить опыт (эквивалент одной заметной заслуги).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">5</td>
+            <td class="trk-name">Воровская отмычка «на удачу»</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Гнётся, но не ломается. Прошла больше замков, чем её хозяин — городов.</span><span class="trk-eff">Преимущество на проверку Ловкости при вскрытии замков. При выпавшей «1» на кубе — застревает и ломается.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">6</td>
+            <td class="trk-name">Серьга наёмника</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Простое кольцо в ухе. Говорят, на него покупали гроб, если хозяин не вернётся из похода.</span><span class="trk-eff"><b>+1</b> Сила воли · <b>−1</b> Харизма</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">7</td>
+            <td class="trk-name">Хвостовой шип тифлинга</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Кончик хвоста, сброшенный при линьке. Острый и до сих пор тёплый.</span><span class="trk-eff">Метните как дротик: дальний бой против защиты цели, <b>5</b> колющего урона и кровотечение.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">8</td>
+            <td class="trk-name">Дварфийская фляга «последний глоток»</td>
+            <td><span class="trk-type tt-use">Применяемое</span></td>
+            <td><span class="trk-lore">Гравировка стёрта, но вкус — нет. Дварфы не делятся такими.</span><span class="trk-eff">Испейте: снимает эффект страха и даёт преимущество на следующий спасбросок Телосложения.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">9</td>
+            <td class="trk-name">Перо из крыла полуэльфа</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Не птичье и не ангельское, а что-то посередине. Как и его бывший владелец.</span><span class="trk-eff"><b>+1</b> Восприятие · <b>+1</b> Убеждение</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">10</td>
+            <td class="trk-name">Точильный камень мастера</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Тёмный брусок, что точит даже плохую сталь до бритвенной остроты.</span><span class="trk-eff">Заточите оружие: следующая атака наносит <b>+2</b> урона. Раз в ролевой круг.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">11</td>
+            <td class="trk-name">Мешочек подозрительной соли</td>
+            <td><span class="trk-type tt-use">Применяемое</span></td>
+            <td><span class="trk-lore">Бабка на рынке клялась, что это от нечисти. Может, и врала.</span><span class="trk-eff">Бонусным действием создайте преграду в 3 клетки, через которую тифлинги-статисты и нежить не пройдут 2 ролевых круга.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">12</td>
+            <td class="trk-name">Кости для игры</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Две костяшки, отполированные тысячами ладоней. На одной грани — еле заметная зарубка.</span><span class="trk-eff">Гарантированно выкидывают нужное значение в азартной игре. <b>Плут</b> на сцене с преимуществом раскроет обман.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">13</td>
+            <td class="trk-name">Колпак звездочёта</td>
+            <td><span class="trk-type tt-head">Головной убор</span></td>
+            <td><span class="trk-lore">Остроконечная шляпа, протёртая на макушке. В ней удобно думать о высоком.</span><span class="trk-eff"><b>+1</b> Интеллект · <b>−1</b> Инициатива</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">14</td>
+            <td class="trk-name">Сушёный гриб-светляк</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Подземный гриб, что тускло светится холодным синим даже сорванным.</span><span class="trk-eff">Освещает 2 клетки вокруг. Не является источником огня.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">15</td>
+            <td class="trk-name">Орочья зубная подвеска</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Клык на сыромятном шнурке. Полуорки носят такие как память о первой охоте.</span><span class="trk-eff"><b>+1</b> Запугивание · полуорки получают <b>+1</b> Сила воли</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">16</td>
+            <td class="trk-name">Письмо без адресата</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Стихи, хорошие и горькие. Автор не дописал последнюю строку.</span><span class="trk-eff">Позволяет классу <b>Маг</b> получить опыт (эквивалент одной заметной заслуги).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">17</td>
+            <td class="trk-name">Подкова на верёвочке</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Тяжёлая, неудобная, оттягивает шею. Но удача любит тех, кто терпит.</span><span class="trk-eff">Добавьте <b>0–3</b> к итогу проверки удачи. <b>−1</b> Инициатива.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">18</td>
+            <td class="trk-name">Глаз в склянке</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Чей это глаз — лучше не знать. Он всё ещё косится туда, куда не смотрит никто.</span><span class="trk-eff">Указывает на скрытое или незримое рядом. Если по вам попадут в течение 5 минут после применения — склянка лопнет, глаз погибнет.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">19</td>
+            <td class="trk-name">Огниво из драконьей кости</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Внутри обломка кости вечно тлеет уголёк. Хватает на искру в любой холод.</span><span class="trk-eff">Поджигает легковоспламеняемое. Не освещает.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">20</td>
+            <td class="trk-name">Походный коврик-самокрут</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Скатывается в кулак, разворачивается в постель. Спать на нём — будто дома.</span><span class="trk-eff">Позволяет совершить короткий отдых в любом месте.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">21</td>
+            <td class="trk-name">Винленский жёлудь</td>
+            <td><span class="trk-type tt-acc">Аксессуар · Портится</span></td>
+            <td><span class="trk-lore">Говорят, в листве дубов Винленда оседают умения павших героев. Этот жёлудь с такого дуба.</span><span class="trk-eff"><b>+1</b> к броскам атаки (пока не сгниёт).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">22</td>
+            <td class="trk-name">Костяной свисток дварфов</td>
+            <td><span class="trk-type tt-use">Применяемое</span></td>
+            <td><span class="trk-lore">Не слышен ухом, но в шахтах на него сбегаются вырубленные на подмогу.</span><span class="trk-eff">Куб Сила воли: за каждые 5 итога — 1 дварф-страж приходит на подмогу через 1 ролевой круг (щит, дубина, <b>+2</b> к броскам).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">23</td>
+            <td class="trk-name">Флакон «трезвость за миг»</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Резкая дрянь, что выбивает хмель вместе с парой воспоминаний.</span><span class="trk-eff">Снимает алкоголь и похмелье. Следующие 2 часа герой часто отлучается по нужде.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">24</td>
+            <td class="trk-name">Меченая карта из колоды</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Уголок чуть загнут. Кто знает — может, так и было задумано.</span><span class="trk-eff">В азартной игре даёт <b>+1</b> к значению куба, даже если карты в игре не используются.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">25</td>
+            <td class="trk-name">Осколок рунного клинка</td>
+            <td><span class="trk-type tt-cons">Расходник</span></td>
+            <td><span class="trk-lore">Один обломок чужого меча. У слома — древние руны. Где-то лежат остальные части.</span><span class="trk-eff">Собрав <b>5</b> фрагментов, можно восстановить клинок (ролевая отыгровка).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">26</td>
+            <td class="trk-name">Зеркальце дроу</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Полированный обсидиан в оправе. В подземье в него смотрятся не на себя, а на то, что крадётся за спиной.</span><span class="trk-eff">Бонусным действием загляните в зеркальце: преимущество на следующую проверку Восприятия против скрытых врагов.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">27</td>
+            <td class="trk-name">Перстень ростовщика</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Печатка с цифрой, что давно стёрлась. Кто носил — умел считать чужие монеты лучше своих.</span><span class="trk-eff"><b>+1</b> Убеждение в торговле · <b>−1</b> Харизма в бою (жадный взгляд)</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">28</td>
+            <td class="trk-name">Сердце кузнечного горна</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Угль, что тлел в дварфийском горне сотню лет и не погас. В нём ещё дышит ремесло.</span><span class="trk-eff">Позволяет <b>Кузнецу</b> разово получить преимущество на бросок качества изделия (в присутствии куратора).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">29</td>
+            <td class="trk-name">Свеча долгой ночи</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Толстая свеча из чёрного воска. Горит ровно, тихо и не гаснет от ветра.</span><span class="trk-eff">Освещает 4 клетки 1 ролевой круг. Сгорает на четверть за применение.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">30</td>
+            <td class="trk-name">Клык драконорождённого</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Выпавший зуб ящера. Внутри ещё теплится искра его дыхания.</span><span class="trk-eff">Метните: дальний бой против защиты цели, <b>1d6</b> урона огнём в области 1 клетки.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">31</td>
+            <td class="trk-name">Шёлковый платок Высших</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Тончайший платок эльфийской работы. Говорят, в его узор вплетены строки древней песни.</span><span class="trk-eff"><b>+1</b> Выступление · <b>+1</b> Сила воли против страха</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">32</td>
+            <td class="trk-name">Гнилой зуб тролля</td>
+            <td><span class="trk-type tt-use">Применяемое</span></td>
+            <td><span class="trk-lore">Чёрный зуб с тошнотворным запахом. Тролли, говорят, не чувствуют боли, пока он при них.</span><span class="trk-eff">Раскусите: на 1 ролевой круг получаете <b>+2</b> к спасброскам Телосложения, но помеху на Харизму.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">33</td>
+            <td class="trk-name">Игральная кость судьбы</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Костяшка с гранями, стёртыми так, что цифр не разобрать. Бросают её лишь раз — на крайний случай.</span><span class="trk-eff">Один раз перебросьте любой свой куб и примите новый результат.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">34</td>
+            <td class="trk-name">Походная лютня плута</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Потёртая лютня с одной запасной струной. На ней сыграно больше баек, чем мелодий.</span><span class="trk-eff"><b>+1</b> Выступление · <b>Плут</b> получает <b>+1</b> Ловкость рук</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">35</td>
+            <td class="trk-name">Молот без рукояти</td>
+            <td><span class="trk-type tt-cons">Расходник</span></td>
+            <td><span class="trk-lore">Дварфийская головка молота, потерявшая древко. Тяжела, но в умелой руке ещё послужит.</span><span class="trk-eff">Метните: дальний бой против защиты, <b>1d6</b> дробящего урона. Бросивший ищет молот после боя (Восприятие порогом 13).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">36</td>
+            <td class="trk-name">Склянка светлячков</td>
+            <td><span class="trk-type tt-cons">Расходник</span></td>
+            <td><span class="trk-lore">Стеклянная баночка с пойманными жуками. Светят мягко, пока живы.</span><span class="trk-eff">Освещает 3 клетки. Через несколько часов жуки гибнут — склянка гаснет.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">37</td>
+            <td class="trk-name">Походный набор отмычек</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Свёрток с тонкими стальными крючками. Плуты берегут его как зеницу ока.</span><span class="trk-eff"><b>Плут</b> получает <b>+2</b> к вскрытию замков; прочие — <b>+1</b>.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">38</td>
+            <td class="trk-name">Реликвия павшего жреца</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Простой символ веры на цепочке. Тёплый, будто его только что сжимали в молитве.</span><span class="trk-eff">Позволяет классу <b>Жрец</b> получить опыт (эквивалент одной заметной заслуги).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">39</td>
+            <td class="trk-name">Боевой дневник воина</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Захватанная тетрадь с зарисовками приёмов и шрамов. Каждая страница — чужой урок.</span><span class="trk-eff">Позволяет классу <b>Воин</b> получить опыт (эквивалент одной заметной заслуги).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">40</td>
+            <td class="trk-name">Рог полуорка</td>
+            <td><span class="trk-type tt-use">Применяемое</span></td>
+            <td><span class="trk-lore">Грубый боевой рог, окованный железом. Его рёв в племенах поднимал на бой целые отряды.</span><span class="trk-eff">Бонусным действием протрубите: союзники в 5 клетках получают <b>+1</b> к броскам атаки на 1 ролевой круг.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">41</td>
+            <td class="trk-name">Хрустальная линза Высших</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Отшлифованный кристалл в серебряной оправе. Через него мелкие письмена видятся ясно, как днём.</span><span class="trk-eff"><b>+1</b> Анализ · <b>Маг</b> получает <b>+1</b> к разбору магических символов</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">42</td>
+            <td class="trk-name">Подвеска тифлинга</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Гравированный медальон с языками пламени. Тёплый на ощупь даже в стужу.</span><span class="trk-eff">Сопротивление урону огнём (первые <b>2</b> урона огнём за круг игнорируются).</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">43</td>
+            <td class="trk-name">Фляжка с дварфийским пойлом</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Крепчайшее варево, от которого слезятся глаза даже у бывалых. Дварфы зовут его «утренним».</span><span class="trk-eff">Восстановите <b>5</b> здоровья, но получите помеху на Ловкость на 1 ролевой круг.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">44</td>
+            <td class="trk-name">Перчатка дровосека</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Грубая кожаная рукавица, видавшая тысячу взмахов топора. Хват в ней крепче камня.</span><span class="trk-eff"><b>+1</b> к проверкам на удержание оружия и захват. Оружие нельзя выбить из руки.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">45</td>
+            <td class="trk-name">Зачарованный мелок</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Кусочек мела, что светится при письме. Маги чертят им знаки, что держатся до рассвета.</span><span class="trk-eff">Нарисованный знак или метка светятся 1 ролевой круг. Мел стачивается за несколько применений.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">46</td>
+            <td class="trk-name">Капкан охотника</td>
+            <td><span class="trk-type tt-use">Применяемое</span></td>
+            <td><span class="trk-lore">Ржавый, но всё ещё кусачий капкан. Ставится тихо, срабатывает громко.</span><span class="trk-eff">Установите на клетку: первое существо, вошедшее в неё, проходит Ловкость порогом 14 или получает <b>1d4</b> урона и обездвиживается на 1 круг.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">47</td>
+            <td class="trk-name">Маска чумного лекаря</td>
+            <td><span class="trk-type tt-head">Головной убор</span></td>
+            <td><span class="trk-lore">Кожаная маска с длинным клювом, набитым сушёными травами. Защищает нос и нагоняет жути.</span><span class="trk-eff">Иммунитет к ядовитым испарениям и зловонию · <b>+1</b> Запугивание</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">48</td>
+            <td class="trk-name">Костяшки дроу</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Метательные шипы из чёрной кости, лёгкие и тихие. Подземная знать метала их без промаха.</span><span class="trk-eff">Дальний бой против защиты цели: <b>3</b> колющего урона. Бросаются бонусным действием.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">49</td>
+            <td class="trk-name">Компас без стрелки</td>
+            <td><span class="trk-type tt-acc">Аксессуар</span></td>
+            <td><span class="trk-lore">Латунный корпус, а внутри — пусто. И всё же в руке ясно чувствуешь, где север.</span><span class="trk-eff">Всегда позволяет определить стороны света, даже под землёй и в тумане.</span></td>
+          </tr>
+          <tr>
+            <td class="trk-num">50</td>
+            <td class="trk-name">Осколок витража храма</td>
+            <td><span class="trk-type tt-cons">Одноразовый расходник</span></td>
+            <td><span class="trk-lore">Цветное стёклышко из разбитого окна старого храма. На свету бросает тёплый отблеск.</span><span class="trk-eff">Разломите: вы и союзники в 3 клетках снимаете один эффект страха или проклятья.</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- ━━━ БАЗИС БОЁВКИ ━━━ -->
@@ -3931,6 +4279,10 @@
 
     // ─── СНАРЯЖЕНИЕ ───
     { section: 'Снаряжение', tab: 'equipment', title: 'Кинжал', text: 'одноручный колющий ловкость лёгкое оружие скрытный' },
+    { section: 'Безделушки', tab: 'trinkets', title: 'Безделушки', text: 'диковины расходники аксессуары находки гребень дроу кружка эля чешуйка дракона отмычка серьга хвост тифлинга фляга дварф перо полуэльф точильный камень соль кости колпак гриб светляк подвеска письмо подкова глаз огниво коврик жёлудь свисток флакон карта осколок клинка зеркальце перстень горн свеча клык платок зуб тролля лютня молот склянка отмычки реликвия дневник рог линза медальон перчатка мелок капкан маска компас витраж предметы' },
+    { section: 'Безделушки', tab: 'trinkets', title: 'Точильный камень мастера', text: 'заточка оружие +2 урон расходник ролевой круг' },
+    { section: 'Безделушки', tab: 'trinkets', title: 'Подкова на удачу', text: 'удача бросок +0-3 инициатива аксессуар' },
+    { section: 'Безделушки', tab: 'trinkets', title: 'Осколок рунного клинка', text: '5 фрагментов меч руны собрать восстановить отыгровка' },
     { section: 'Снаряжение', tab: 'equipment', title: 'Кнут', text: 'одноручный рубящий ловкость досягаемость' },
     { section: 'Снаряжение', tab: 'equipment', title: 'Посох', text: 'двуручный дробящий сила маг волшебник' },
     { section: 'Снаряжение', tab: 'equipment', title: 'Копьё', text: 'двуручный колющий сила досягаемость древко' },
@@ -4185,7 +4537,7 @@
 
   // ─── История браузера: единый источник навигации ───
   let __navRestoring = false;
-  const __validTabs = ['server','rules','faq','howto','lore','races','classes','craft','mechanics','combat','dice','backgrounds','feats','equipment'];
+  const __validTabs = ['server','rules','faq','howto','lore','races','classes','craft','mechanics','combat','dice','backgrounds','feats','equipment','trinkets'];
 
   function getNavHash() { return (location.hash || '').replace(/^#/, ''); }
 
