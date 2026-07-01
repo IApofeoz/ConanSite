@@ -23,8 +23,8 @@
     --bg-5:        #38301f;
     --text:        #e2d4b4;
     --text-soft:   #bda884;
-    --text-muted:  #93805e;
-    --text-faint:  #6a5c43;
+    --text-muted:  #a8946c;
+    --text-faint:  #8a7a5a;
     --text-bright: #faefd6;
     --border:      #3a3014;
     --border-soft: #271f0d;
@@ -2798,6 +2798,7 @@
             .craft-table{width:100%;border-collapse:collapse;font-size:16px;margin-bottom:2rem}
             .craft-table th,.craft-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left}
             .craft-table th{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint);font-weight:400}
+            .upgrade-table td:first-child{font-size:18px;font-family:'Cinzel',serif;letter-spacing:.03em}
             .craft-table tr:last-child td{border-bottom:none}
             .craft-table tr:hover td{background:rgba(201,168,76,.03)}
             .craft-dc{font-family:'JetBrains Mono',monospace;font-size:16px;color:var(--gold-light)}
@@ -2986,12 +2987,12 @@
           </details>
           <div class="sub-section-title" style="margin-top:2rem">Улучшение брони</div>
           <div class="sub-section-subtitle">что даёт качество изготовления</div>
-          <table class="craft-table">
+          <table class="craft-table upgrade-table">
             <thead><tr><th>Качество</th><th>Класс брони</th><th>Снижение урона</th></tr></thead>
             <tbody>
               <tr><td class="cq-norm">Обычное</td><td class="craft-quality">—</td><td class="craft-quality">—</td></tr>
-              <tr><td class="cq-good">+1</td><td class="craft-dc">+1 КБ</td><td class="craft-quality">—</td></tr>
-              <tr><td class="cq-legend">+2</td><td class="craft-dc">+1 КБ</td><td class="craft-dc">−2 физ. урона</td></tr>
+              <tr><td class="cq-good">+1</td><td class="craft-quality">—</td><td class="craft-dc">−2 физ. урона</td></tr>
+              <tr><td class="cq-legend">+2</td><td class="craft-dc">+1 КБ</td><td class="craft-quality">—</td></tr>
             </tbody>
           </table>
           <p class="odds-note" style="padding-left:0;">Снижение урона действует постоянно и только против физического урона (колющий / рубящий / дробящий); магия и стихии проходят полностью.</p>
